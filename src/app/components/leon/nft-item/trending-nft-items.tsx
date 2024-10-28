@@ -48,7 +48,7 @@ const TrendingNftItems = () => {
             <div className="row">
                 <div className="col-md-7">
                     <div className="trendingNft__title">
-                        <h2 className="title">top Trending <Image src={fire_img} width="35" alt="icon"/></h2>
+                        <h2 className="title">top Winners <Image src={fire_img} width="35" alt="icon"/></h2>
                     </div>
                 </div>
                 <div className="col-md-5">

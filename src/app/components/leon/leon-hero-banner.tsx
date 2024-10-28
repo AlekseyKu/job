@@ -27,6 +27,8 @@ const BisonCasinoHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitl
 
   const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-img.png';; // Проверяем наличие URL
   // const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}`; // Проверяем наличие URL
+  const imgWidth = pageImg?.width || 407;
+  const imgHeight = pageImg?.height || 344;
 
   return (
     <MouseParallaxContainer>
@@ -53,8 +55,8 @@ const BisonCasinoHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitl
                     <Image 
                       src={pageImgUrl} 
                       alt="Slider Image" 
-                      width={pageImg.width}  // Указываем ширину, полученную из Strapi
-                      height={pageImg.height}  // Указываем высоту, полученную из Strapi
+                      width={imgWidth} // Указываем ширину, полученную из Strapi
+                      height={imgHeight}  // Указываем высоту, полученную из Strapi
                       priority 
                     />
                   </MouseParallaxChild>

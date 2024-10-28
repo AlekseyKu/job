@@ -12,9 +12,14 @@ import InfoCasino from "./components/leon/info-casino";
 import SecurityAndLicense from "./components/leon/security-and-license";
 import LeonFaq from "./components/leon/leon-faq";
 import LeonFooter from "./components/leon/leon-footer";
+
+import EditorInfo from "./components/leon/editors/editor-info";
+
 import axios from 'axios';
 
 const httpAddress = "http://62.84.182.126:1337";
+// const httpAddress = "http://localhost:1337";
+
 
 export default async function Home() {
   // Получение данных на стороне сервера с помощью axios
@@ -23,6 +28,10 @@ export default async function Home() {
   const InfoCasinoData = await getInfoCasinoData();
   const SecurityAndLicenseData = await getSecurityAndLicense();
   const FooterData = await getFooterData();
+  // const EditorInfoData = await getEditorInfoData();
+  const EditorInfoData = await getEditorInfoData();
+
+
 
   // Логи после получения данных
   // console.log("Полученные данные для Header:", HeaderData);
@@ -56,6 +65,10 @@ export default async function Home() {
         {/* <LeonMain data={mainContentData} /> */}
       </main>
 
+      <EditorInfo 
+        editorInfo={EditorInfoData?.editorInfo} 
+      />
+
       <TournamentArea
 
       />
@@ -80,20 +93,20 @@ export default async function Home() {
 
       />
 
-      <InfoCasino 
+      {/* <InfoCasino 
         pretitle={InfoCasinoData?.pretitle}
         title={InfoCasinoData?.title}
         subtitle={InfoCasinoData?.subtitle}
         tableInfoCasino={InfoCasinoData?.tableInfoCasino || []}
-      />
+      /> */}
 
-      <SecurityAndLicense
+      {/* <SecurityAndLicense
         title={SecurityAndLicenseData?.title}
         descriptionBlock={SecurityAndLicenseData?.descriptionBlock}
         description={SecurityAndLicenseData?.description}
         description2={SecurityAndLicenseData?.description2}
         backgroundImage={SecurityAndLicenseData?.backgroundImage}
-      />
+      /> */}
 
       <LeonFaq
 
@@ -110,16 +123,6 @@ export default async function Home() {
 }
 
 // Функция для получения данных из Strapi
-// async function getBisonCasinoHomePageData() {
-//   try {
-//     const res = await axios.get(`http://62.84.182.126:1337/api/bison-casino-home-pages?populate=*`);
-//     return res.data.data[0] || {};
-//   } catch (error) {
-//     console.error("Ошибка при получении данных hero-banner из Strapi:", error);
-//     return {};
-//   }
-// }
-
 async function getBisonCasinoHomePageData() {
   try {
     const res = await axios.get(`${httpAddress}/api/home-pages?populate=*`);
@@ -136,10 +139,7 @@ async function getBisonCasinoHomePageData() {
   };
 }
 
-    // return heroData || {};
-
-
-// Функция для получения данных для Header из Strapi
+// Функция для получения данных из Strapi для Header
 async function getHeaderData() {
   try {
     const res = await axios.get(`${httpAddress}/api/headers?populate=*`);
@@ -159,7 +159,7 @@ async function getHeaderData() {
   };
 }
 
-// Функция для получения данных для Footer из Strapi
+// Функция для получения данных из Strapi для Footer
 async function getFooterData() {
   try {
     const res = await axios.get(`${httpAddress}/api/footers?populate=*`);
@@ -203,3 +203,24 @@ async function getSecurityAndLicense() {
     return {};
   }
 }
+
+async function getEditorInfoData() {
+  try {
+    const res = await axios.get(`${httpAddress}/api/editor-infos?populate=*`);
+    const EditorInfoData = res.data.data[0];
+
+    return EditorInfoData || {};
+  } catch (error) {
+    console.error("Ошибка при получении данных для EditorInfoData из Strapi:", error);
+  }
+}
+
+// async function getEditorInfoData() {
+//   try {
+//     const res = await axios.get(`${httpAddress}/api/editor-infos?populate=*`);
+
+//     return res.data.data[0]?.attributes?.content || "<p>Нет данных</p>";
+//   } catch (error) {
+//     console.error("Ошибка при получении данных для EditorInfoData из Strapi:", error);
+//   }
+// }
