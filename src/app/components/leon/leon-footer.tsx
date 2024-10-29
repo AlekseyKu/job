@@ -1,7 +1,9 @@
-'use client'
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import axios from 'axios';
+
 import logo from '@/assets/img/logo/logo.svg';
 import icon_1 from '@/assets/img/icons/social_icon01.png';
 import icon_2 from '@/assets/img/icons/social_icon02.png';
@@ -10,16 +12,46 @@ import icon_4 from '@/assets/img/icons/social_icon04.png';
 import payment from '@/assets/img/others/payment_card.png';
 
 interface FooterProps {
-  logo: { url: string; width: number; height: number }; // Объект для single media
+  logo: { url: string; width: number; height: number };
   footerText: string;
   socialTitle: string;
   footerLinksTitle: string;
 }
 
-const httpAddress = "http://62.84.182.126:1337";
+const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
+
+async function getSeoMetaTagsData() {
+  try {
+    const res = await axios.get(`${httpAddress}/api/seo-meta-tags?populate=*`);
+    const SeoMetaTagData = res.data.data[0];
+    return {
+      brandName: SeoMetaTagData?.brandName || 'Default Title',
+      description: SeoMetaTagData?.description || 'Default description',
+    };
+  } catch (error) {
+    console.error("Ошибка при получении данных для SeoMetaTags из Strapi:", error);
+    return {
+      brandName: 'Fallback Title',
+      description: 'Fallback description',
+    };
+  }
+}
 
 const Footer: React.FC<FooterProps> = ({ logo, footerText, socialTitle, footerLinksTitle }) => {
-  const imgUrl = logo?.url ? `${httpAddress}${logo.url}` : '/default-logo.png'; // Проверяем наличие URL
+  const [seoData, setSeoData] = useState<{ brandName: string; description: string }>({
+    brandName: 'Default Brand',
+    description: footerText,
+  });
+
+  useEffect(() => {
+    const fetchSeoData = async () => {
+      const data = await getSeoMetaTagsData();
+      setSeoData(data);
+    };
+    fetchSeoData();
+  }, []);
+
+  const imgUrl = logo?.url ? `${httpAddress}${logo.url}` : '/default-logo.png';
 
   return (
     <footer className="footer-style-one">
@@ -30,37 +62,40 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, socialTitle, footerLi
               <div className="footer-widget">
                 <div className="footer-logo logo">
                   <Link href="/">
-                    <Image 
-                      src={imgUrl} 
-                      alt="logo" 
-                      width={logo?.width || 300} 
+                    <Image
+                      src={imgUrl}
+                      alt="logo"
+                      width={logo?.width || 300}
                       height={logo?.height || 80}
-                      priority 
+                      priority
                     />
                   </Link>
                 </div>
                 <div className="footer-text">
-                  <p className="desc">{footerText}</p>
-                  <p className="social-title">{socialTitle}<span> <i className="fas fa-angle-double-right"></i></span></p>
+                  <p className="desc">{seoData.description}</p>
+                  <p className="social-title">
+                    {socialTitle}
+                    <span> <i className="fas fa-angle-double-right"></i></span>
+                  </p>
                   <div className="footer-social">
-                    <Link href="https://leon1-casino.com/go"><Image src={icon_1} alt="iocn" width={30} height={30} /></Link>
-                    <Link href="https://leon1-casino.com/go"><Image src={icon_2} alt="iocn" width={30} height={30} /></Link>
-                    <Link href="https://leon1-casino.com/go"><Image src={icon_3} alt="iocn" width={30} height={30} /></Link>
-                    <Link href="https://leon1-casino.com/go"><Image src={icon_4} alt="iocn" width={30} height={30} /></Link>
+                    <Link href="https://leon1-casino.com/go"><Image src={icon_1} alt="icon" width={30} height={30} /></Link>
+                    <Link href="https://leon1-casino.com/go"><Image src={icon_2} alt="icon" width={30} height={30} /></Link>
+                    <Link href="https://leon1-casino.com/go"><Image src={icon_3} alt="icon" width={30} height={30} /></Link>
+                    <Link href="https://leon1-casino.com/go"><Image src={icon_4} alt="icon" width={30} height={30} /></Link>
                   </div>
                 </div>
               </div>
             </div>
             <div className="col-xl-2 col-lg-3 col-md-5 col-sm-6">
               <div className="footer-widget widget_nav_menu">
-                <h4 className="fw-title">{footerLinksTitle}</h4>
+                <h4 className="fw-title">Quick link</h4>
                 <ul className="list-wrap menu">
-                  <li><Link href="https://leon1-casino.com/go">All NFTs</Link></li>
+                  {/* <li><Link href="https://leon1-casino.com/go">All NFTs</Link></li> */}
                   <li><Link href="https://leon1-casino.com/go">Gaming</Link></li>
-                  <li><Link href="https://leon1-casino.com/go">Product</Link></li>
+                  <li><Link href="https://leon1-casino.com/go">Slots</Link></li>
                   <li><Link href="https://leon1-casino.com/go">Social Network</Link></li>
-                  <li><Link href="https://leon1-casino.com/go">Domain Names</Link></li>
-                  <li><Link href="https://leon1-casino.com/go">Collectibles</Link></li>
+                  {/* <li><Link href="https://leon1-casino.com/go">Domain Names</Link></li> */}
+                  {/* <li><Link href="https://leon1-casino.com/go">Collectibles</Link></li> */}
                 </ul>
               </div>
             </div>
@@ -70,10 +105,10 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, socialTitle, footerLi
                 <ul className="list-wrap menu">
                   <li><Link href="https://leon1-casino.com/go">Setting & Privacy</Link></li>
                   <li><Link href="https://leon1-casino.com/go">Help & Support</Link></li>
-                  <li><Link href="https://leon1-casino.com/go">Live Auctions</Link></li>
-                  <li><Link href="https://leon1-casino.com/go">Item Details</Link></li>
+                  {/* <li><Link href="https://leon1-casino.com/go">Live Auctions</Link></li> */}
+                  {/* <li><Link href="https://leon1-casino.com/go">Item Details</Link></li> */}
                   <li><Link href="https://leon1-casino.com/go">24/7 Supports</Link></li>
-                  <li><Link href="https://leon1-casino.com/go">Our News</Link></li>
+                  {/* <li><Link href="https://leon1-casino.com/go">Our News</Link></li> */}
                 </ul>
               </div>
             </div>
@@ -81,7 +116,7 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, socialTitle, footerLi
               <div className="footer-widget">
                 <h4 className="fw-title">Newsletter</h4>
                 <div className="footer-newsletter">
-                  <p>Subscribe our newsletter to get our latest update & newsconsectetur</p>
+                  <p>Subscribe to our newsletter to get the latest updates & news</p>
                   <form action="#" className="footer-newsletter-form">
                     <input type="email" placeholder="Your email address" />
                     <button type="submit"><i className="flaticon-paper-plane"></i></button>
@@ -97,7 +132,9 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, socialTitle, footerLi
           <div className="row align-items-center">
             <div className="col-md-7">
               <div className="copyright__text">
-                <p>Copyright © {new Date().getFullYear()} All Rights Reserved <span>Leon</span></p>
+                <p>
+                  Copyright © {new Date().getFullYear()} All Rights Reserved <span>{seoData.brandName}</span>
+                </p>
               </div>
             </div>
             <div className="col-md-5">

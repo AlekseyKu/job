@@ -6,8 +6,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import Image, { StaticImageData } from 'next/image';
 
 import slot_1 from '@/assets/img/games/CashorNothing@513x767@x2.webp'
-import slot_3 from '@/assets/img/games/DeadwoodRIP@513x767@x2.webp'
 import slot_2 from '@/assets/img/games/ApacheWay@513x767@x2.webp'
+import slot_3 from '@/assets/img/games/DeadwoodRIP@513x767@x2.webp'
 import slot_4 from '@/assets/img/games/Gonzo2@4x@x2.webp'
 import slot_5 from '@/assets/img/games/ParthenonQuestforImmortality2@513x767@x2.webp'
 import slot_6 from '@/assets/img/games/GladiatorClash@513x767-1@x2.webp'
@@ -55,12 +55,12 @@ const streamers_data: {
   {
     id: 7,
     img: slot_7,
-    title: 'Case Closed'
+    title: 'Dynamite Riches'
   },
   {
     id: 8,
     img: slot_8,
-    title: 'Dynamite Riches'
+    title: 'Case Closed'
   },
 ];
 
@@ -102,7 +102,7 @@ const slider_setting = {
 };
 
 const StreamersArea = () => {
-  const randomStreamers = getRandomStreamers(streamers_data, 5); // Get 5 random streamers
+  const randomStreamers = getRandomStreamers(streamers_data, 5); // Get 5 random games
 
   return (
     <section className="streamers__area section-pt-95 section-pb-120">

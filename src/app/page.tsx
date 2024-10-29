@@ -1,6 +1,5 @@
 import Wrapper from "@/layout/wrapper";
 import LeonHeader from "./components/leon/leon-header";
-import LeonMain from "./leon-main/page";
 import LeonHeroBanner from "./components/leon/leon-hero-banner";
 import TournamentArea from "./components/leon/tournaments/tournament-area";
 import TournamentListArea from "./components/leon/tournaments/tournament-list-area";
@@ -10,16 +9,14 @@ import TrendingNftItems from "./components/leon/nft-item/trending-nft-items";
 import NftItemArea from "./components/leon/nft-item/nft-item-area";
 import InfoCasino from "./components/leon/info-casino";
 import SecurityAndLicense from "./components/leon/security-and-license";
-import LeonFaq from "./components/leon/leon-faq";
+import FaqArea from "./components/leon/faq";
 import LeonFooter from "./components/leon/leon-footer";
 
 import EditorInfo from "./components/leon/editors/editor-info";
 
 import axios from 'axios';
 
-const httpAddress = "http://62.84.182.126:1337";
-// const httpAddress = "http://localhost:1337";
-
+const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
 export default async function Home() {
   // Получение данных на стороне сервера с помощью axios
@@ -28,20 +25,12 @@ export default async function Home() {
   const InfoCasinoData = await getInfoCasinoData();
   const SecurityAndLicenseData = await getSecurityAndLicense();
   const FooterData = await getFooterData();
-  // const EditorInfoData = await getEditorInfoData();
   const EditorInfoData = await getEditorInfoData();
+  const FaqData = await getFaqData();
 
-
-
-  // Логи после получения данных
+  // Логи после получения данных для проверки
   // console.log("Полученные данные для Header:", HeaderData);
-  // console.log("Полученные данные для BisonCasinoHomePage:", BisonCasinoHomePageData);
   // console.log("Полученные данные для Footer:", FooterData);
-
-  
-  // В будущем, добавить запросы для других компонентов: TODO
-  // const streamersData = await getStreamersData();
-  // const mainContentData = await getMainContentData();
 
   return (
     <Wrapper>
@@ -64,10 +53,6 @@ export default async function Home() {
         {/* <LeonStreamersArea data={streamersData} /> */}
         {/* <LeonMain data={mainContentData} /> */}
       </main>
-
-      <EditorInfo 
-        editorInfo={EditorInfoData?.editorInfo} 
-      />
 
       <TournamentArea
 
@@ -93,6 +78,10 @@ export default async function Home() {
 
       />
 
+      <EditorInfo 
+        editorInfo={EditorInfoData?.editorInfo} 
+      />
+
       {/* <InfoCasino 
         pretitle={InfoCasinoData?.pretitle}
         title={InfoCasinoData?.title}
@@ -108,8 +97,10 @@ export default async function Home() {
         backgroundImage={SecurityAndLicenseData?.backgroundImage}
       /> */}
 
-      <LeonFaq
-
+      <FaqArea 
+        pretitle={FaqData?.pretitle} 
+        title={FaqData?.title} 
+        faqRow={FaqData?.faqRow || []} 
       />
 
       <LeonFooter 
@@ -208,6 +199,7 @@ async function getEditorInfoData() {
   try {
     const res = await axios.get(`${httpAddress}/api/editor-infos?populate=*`);
     const EditorInfoData = res.data.data[0];
+    // console.log("Полученные данные для EditorInfoData:", EditorInfoData);
 
     return EditorInfoData || {};
   } catch (error) {
@@ -215,12 +207,15 @@ async function getEditorInfoData() {
   }
 }
 
-// async function getEditorInfoData() {
-//   try {
-//     const res = await axios.get(`${httpAddress}/api/editor-infos?populate=*`);
+async function getFaqData() {
+  try {
+    const res = await axios.get(`${httpAddress}/api/faqs?populate=*`);
+    const faqData = res.data.data[0];
+    // console.log("Полученные данные для FAQ:", faqData); // Для отладки
+    return faqData || {};
 
-//     return res.data.data[0]?.attributes?.content || "<p>Нет данных</p>";
-//   } catch (error) {
-//     console.error("Ошибка при получении данных для EditorInfoData из Strapi:", error);
-//   }
-// }
+  } catch (error) {
+    console.error("Ошибка при получении данных для FAQ из Strapi:", error);
+    return {};
+  }
+}
