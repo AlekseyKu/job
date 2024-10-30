@@ -20,7 +20,7 @@ interface HomePageProps {
   // pageBg:  { url: string; width: number; height: number };
 }
 
-const httpAddress = "http://62.84.182.126:1337"; // Адрес для Strapi
+const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
 const BisonCasinoHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, pageImg }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

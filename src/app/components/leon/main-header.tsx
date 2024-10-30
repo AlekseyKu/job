@@ -12,7 +12,7 @@ import MobileOffCanvas from "@/app/components/common/mobile-offcanvas";
 import SvgIconCom from "@/app/components/common/svg-icon-anim";
 import shape from '@/assets/img/icons/shape02.svg'
 
-const httpAddress = "http://62.84.182.126:1337";
+const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
 interface HeaderProps {
   logo: { url: string; width: number; height: number }; // Объект для single media
