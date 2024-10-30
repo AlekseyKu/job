@@ -19,6 +19,8 @@ interface FooterProps {
 }
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
+// const httpAddress = "http://62.84.182.126/"
+
 
 async function getSeoMetaTagsData() {
   try {

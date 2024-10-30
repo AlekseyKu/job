@@ -1,16 +1,16 @@
 import Wrapper from "@/layout/wrapper";
-import LeonHeader from "./components/leon/leon-header";
-import LeonHeroBanner from "./components/leon/leon-hero-banner";
+import Header from "./components/leon/main-header";
+import HomePage from "./components/leon/main-home-page";
 import TournamentArea from "./components/leon/tournaments/tournament-area";
 import TournamentListArea from "./components/leon/tournaments/tournament-list-area";
-import LeonStreamersArea from "./components/leon/area-top-rated";
+import TopRatedGamesArea from "./components/leon/area-top-rated";
 import UpcomingMatches from "./components/leon/upcoming-matches";
-import TrendingNftItems from "./components/leon/nft-item/trending-nft-items";
-import NftItemArea from "./components/leon/nft-item/nft-item-area";
-import InfoCasino from "./components/leon/info-casino";
-import SecurityAndLicense from "./components/leon/security-and-license";
-import FaqArea from "./components/leon/faq";
-import LeonFooter from "./components/leon/leon-footer";
+import TopWinnersArea from "./components/leon/nft-item/trending-nft-items";
+import TopWinnersArea2 from "./components/leon/nft-item/nft-item-area";
+// import InfoCasino from "./components/leon/info-casino";
+// import SecurityAndLicense from "./components/leon/security-and-license";
+import FaqArea from "./components/leon/main-faq";
+import Footer from "./components/leon/main-footer";
 
 import EditorInfo from "./components/leon/editors/editor-info";
 
@@ -21,9 +21,9 @@ const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 export default async function Home() {
   // Получение данных на стороне сервера с помощью axios
   const HeaderData = await getHeaderData();
-  const BisonCasinoHomePageData = await getBisonCasinoHomePageData();
-  const InfoCasinoData = await getInfoCasinoData();
-  const SecurityAndLicenseData = await getSecurityAndLicense();
+  const HomePageData = await getHomePageData();
+  // const InfoCasinoData = await getInfoCasinoData();
+  // const SecurityAndLicenseData = await getSecurityAndLicense();
   const FooterData = await getFooterData();
   const EditorInfoData = await getEditorInfoData();
   const FaqData = await getFaqData();
@@ -34,25 +34,25 @@ export default async function Home() {
 
   return (
     <Wrapper>
-      <LeonHeader 
+      <Header 
         logo={HeaderData?.logo}
         buttonText={HeaderData?.buttonText}
       />
-      <main className="main--area">
+      {/* <main className="main--area"> */}
 
-        <LeonHeroBanner
-          pretitle={BisonCasinoHomePageData?.pretitle}
-          title={BisonCasinoHomePageData?.title}
-          subtitle={BisonCasinoHomePageData?.subtitle}
-          buttonText={BisonCasinoHomePageData?.buttonText}
-          pageImg={BisonCasinoHomePageData?.pageImg}
-          // pageBg={BisonCasinoHomePageData?.pageBg}
-        />
+      <HomePage
+        pretitle={HomePageData?.pretitle}
+        title={HomePageData?.title}
+        subtitle={HomePageData?.subtitle}
+        buttonText={HomePageData?.buttonText}
+        pageImg={HomePageData?.pageImg}
+        // pageBg={HomePageData?.pageBg}
+      />
 
         {/* Подключение других блоков с полученными данными */}
-        {/* <LeonStreamersArea data={streamersData} /> */}
+        {/* <TopRatedGamesArea data={streamersData} /> */}
         {/* <LeonMain data={mainContentData} /> */}
-      </main>
+      {/* </main> */}
 
       <TournamentArea
 
@@ -62,7 +62,7 @@ export default async function Home() {
 
       />
 
-      <LeonStreamersArea
+      <TopRatedGamesArea
 
       />
 
@@ -70,11 +70,11 @@ export default async function Home() {
 
       />
 
-      <TrendingNftItems
+      <TopWinnersArea
 
       />
 
-      <NftItemArea
+      <TopWinnersArea2
 
       />
 
@@ -103,7 +103,7 @@ export default async function Home() {
         faqRow={FaqData?.faqRow || []} 
       />
 
-      <LeonFooter 
+      <Footer 
         logo={FooterData?.logo}
         footerText={FooterData?.footerText}
         socialTitle={FooterData?.socialTitle}
@@ -111,23 +111,6 @@ export default async function Home() {
       />
     </Wrapper>
   );
-}
-
-// Функция для получения данных из Strapi
-async function getBisonCasinoHomePageData() {
-  try {
-    const res = await axios.get(`${httpAddress}/api/home-pages?populate=*`);
-    const homePageData = res.data.data[0];
-    const pageImg = homePageData?.attributes?.pageImg?.data?.attributes?.url;
-    // const pageBg = homePageData?.attributes?.pageBg?.data?.attributes?.url;
-
-    return {
-      ...homePageData,
-    };
-  } catch (error) {
-    console.error("Ошибка при получении данных для Header из Strapi:", error);
-    return {};
-  };
 }
 
 // Функция для получения данных из Strapi для Header
@@ -169,32 +152,50 @@ async function getFooterData() {
   };
 }
 
-// Функция для получения данных из Strapi для InfoCasino
-async function getInfoCasinoData() {
+// Функция для получения данных из Strapi для HomePage
+async function getHomePageData() {
   try {
-    const res = await axios.get(`${httpAddress}/api/info-casinos?populate=*`);
-    const infoCasinoData = res.data.data[0];
+    const res = await axios.get(`${httpAddress}/api/home-pages?populate=*`);
+    const homePageData = res.data.data[0];
+    const pageImg = homePageData?.attributes?.pageImg?.data?.attributes?.url;
+    // const pageBg = homePageData?.attributes?.pageBg?.data?.attributes?.url;
 
-    return infoCasinoData || {};
+    return {
+      ...homePageData,
+    };
   } catch (error) {
-    console.error("Ошибка при получении данных для InfoCasino из Strapi:", error);
+    console.error("Ошибка при получении данных из Strapi для HomePage:", error);
     return {};
-  }
+  };
 }
+
+// Функция для получения данных из Strapi для InfoCasino
+// async function getInfoCasinoData() {
+//   try {
+//     const res = await axios.get(`${httpAddress}/api/info-casinos?populate=*`);
+//     const infoCasinoData = res.data.data[0];
+
+//     return infoCasinoData || {};
+//   } catch (error) {
+//     console.error("Ошибка при получении данных для InfoCasino из Strapi:", error);
+//     return {};
+//   }
+// }
 
 // Функция для получения данных из Strapi для SecurityAndLicense
-async function getSecurityAndLicense() {
-  try {
-    const res = await axios.get(`${httpAddress}/api/security-and-licenses?populate=*`);
-    const SecurityAndLicense = res.data.data[0];
+// async function getSecurityAndLicense() {
+//   try {
+//     const res = await axios.get(`${httpAddress}/api/security-and-licenses?populate=*`);
+//     const SecurityAndLicense = res.data.data[0];
 
-    return SecurityAndLicense || {};
-  } catch (error) {
-    console.error("Ошибка при получении данных для SecurityAndLicense из Strapi:", error);
-    return {};
-  }
-}
+//     return SecurityAndLicense || {};
+//   } catch (error) {
+//     console.error("Ошибка при получении данных для SecurityAndLicense из Strapi:", error);
+//     return {};
+//   }
+// }
 
+// Функция для получения данных из Strapi для EditorInfo
 async function getEditorInfoData() {
   try {
     const res = await axios.get(`${httpAddress}/api/editor-infos?populate=*`);
@@ -207,6 +208,7 @@ async function getEditorInfoData() {
   }
 }
 
+// Функция для получения данных из Strapi для FAQ
 async function getFaqData() {
   try {
     const res = await axios.get(`${httpAddress}/api/faqs?populate=*`);
