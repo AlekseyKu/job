@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Image from 'next/image';
-import nft_data from '@/data/nft-data';
+import nft_data from '@/data/top-winners-data';
 import fire_img from '@/assets/img/icons/fire.png';
 
 
@@ -35,10 +35,10 @@ const slider_setting = {
         slidesPerView: 1,
     },
   },
-  navigation: {
-    nextEl: ".slider-button-next",
-    prevEl: ".slider-button-prev",
-  }
+//   navigation: {
+//     nextEl: ".slider-button-next",
+//     prevEl: ".slider-button-prev",
+//   }
 }
 const TrendingNftItems = () => {
   return (
@@ -48,15 +48,15 @@ const TrendingNftItems = () => {
             <div className="row">
                 <div className="col-md-7">
                     <div className="trendingNft__title">
-                        <h2 className="title">top Winners <Image src={fire_img} width="35" alt="icon"/></h2>
+                        <h2 className="title">top Winners of the month<Image src={fire_img} width="35" alt="icon"/></h2>
                     </div>
                 </div>
-                <div className="col-md-5">
+                {/* <div className="col-md-5">
                     <div className="trendingNft__nav">
                         <button className="slider-button-prev"><i className="fas fa-angle-left"></i></button>
                         <button className="slider-button-next"><i className="fas fa-angle-right"></i></button>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
         <Swiper {...slider_setting} modules={[Navigation]} className="swiper-container trendingNft-active">
@@ -86,10 +86,10 @@ const TrendingNftItems = () => {
                   </div>
                   <div className="trendingNft__item-bottom">
                       <div className="trendingNft__item-price">
-                          <span className="bid">Last Bid</span>
-                          <h6 className="eth"><i className="fab fa-ethereum"></i> {item.eth} <span>Eth</span></h6>
+                          <span className="bid">Total Win</span>
+                          <h6 className="eth"><i className="fab fa-ethereum"></i> {item.eth} <span> $</span></h6>
                       </div>
-                      <Link href="/shop-details" className="bid-btn">Bid <i className="fas fa-long-arrow-alt-right"></i></Link>
+                      <Link href="/shop-details" className="bid-btn">Play Now <i className="fas fa-long-arrow-alt-right"></i></Link>
                   </div>
               </div>
             </SwiperSlide>
