@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import TextAnimation from "../common/text-animation";
+import CustomButton from '../common/custom-button';
+
 
 
 // Динамически импортируем все изображения из папки
@@ -80,6 +82,11 @@ const StreamersArea = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="row justify-content-center mt-4">
+            <div className="col-md-4">
+                <CustomButton href="/play-now">Play Now</CustomButton>
+            </div>
+        </div>
       </div>
     </section>
   );

@@ -3,12 +3,17 @@ import { StaticImageData } from "next/image";
 export interface ITournament {
   id: number;
   box_price: number;
+  prize: number;
   thumb:StaticImageData;
-  coming_time: string;
+  // coming_time: string;
   title: string;
   subtitle: string;
   places: number;
-  team_name:string;
+  team_name: {
+    id: number;
+    img: StaticImageData;
+    name: string;
+  };
   status:string;
   list_items: {
       id: number;

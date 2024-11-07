@@ -65,6 +65,8 @@
         }
         & img {
             @include border-radius(8px);
+            max-width: 120px;
+            max-height: 180px;
         }
     }
     &__content {
@@ -295,8 +297,21 @@
                 // @media #{$sm} {
                 //     max-height: 249px;
                 // }
-            }
+            }           
         }
+        &-subtitle {
+            width: 100%;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 4px; // Добавлено для округления углов фона текста
+        }
+        
         &-bottom {
             @include flexbox();
             align-items: center;

@@ -4,9 +4,16 @@ import Link from 'next/link';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Image from 'next/image';
-import nft_data from '@/data/top-winners-data';
+// import nft_data from '@/data/top-winners-data';
 import fire_img from '@/assets/img/icons/fire.png';
+import promo_data from '@/data/promo-data';
 
+const getUniquePromo = () => {
+    const shuffledSlots = [...promo_data].sort(() => 0.5 - Math.random());
+    return shuffledSlots.slice(0, 3);
+  };
+  
+const [promo1, promo2, promo3] = getUniquePromo();
 
 // slider setting 
 const slider_setting = {
@@ -48,7 +55,7 @@ const TrendingNftItems = () => {
             <div className="row">
                 <div className="col-md-7">
                     <div className="trendingNft__title">
-                        <h2 className="title">top Winners of the month<Image src={fire_img} width="35" alt="icon"/></h2>
+                        <h2 className="title">Top promotions<Image src={fire_img} width="35" alt="icon"/></h2>
                     </div>
                 </div>
                 {/* <div className="col-md-5">
@@ -60,7 +67,7 @@ const TrendingNftItems = () => {
             </div>
         </div>
         <Swiper {...slider_setting} modules={[Navigation]} className="swiper-container trendingNft-active">
-          {nft_data.filter(i => i.trending).map((item) => (
+          {promo_data.filter(i => i.trending).map((item) => (
             <SwiperSlide key={item.id}>
               <div className="trendingNft__item">
                   <div className="trendingNft__item-top">
@@ -79,11 +86,18 @@ const TrendingNftItems = () => {
                           <Link href="#"><i className="far fa-heart"></i></Link>
                       </div>
                   </div>
-                  <div className="trendingNft__item-image">
+                  <div className="trendingNft__item-image" style={{ position: 'relative' }}>
+                        <Link href="/shop-details">
+                            <Image src={item.img} alt="img" style={{width:'100%',height:'auto'}} />
+                            <h6 className="trendingNft__item-subtitle"> {item.subtitle} </h6>
+                        </Link>
+                        
+                  </div>
+                  {/* <div className="trendingNft__item-image">
                       <Link href="/shop-details">
                         <Image src={item.img} alt="img" style={{width:'100%',height:'auto'}} />
                       </Link>
-                  </div>
+                  </div> */}
                   <div className="trendingNft__item-bottom">
                       <div className="trendingNft__item-price">
                           <span className="bid">Total Win</span>

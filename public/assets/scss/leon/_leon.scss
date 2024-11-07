@@ -57,4 +57,25 @@
         color: var(--tg-theme-secondary);
       }
 
+/*=============================
+    custom-button
+===============================*/
 
+      .custom-button {
+        background-color: #45F882;
+        color: #0D1218;
+        padding: 15px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        transition: background-color 0.5s ease; 
+      }
+      
+      .custom-button:hover {
+        background-color: #FFBE18; 
+        color: #0D1218;
+      }

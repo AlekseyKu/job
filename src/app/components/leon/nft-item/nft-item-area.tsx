@@ -1,6 +1,7 @@
 import React from 'react';
 import topWinners_data from '@/data/top-winners-data';
 import NftItemBox from './nft-item-box';
+import nft_data from '@/data/nft-data';
 
 // Функция для выбора случайных элементов из массива
 const getRandomItems = (data: any[], count: number) => {
@@ -24,14 +25,22 @@ const NftItemArea = () => {
               </div>
           </div>
         </div>
-        <div className="row justify-content-center">
-          {/* {topWinners_data.slice(0, 3).map((item) => ( */}
+        {/* <div className="row justify-content-center">
           {randomTopWinners.map((item) => (
             <div key={item.id} className="col-xxl-4 col-xl-5 col-lg-6 col-md-9">
               <NftItemBox item={item} />
             </div>
           ))}
+        </div> */}
+
+        <div className="row justify-content-center">
+          {nft_data.slice(0, 3).map((item) => (
+            <div key={item.id} className="col-xxl-4 col-xl-5 col-lg-6 col-md-9">
+              <NftItemBox item={item} />
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   );

@@ -11,6 +11,18 @@ import avatar_1 from '@/assets/img/nft/nft_avatar01.png';
 import avatar_2 from '@/assets/img/nft/nft_avatar02.png';
 import avatar_3 from '@/assets/img/nft/nft_avatar03.png';
 
+import player_data from './players-data';
+import slots_data from './slots-data';
+
+// Функция для генерации случайного box_price с шагом 5000 от 5000 до 50000
+const getRandomPrize = () => {
+  const min = 1000;
+  const max = 3000;
+  const step = 10;
+  const randomStep = Math.floor(Math.random() * ((max - min) / step + 1));
+  return min + randomStep * step;
+};
+
 // type 
 export interface INftType {
   id: number;
@@ -25,63 +37,63 @@ export interface INftType {
 const nft_data:INftType[] = [
   {
     id:1,
-    img:nft_1,
-    title:'wolf gaming art',
-    creator:creator_1,
-    creator_name:'Alax Max',
-    eth:1.002
+    img:slots_data[1].img,
+    title:slots_data[1].name,
+    creator:player_data[1].img,
+    creator_name:player_data[1].name,
+    eth:getRandomPrize()
   },
   {
     id:2,
-    img:nft_2,
-    title:'FOREST PRINCESS',
-    creator:creator_1,
-    creator_name:'Alax Max',
-    eth:1.053
+    img:slots_data[2].img,
+    title:slots_data[2].name,
+    creator:player_data[2].img,
+    creator_name:player_data[2].name,
+    eth:getRandomPrize()
   },
   {
     id:3,
-    img:nft_3,
-    title:'GIRL FIREFLY ART',
-    creator:creator_1,
-    creator_name:'Alax Max',
-    eth:1.024
+    img:slots_data[3].img,
+    title:slots_data[3].name,
+    creator:player_data[3].img,
+    creator_name:player_data[3].name,
+    eth:getRandomPrize()
   },
   // trending
   {
     id:4,
-    img:nft_4,
-    title:'Crypto Max',
-    creator:avatar_1,
-    creator_name:'Jon Max',
-    eth:1.002,
+    img:slots_data[4].img,
+    title:slots_data[4].name,
+    creator:player_data[4].img,
+    creator_name:player_data[4].name,
+    eth:getRandomPrize(),
     trending:true,
   },
   {
     id:5,
-    img:nft_5,
-    title:'Golden Crypto',
-    creator:avatar_2,
-    creator_name:'Jon Max',
-    eth:1.004,
+    img:slots_data[5].img,
+    title:slots_data[5].name,
+    creator:player_data[5].img,
+    creator_name:player_data[5].name,
+    eth:getRandomPrize(),
     trending:true,
   },
   {
     id:6,
-    img:nft_6,
-    title:'Black Crypto',
-    creator:avatar_3,
-    creator_name:'Jon Max',
-    eth:1.005,
+    img:slots_data[6].img,
+    title:slots_data[6].name,
+    creator:player_data[6].img,
+    creator_name:player_data[6].name,
+    eth:getRandomPrize(),
     trending:true,
   },
   {
     id:7,
-    img:nft_7,
-    title:'Luck Crypto',
-    creator:avatar_1,
-    creator_name:'Jon Max',
-    eth:1.006,
+    img:slots_data[7].img,
+    title:slots_data[7].name,
+    creator:player_data[7].img,
+    creator_name:player_data[7].name,
+    eth:getRandomPrize(),
     trending:true,
   },
 ]

@@ -16,9 +16,9 @@ const TournamentListArea = () => {
             <div className="col-lg-8">
               <div className="section__title text-center text-lg-start title-shape-none">
                 <span className="sub-title tg__animate-text">
-                  tournament List
+                  List of games
                 </span>
-                <h3 className="title">Active tournament</h3>
+                <h3 className="title">best slots</h3>
               </div>
             </div>
             <div className="col-lg-4">

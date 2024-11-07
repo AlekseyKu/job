@@ -1,8 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import { ITournament } from "@/types/tournament-type";
-import CountdownTimer from "../../timer/countdown-timer"
+// import CountdownTimer from "../../timer/countdown-timer"
 import TournamentBoxBgPatch from "../../svg/t-box-bg";
+
+// const getNextUpdateDate = (interval: 'daily' | 'weekly' | 'monthly'): Date => {
+//   const now = new Date();
+//   if (interval === 'daily') now.setDate(now.getDate() + 1);
+//   if (interval === 'weekly') now.setDate(now.getDate() + 7);
+//   if (interval === 'monthly') now.setMonth(now.getMonth() + 1);
+//   return now;
+// };
 
 const TournamentBox = ({ item }: { item: ITournament }) => {
   return (
@@ -13,9 +21,9 @@ const TournamentBox = ({ item }: { item: ITournament }) => {
         <span>{item.box_price}</span>
       </div>
       <div className="tournament__box-countdown">
-        <div className="coming-time" data-countdown="2023/5/16">
+        {/* <div className="coming-time" data-countdown="2023/5/16">
           <CountdownTimer expiryTimestamp={new Date(item.coming_time)} />
-        </div>
+        </div> */}
       </div>
       <div className="tournament__box-caption">
         <span className="sub">{item.subtitle}</span>

@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { INftType } from "@/data/nft-data";
+import player_data from "@/data/players-data";
+
 
 
 const NftItemBox = ({ item }: { item: INftType }) => {

@@ -4,7 +4,7 @@ import HomePage from "./components/leon/main-home-page";
 import TournamentArea from "./components/leon/tournaments/tournament-area";
 import TournamentListArea from "./components/leon/tournaments/tournament-list-area";
 import TopRatedGamesArea from "./components/leon/area-top-rated";
-import UpcomingMatches from "./components/leon/upcoming-matches";
+// import UpcomingMatches from "./components/leon/upcoming-matches";
 import TopWinnersArea from "./components/leon/nft-item/trending-nft-items";
 import TopWinnersArea2 from "./components/leon/nft-item/nft-item-area";
 // import InfoCasino from "./components/leon/info-casino";
@@ -63,10 +63,6 @@ export default async function Home() {
       />
 
       <TopRatedGamesArea
-
-      />
-
-      <UpcomingMatches
 
       />
 
