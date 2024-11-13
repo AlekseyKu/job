@@ -22,7 +22,7 @@ interface HomePageProps {
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
-const BisonCasinoHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, pageImg }) => {
+const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, pageImg }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-img.png';; // Проверяем наличие URL
@@ -54,7 +54,7 @@ const BisonCasinoHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitl
                     {/* Передаем размеры изображения и проверенный URL */}
                     <Image 
                       src={pageImgUrl} 
-                      alt="Slider Image" 
+                      alt="Main Image" 
                       width={imgWidth} // Указываем ширину, полученную из Strapi
                       height={imgHeight}  // Указываем высоту, полученную из Strapi
                       priority 
@@ -76,4 +76,4 @@ const BisonCasinoHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitl
   );
 };
 
-export default BisonCasinoHomePage;
+export default MainHomePage;

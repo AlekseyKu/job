@@ -2,15 +2,15 @@
 import React,{useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
-import menu_data from "@/data/menu-data";
-import logo from '@/assets/img/logo/logo.svg';
+// import menu_data from "@/data/menu-data";
+// import logo from '@/assets/img/logo/logo.svg';
 import useSticky from "@/hooks/use-sticky";
 import {usePathname} from 'next/navigation'
-import SearchPopup from "@/app/components/common/search-popup";
-import OffCanvas from "@/app/components/common/off-canvas";
-import MobileOffCanvas from "@/app/components/common/mobile-offcanvas";
-import SvgIconCom from "@/app/components/common/svg-icon-anim";
-import shape from '@/assets/img/icons/shape02.svg'
+// import SearchPopup from "@/app/components/common/search-popup";
+// import OffCanvas from "@/app/components/common/off-canvas";
+// import MobileOffCanvas from "@/app/components/common/mobile-offcanvas";
+// import SvgIconCom from "@/app/components/common/svg-icon-anim";
+// import shape from '@/assets/img/icons/shape02.svg'
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
