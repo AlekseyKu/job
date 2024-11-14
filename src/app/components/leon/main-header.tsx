@@ -16,10 +16,11 @@ const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
 interface HeaderProps {
   logo: { url: string; width: number; height: number }; // Объект для single media
+  targetLink: string;
   buttonText: string; // Текст кнопки
 }
 
-const Header: React.FC<HeaderProps> = ({ logo, buttonText }) => {
+const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText }) => {
   const { sticky, isStickyVisible } = useSticky();
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -59,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ logo, buttonText }) => {
                   <div className="tgmenu__action d-none d-md-block">
                     <ul className="list-wrap">
                       <li className="header-btn">
-                        <Link href="https://leon1-casino.com/go" target="_blank" className="tg-border-btn">
+                        <Link href={targetLink} target="_blank" className="tg-border-btn">
                           <i className="flaticon-edit"></i> {buttonText}
                         </Link>
                       </li>

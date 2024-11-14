@@ -37,7 +37,7 @@ const barlow = Barlow({
 // Функция для получения данных SEO из Strapi
 async function getSeoMetaTagsData() {
   try {
-    const res = await axios.get(`${httpAddress}/api/seo-meta-tags?populate=*`);
+    const res = await axios.get(`${httpAddress}/api/all-sites?populate=*`);
     const SeoMetaTagData = res.data.data[0];
     
     // Проверка, существует ли favicon URL

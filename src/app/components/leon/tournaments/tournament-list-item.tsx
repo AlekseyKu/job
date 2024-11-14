@@ -10,8 +10,9 @@ import TournamentBgPath from "../../svg/t-list-bg";
 type IProp = {
   item: ITournament;
   index: number;
+  targetLink: string;
 };
-const TournamentListItem = ({ item, index }: IProp) => {
+const TournamentListItem = ({ item, index, targetLink  }: IProp) => {
   // const expiryTimestamp = new Date(item.coming_time);
   // const { seconds, minutes, hours, days } = useTimer({ expiryTimestamp });
   return (
@@ -22,7 +23,7 @@ const TournamentListItem = ({ item, index }: IProp) => {
       <TournamentBgPath />
       <div className="tournament__list-content">
         <div className="tournament__list-thumb">
-          <Link href="/tournament-details">
+          <Link href={targetLink}>
             <Image
               src={item.thumb}
               alt="thumb"
@@ -45,7 +46,7 @@ const TournamentListItem = ({ item, index }: IProp) => {
           <span suppressHydrationWarning={true}>{hours}h : {minutes}m : {seconds}s</span>
         </div> */}
         <div className="tournament__list-live">
-          <Link href={item.live_link} target="_blank">
+          <Link href={targetLink} target="_blank">
             Play now <i className="far fa-play-circle"></i>
           </Link>
         </div>

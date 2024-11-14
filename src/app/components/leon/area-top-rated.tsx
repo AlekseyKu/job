@@ -7,7 +7,9 @@ import Image from "next/image";
 import TextAnimation from "../common/text-animation";
 import CustomButton from '../common/custom-button';
 
-
+interface TopRatedProps {
+  targetLink: string;
+}
 
 // Динамически импортируем все изображения из папки
 const importImages = () => {
@@ -38,7 +40,7 @@ const sliderSetting = {
   },
 };
 
-const StreamersArea = () => {
+const StreamersArea: React.FC<TopRatedProps> = ({ targetLink }) => {
   const [randomImages, setRandomImages] = useState<any[]>([]);
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const StreamersArea = () => {
             <SwiperSlide key={index}>
               <div className="streamers__item">
                 <div className="streamers__thumb">
-                  <Link href="https://leon1-casino.com/go" target="_blank">
+                  <Link href={targetLink} target="_blank">
                     <Image src={imgSrc.default} alt={`Slot ${index + 1}`} style={{ height: "auto", width: "100%" }} />
                   </Link>
                 </div>
@@ -84,7 +86,7 @@ const StreamersArea = () => {
         </Swiper>
         <div className="row justify-content-center mt-4">
             <div className="col-md-4">
-                <CustomButton href="/play-now">Play Now</CustomButton>
+                <CustomButton href={targetLink}>Play Now</CustomButton>
             </div>
         </div>
       </div>

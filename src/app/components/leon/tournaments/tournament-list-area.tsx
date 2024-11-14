@@ -4,7 +4,11 @@ import bg from "@/assets/img/bg/tournament_bg.jpg";
 import tournament_data from "@/data/tournament-data";
 import TournamentListItem from "./tournament-list-item";
 
-const TournamentListArea = () => {
+interface TournamentListAreaProps {
+  targetLink: string;
+}
+
+const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink }) => {
   return (
     <section
       className="tournament__list-area section-pb-120 section-pt-120"
@@ -23,7 +27,7 @@ const TournamentListArea = () => {
             </div>
             <div className="col-lg-4">
               <div className="section__title-link">
-                <Link href="/tournament">EXPLORE MORE</Link>
+                <Link href={targetLink}>EXPLORE MORE</Link>
               </div>
             </div>
           </div>
@@ -31,7 +35,7 @@ const TournamentListArea = () => {
             <div className="col-12">
               <div className="tournament__list-item-wrapper">
                 {tournament_data.map((item, i) => (
-                  <TournamentListItem key={item.id} item={item} index={i} />
+                  <TournamentListItem key={item.id} item={item} index={i} targetLink={targetLink} />
                 ))}
               </div>
             </div>

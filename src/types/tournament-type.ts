@@ -21,6 +21,6 @@ export interface ITournament {
       name: string;
       price: number;
   }[];
-  live_link:string;
+  // live_link:string;
   active?: boolean;
 }

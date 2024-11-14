@@ -16,13 +16,14 @@ interface HomePageProps {
   title: string;
   subtitle: string;
   buttonText: string;
+  targetLink: string;
   pageImg:  { url: string; width: number; height: number };
   // pageBg:  { url: string; width: number; height: number };
 }
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
-const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, pageImg }) => {
+const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, pageImg }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-img.png';; // Проверяем наличие URL
@@ -43,7 +44,7 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                     <h2 className="title wow fadeInUp" data-wow-delay=".5s">{title}</h2>
                     <p className="wow fadeInUp" data-wow-delay=".8s">{subtitle}</p>
                     <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
-                      <Link href="https://leon1-casino.com/go" target="_blank" className="tg-btn-1">
+                      <Link href={targetLink} target="_blank" className="tg-btn-1">
                         <span>{buttonText}</span>
                       </Link>
                     </div>

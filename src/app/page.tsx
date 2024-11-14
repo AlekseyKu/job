@@ -22,6 +22,31 @@ import fetchSiteData from "@/utils/fetchSiteData";
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 const UID = 0
 
+const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: any[], siteData: any }) => {
+  return (
+    <>
+      {pageSections.map((section) => {
+        switch (section.sectionName) {
+          case 'MOST LUCKY PLAYERS':
+            return <TopWinnersArea key={section.id} targetLink={siteData.targetLink} />;
+          case 'LIST OF GAMES':
+            return <TournamentListArea key={section.id} targetLink={siteData.targetLink} />;
+          case 'OUR GAMES':
+            return <TopRatedGamesArea key={section.id} targetLink={siteData.targetLink} />;
+          case 'Top promotions':
+            return <TournamentArea key={section.id} targetLink={siteData.targetLink} />;
+          case 'Top winners of the day':
+            return <TopWinnersArea2 key={section.id} targetLink={siteData.targetLink} />;
+          default:
+            return null;
+        }
+      })}
+    </>
+  );
+};
+
+
+
 // export default async function Home() {
 //   // Получение данных на стороне сервера с помощью axios
 //   const HeaderData = await getHeaderData();
@@ -38,83 +63,76 @@ const UID = 0
 export default async function Home() {
   const host = headers().get('host');
   const siteData = await fetchSiteData(host || '');
+  const pageSections = siteData?.page_sections || [];
+
   // console.log('Текущий домен (host):', host);
   // console.log('siteData:', siteData);
   
 
   return (
     <Wrapper>
-      {/* <Header
-        logo={siteData?.header?.logo}
+      <Header
+        logo={siteData?.siteLogo}
+        targetLink={siteData?.targetLink}
         buttonText={siteData?.header?.buttonText}
-      /> */}
+      />
       {/* <main className="main--area"> */}
 
-      {/* <HomePage
+      <HomePage
         pretitle={siteData?.home_page?.pretitle}
         title={siteData?.home_page?.title}
         subtitle={siteData?.home_page?.subtitle}
         buttonText={siteData?.home_page?.buttonText}
+        targetLink={siteData?.targetLink}
         pageImg={siteData?.home_page?.pageImg}
         // pageBg={HomePageData?.pageBg}
-      /> */}
+      />
 
         {/* Подключение других блоков с полученными данными */}
         {/* <TopRatedGamesArea data={streamersData} /> */}
         {/* <LeonMain data={mainContentData} /> */}
       {/* </main> */}
 
-      <TournamentArea
+      <PageSectionsRenderer pageSections={pageSections} siteData={siteData} />
 
-      />
+      {/* <TournamentArea
+        targetLink={siteData?.targetLink}
+      /> */}
 
-      <TournamentListArea
-
+      {/* <TournamentListArea
+        targetLink={siteData?.targetLink}
       />
 
       <TopRatedGamesArea
-
+        targetLink={siteData?.targetLink}
       />
 
       <TopWinnersArea
-
+        targetLink={siteData?.targetLink}
       />
 
       <TopWinnersArea2
+        targetLink={siteData?.targetLink}
+      /> */}
 
+      <EditorInfo 
+        editorInfo={siteData?.editor_info?.editorInfo} 
       />
 
-      {/* <EditorInfo 
-        // editorInfo={EditorInfoData?.editorInfo} 
-      /> */}
 
-      {/* <InfoCasino 
-        pretitle={InfoCasinoData?.pretitle}
-        title={InfoCasinoData?.title}
-        subtitle={InfoCasinoData?.subtitle}
-        tableInfoCasino={InfoCasinoData?.tableInfoCasino || []}
-      /> */}
-
-      {/* <SecurityAndLicense
-        title={SecurityAndLicenseData?.title}
-        descriptionBlock={SecurityAndLicenseData?.descriptionBlock}
-        description={SecurityAndLicenseData?.description}
-        description2={SecurityAndLicenseData?.description2}
-        backgroundImage={SecurityAndLicenseData?.backgroundImage}
-      /> */}
-
-      {/* <FaqArea 
-        pretitle={FaqData?.pretitle} 
-        title={FaqData?.title} 
-        faqRow={FaqData?.faqRow || []} 
+      <FaqArea 
+        pretitle={siteData?.faq?.pretitle} 
+        title={siteData?.faq?.title} 
+        faqRow={siteData?.faq?.faqRow || []} 
       />
 
       <Footer 
-        logo={FooterData?.logo}
-        footerText={FooterData?.footerText}
-        socialTitle={FooterData?.socialTitle}
-        footerLinksTitle={FooterData?.footerLinksTitle}
-      /> */}
+        logo={siteData?.siteLogo}
+        footerText={siteData?.footer?.footerText}
+        socialTitle={siteData?.footer?.socialTitle}
+        targetLink={siteData?.targetLink}
+        siteName={siteData?.siteName}
+      />
     </Wrapper>
   );
 }

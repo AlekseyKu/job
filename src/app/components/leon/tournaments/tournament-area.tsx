@@ -4,10 +4,11 @@ import TournamentBox from './tournament-box';
 import TextAnimation from '../../common/text-animation';
 import CustomButton from '../../common/custom-button';
 
+interface TournamentAreaProps {
+    targetLink: string;
+  }
 
-
-
-const TournamentArea = () => {
+const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink }) => {
   return (
     <section className="tournament-area section-pt-120 section-pb-90">
     <div className="container">
@@ -29,7 +30,7 @@ const TournamentArea = () => {
             </div>
             <div className="row justify-content-center mt-4">
                 <div className="col-md-4">
-                    <CustomButton href="/play-now">Play Now</CustomButton>
+                    <CustomButton href={targetLink}>Play Now</CustomButton>
                 </div>
             </div>
         </div>

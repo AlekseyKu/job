@@ -8,6 +8,10 @@ import Image from 'next/image';
 import fire_img from '@/assets/img/icons/fire.png';
 import promo_data from '@/data/promo-data';
 
+interface TrendingNftItemsProps {
+    targetLink: string;
+  }
+
 const getUniquePromo = () => {
     const shuffledSlots = [...promo_data].sort(() => 0.5 - Math.random());
     return shuffledSlots.slice(0, 3);
@@ -47,7 +51,7 @@ const slider_setting = {
 //     prevEl: ".slider-button-prev",
 //   }
 }
-const TrendingNftItems = () => {
+const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink }) => {
   return (
     <section className="trendingNft-area section-pt-120 section-pb-90">
      <div className="container">
@@ -73,13 +77,13 @@ const TrendingNftItems = () => {
                   <div className="trendingNft__item-top">
                       <div className="trendingNft__item-avatar">
                           <div className="image">
-                              <Link href="/shop-details">
+                              <Link href={targetLink}>
                                 <Image src={item.creator} alt="img"/>
                               </Link>
                           </div>
                           <div className="info">
                               <h6 className="name">{item.title}</h6>
-                              <Link href="/shop-details" className="userName">@{item.creator_name}</Link>
+                              <Link href={targetLink} className="userName">@{item.creator_name}</Link>
                           </div>
                       </div>
                       <div className="trendingNft__item-wish">
@@ -87,14 +91,14 @@ const TrendingNftItems = () => {
                       </div>
                   </div>
                   <div className="trendingNft__item-image" style={{ position: 'relative' }}>
-                        <Link href="/shop-details">
+                        <Link href={targetLink}>
                             <Image src={item.img} alt="img" style={{width:'100%',height:'auto'}} />
                             <h6 className="trendingNft__item-subtitle"> {item.subtitle} </h6>
                         </Link>
                         
                   </div>
                   {/* <div className="trendingNft__item-image">
-                      <Link href="/shop-details">
+                      <Link href={targetLink}>
                         <Image src={item.img} alt="img" style={{width:'100%',height:'auto'}} />
                       </Link>
                   </div> */}
@@ -103,7 +107,7 @@ const TrendingNftItems = () => {
                           <span className="bid">Total Win</span>
                           <h6 className="eth"><i className="fab fa-ethereum"></i> {item.eth} <span> $</span></h6>
                       </div>
-                      <Link href="/shop-details" className="bid-btn">Play Now <i className="fas fa-long-arrow-alt-right"></i></Link>
+                      <Link href={targetLink} className="bid-btn">Play Now <i className="fas fa-long-arrow-alt-right"></i></Link>
                   </div>
               </div>
             </SwiperSlide>

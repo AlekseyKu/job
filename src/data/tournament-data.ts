@@ -35,7 +35,7 @@ const tournament_data: ITournament[] = [
     subtitle: 'SLOTS',
     title: 'of weekly',
     places: 3,
-    live_link: 'https://www.twitch.tv/videos/1726788358',
+    // live_link: 'https://www.twitch.tv/videos/1726788358',
     status: 'Online',
     list_items: getRandomPlayers(3).map((player, index) => ({
       id: index + 1,
@@ -53,7 +53,7 @@ const tournament_data: ITournament[] = [
     subtitle: 'JACKPOT',
     title: 'Lucky players',
     places: 3,
-    live_link: 'https://www.twitch.tv/videos/1726788358',
+    // live_link: 'https://www.twitch.tv/videos/1726788358',
     status: 'Online',
     list_items: getRandomPlayers(3).map((player, index) => ({
       id: index + 1,
@@ -71,7 +71,7 @@ const tournament_data: ITournament[] = [
     subtitle: 'SLOTS',
     title: 'of month',
     places: 3,
-    live_link: 'https://www.twitch.tv/videos/1726788358',
+    // live_link: 'https://www.twitch.tv/videos/1726788358',
     status: 'Online',
     list_items: getRandomPlayers(3).map((player, index) => ({
       id: index + 1,
