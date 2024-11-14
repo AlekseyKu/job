@@ -43,7 +43,7 @@
             font-size: 20px;
             color: var(--tg-theme-primary);
             position: relative;
-            padding: 17px 0 17px 20px;
+            padding: 17px 0 17px 0;
             @media #{$lg} {
                 font-size: 16px;
                 padding: 15px 0 15px 20px;
@@ -61,7 +61,7 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                background-image: url(../../img/slider/text_gradient_bg.png);
+                // background-image: url(../../img/slider/text_gradient_bg.png);
                 width: 100%;
                 height: 100%;
                 background-repeat: no-repeat;

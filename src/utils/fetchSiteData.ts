@@ -39,7 +39,7 @@ async function fetchSiteData(host: string) {
         return null;
       }
   
-      console.log("Найденный сайт:", siteData);
+      // console.log("Найденный сайт:", siteData);
       return siteData;
     } catch (error) {
       console.error("Ошибка при запросе данных:", error);

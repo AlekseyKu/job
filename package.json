@@ -1,12 +1,15 @@
 {
   "name": "mykd-next",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:s1": "env $(cat .env.fatpiratecasino | xargs) pm2 start npm --name 'fatpiratecasino' -- run start",
+    "start:s2": "env $(cat .env.1onecasino | xargs) pm2 start npm --name '1onecasino' -- run start",
+    "start:s3": "env $(cat .env.brunocasino2 | xargs) pm2 start npm --name 'brunocasino2' -- run start"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",

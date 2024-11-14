@@ -62,8 +62,8 @@
 ===============================*/
 
       .custom-button {
-        background-color: #45F882;
-        color: #0D1218;
+        background-color: var(--tg-theme-primary);
+        color: var(--tg-common-color-black-2);
         padding: 15px 20px;
         font-size: 16px;
         border-radius: 8px;
@@ -76,6 +76,6 @@
       }
       
       .custom-button:hover {
-        background-color: #FFBE18; 
-        color: #0D1218;
+        background-color: var(--tg-theme-secondary); 
+        color: var(--tg-common-color-black-2);;
       }
