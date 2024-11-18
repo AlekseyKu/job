@@ -1,0 +1,2 @@
+PORT=3012
+NEXT_PUBLIC_DOMAIN=casinomidas.org.es
