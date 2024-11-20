@@ -76,9 +76,9 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, socialTitle, targetLi
                   </Link>
                 </div>
                 <div className="footer-text">
-                  <p className="desc">{seoData.description}</p>
+                  <p className="desc">{footerText}</p>
                   <p className="social-title">
-                    {socialTitle}
+                    our social networks
                     <span> <i className="fas fa-angle-double-right"></i></span>
                   </p>
                   <div className="footer-social">

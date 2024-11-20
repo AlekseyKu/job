@@ -13,7 +13,7 @@ import axios from 'axios';
 import SeoMeta from "@/utils/seoMeta";
 import { headers } from 'next/headers';
 import FetchSiteData from "@/utils/fetchSiteData";
-import SetThemeColors from "@/utils/setThemeColors"
+// import SetThemeColors from "@/utils/setThemeColors"
 
 
 
@@ -55,7 +55,7 @@ export default async function Home() {
 
   return (
     <Wrapper>
-      <SetThemeColors host={host || ""} />
+      {/* <SetThemeColors host={host || ""} /> */}
       {/* <style jsx global>{`
         :root {
           --tg-theme-primary: ${siteData?.themePrimaryColor || '#000000'};
@@ -81,7 +81,7 @@ export default async function Home() {
         buttonText={siteData?.home_page?.buttonText}
         targetLink={siteData?.targetLink}
         pageImg={siteData?.home_page?.pageImg}
-        // pageBg={HomePageData?.pageBg}
+        pageBg={siteData?.home_page?.pageBg}
       />
 
         {/* Подключение других блоков с полученными данными */}
@@ -124,7 +124,7 @@ export default async function Home() {
 
       <Footer 
         logo={siteData?.siteLogo}
-        footerText={siteData?.footerText}
+        footerText={siteData?.siteDescription}
         socialTitle={siteData?.footer?.socialTitle}
         targetLink={siteData?.targetLink}
         siteName={siteData?.siteName}

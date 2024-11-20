@@ -11,29 +11,29 @@ import shape_2 from '@/assets/img/slider/slider_shape02.png';
 import shape_3 from '@/assets/img/slider/slider_shape03.png';
 import shape_4 from '@/assets/img/slider/slider_shape04.png';
 
-interface HomePageProps {
+interface HomePageProps { 
   pretitle: string;
   title: string;
   subtitle: string;
   buttonText: string;
   targetLink: string;
   pageImg:  { url: string; width: number; height: number };
-  // pageBg:  { url: string; width: number; height: number };
+  pageBg:  { url: string; width: number; height: number };
 }
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
-const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, pageImg }) => {
+const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, pageImg, pageBg }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-img.png';; // Проверяем наличие URL
-  // const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}`; // Проверяем наличие URL
+  const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-img.png'; // Проверяем наличие URL
+  const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : '/default-img.png'; // Проверяем наличие URL
   const imgWidth = pageImg?.width || 407;
   const imgHeight = pageImg?.height || 344;
 
   return (
     <MouseParallaxContainer>
-      <section className="slider__area slider__bg" style={{ backgroundImage: `url(${slider_bg.src})` }}>
+      <section className="slider__area slider__bg " style={{ backgroundImage: `url(${pageBgUrl})` }}>
         <div className="slider-activee">
           <div className="single-slider">
             <div className="container custom-container">
@@ -44,9 +44,26 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                     <h2 className="title wow fadeInUp" data-wow-delay=".5s">{title}</h2>
                     <p className="wow fadeInUp" data-wow-delay=".8s">{subtitle}</p>
                     <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
-                      <Link href={targetLink} target="_blank" className="tg-btn-1">
+                      <Link href={targetLink} target="_blank" className="custom-button-header-5" style={{ marginRight: '10px' }}>
                         <span>{buttonText}</span>
                       </Link>
+                      {/* <Link href={targetLink} target="_blank" className="custom-button-header-2" style={{ marginRight: '10px' }}>
+                        <span>{buttonText}</span>
+                      </Link> */}
+                      {/* <Link href={targetLink} target="_blank" className="custom-button-header-3" style={{ marginRight: '10px' }}>
+                        <span>{buttonText}</span>
+                      </Link>
+                    </div>
+                    <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
+                      <Link href={targetLink} target="_blank" className="custom-button-header-4" style={{ marginRight: '10px' }}>
+                        <span>{buttonText}</span>
+                      </Link>
+                      <Link href={targetLink} target="_blank" className="custom-button-header-5" style={{ marginRight: '10px' }}>
+                        <span>{buttonText}</span>
+                      </Link>
+                      <Link href={targetLink} target="_blank" className="custom-button-header-6" style={{ marginRight: '10px' }}>
+                        <span>{buttonText}</span>
+                      </Link> */}
                     </div>
                   </div>
                 </div>

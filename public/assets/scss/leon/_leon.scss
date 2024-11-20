@@ -61,9 +61,9 @@
     custom-button
 ===============================*/
 
-      .custom-button {
+    .custom-button {
         background-color: var(--tg-theme-primary);
-        color: var(--tg-common-color-black-2);
+        color: var(--tg-common-color-white);
         padding: 15px 20px;
         font-size: 16px;
         border-radius: 8px;
@@ -72,10 +72,195 @@
         font-weight: bold;
         text-align: center;
         width: 100%;
-        transition: background-color 0.5s ease; 
-      }
+        transition: background-color 0.5s ease;
+        &:hover {
+            background-color: var(--tg-theme-secondary); 
+            color: var(--tg-common-color-white);
+        } 
+    }
+    
+
+    .custom-button-rev {
+        background-color: var(--tg-theme-secondary);
+        color: var(--tg-common-color-white);
+        padding: 15px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        transition: background-color 0.5s ease;
+        &:hover {
+            background-color: var(--tg-theme-primary); 
+            color: var(--tg-common-color-white);
+        } 
+    }
       
-      .custom-button:hover {
-        background-color: var(--tg-theme-secondary); 
-        color: var(--tg-common-color-black-2);;
-      }
+
+    .custom-button-header {
+        display: inline-flex;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-common-color-white);
+        font-weight: var(--tg-fw-extra-bold);
+        text-transform: uppercase;
+        padding: 10px 40px;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 2px solid var(--tg-theme-primary); /* Прозрачная обводка */
+        background-color: transparent; /* Прозрачный фон */
+        border-radius: 8px; /* Закругленные углы */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Плавный переход для эффектов */
+        & i {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: var(--tg-theme-primary); /* Фон при наведении */
+            color: var(--tg-common-color-white); /* Цвет текста при наведении */
+            border-color: var(--tg-theme-primary); /* Цвет обводки при наведении */
+        }
+    }
+
+    .custom-button-header-2 {
+        display: inline-flex;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-common-color-white);
+        font-weight: var(--tg-fw-extra-bold);
+        text-transform: uppercase;
+        padding: 10px 20px;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 2px solid var(--tg-theme-secondary); /* Прозрачная обводка */
+        background-color: transparent; /* Прозрачный фон */
+        border-radius: 8px; /* Закругленные углы */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Плавный переход для эффектов */
+        & i {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: var(--tg-theme-secondary); /* Фон при наведении */
+            color: var(--tg-common-color-white); /* Цвет текста при наведении */
+            border-color: var(--tg-theme-primary); /* Цвет обводки при наведении */
+        }
+    }
+
+    .custom-button-header-3 {
+        display: inline-flex;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-common-color-white);
+        font-weight: var(--tg-fw-extra-bold);
+        text-transform: uppercase;
+        padding: 10px 40px;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 2px solid var(--tg-common-color-white); /* Прозрачная обводка */
+        background-color: transparent; /* Прозрачный фон */
+        border-radius: 8px; /* Закругленные углы */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Плавный переход для эффектов */
+        & i {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: var(--tg-theme-primary); /* Фон при наведении */
+            color: var(--tg-common-color-white); /* Цвет текста при наведении */
+            border-color: var(--tg-theme-primary); /* Цвет обводки при наведении */
+        }
+    }
+    .custom-button-header-4 {
+        display: inline-flex;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-common-color-white);
+        font-weight: var(--tg-fw-extra-bold);
+        text-transform: uppercase;
+        padding: 10px 40px;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 2px solid var(--tg-theme-primary); /* Прозрачная обводка */
+        background-color: var(--tg-theme-primary); /* Прозрачный фон */
+        border-radius: 8px; /* Закругленные углы */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Плавный переход для эффектов */
+        & i {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: transparent; /* Фон при наведении */
+            color: var(--tg-common-color-white); /* Цвет текста при наведении */
+            border-color: var(--tg-theme-primary); /* Цвет обводки при наведении */
+        }
+    }
+    .custom-button-header-5 {
+        display: inline-flex;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-common-color-white);
+        font-weight: var(--tg-fw-extra-bold);
+        text-transform: uppercase;
+        padding: 10px 60px;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 2px solid var(--tg-theme-secondary); /* Прозрачная обводка */
+        background-color: var(--tg-theme-secondary); /* Прозрачный фон */
+        border-radius: 8px; /* Закругленные углы */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Плавный переход для эффектов */
+        & i {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: transparent; /* Фон при наведении */
+            color: var(--tg-common-color-white); /* Цвет текста при наведении */
+            border-color: var(--tg-theme-secondary); /* Цвет обводки при наведении */
+        }
+    }
+    
+    .custom-button-header-6 {
+        display: inline-flex;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-theme-secondary);
+        font-weight: var(--tg-fw-extra-bold);
+        text-transform: uppercase;
+        padding: 10px 40px;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 2px solid var(--tg-theme-primary); /* Прозрачная обводка */
+        background-color: var(--tg-common-color-white); /* Прозрачный фон */
+        border-radius: 8px; /* Закругленные углы */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Плавный переход для эффектов */
+        & i {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: var(--tg-theme-primary); /* Фон при наведении */
+            color: var(--tg-common-color-white); /* Цвет текста при наведении */
+            border-color: var(--tg-theme-primary); /* Цвет обводки при наведении */
+        }
+    }

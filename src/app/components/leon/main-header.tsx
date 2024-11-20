@@ -68,8 +68,10 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText }) => {
                   <div className="tgmenu__action d-none d-md-block">
                     <ul className="list-wrap">
                       <li className="header-btn">
-                        <Link href={targetLink} target="_blank" className="tg-border-btn">
-                          <i className="flaticon-edit"></i> {buttonText}
+                        <Link href={targetLink} target="_blank" className="custom-button-header-2">
+                          {/* <i className="flaticon-login"></i> {buttonText} */}
+                          <i className="flaticon-login"></i> PLAY NOW
+
                         </Link>
                       </li>
                     </ul>

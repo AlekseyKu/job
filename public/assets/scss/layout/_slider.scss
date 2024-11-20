@@ -5,6 +5,7 @@
 ===============================*/
 .slider {
     &__bg {
+        height: 100vh;
         background-position: center;
         background-size: cover;
         padding: 158px 0 54px;
@@ -41,7 +42,7 @@
             font-weight: var(--tg-fw-bold);
             letter-spacing: 4px;
             font-size: 20px;
-            color: var(--tg-theme-primary);
+            color: var(--tg-theme-secondary);
             position: relative;
             padding: 17px 0 17px 0;
             @media #{$lg} {
@@ -86,10 +87,10 @@
         }
         & .title {
             margin: 0 0 21px;
-            font-size: 150px;
+            font-size: 800%;
             font-family: var(--tg-berlin-font-family);
             line-height: 0.8;
-            text-shadow: -1px 5px 0px rgb(69 248 130 / 66%);
+            text-shadow: -1px 5px 0px var(--tg-theme-primary);
             @media #{$xl} {
                 font-size: 118px;
             }
@@ -101,11 +102,11 @@
             }
             @media #{$xs} {
                 font-size: 18vw;
-                text-shadow: -1px 3px 0px rgb(69 248 130 / 66%);
+                text-shadow: -1px 3px 0px var(--tg-theme-primary);
             }
             @media #{$sm} {
                 font-size: 17vw;
-                text-shadow: -1px 5px 0px rgb(69 248 130 / 66%);
+                text-shadow: -1px 5px 0px var(--tg-theme-primary);
             }
         }
         & p {

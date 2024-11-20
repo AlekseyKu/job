@@ -1,6 +1,10 @@
 import "./globals.scss";
 import localFont from "next/font/local";
 import { Poppins, Barlow } from "next/font/google";
+import { headers } from 'next/headers';
+import FetchSiteData from "@/utils/fetchSiteData";
+
+
 
 const berlin = localFont({
   src: [
@@ -30,9 +34,23 @@ const barlow = Barlow({
   variable: "--tg-heading-font-family",
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const host = headers().get('host');
+  const siteData = await FetchSiteData(host || '');
+  const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
+  const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
+
   return (
     <html lang="en">
+      <head>
+        {/* Инлайн-стили для темы */}
+        <style>{`
+          :root {
+            --tg-theme-primary: ${primaryColor};
+            --tg-theme-secondary: ${secondaryColor};
+          }
+        `}</style>
+      </head>
       <body
         suppressHydrationWarning={true}
         className={`${berlin.variable} ${poppins.variable} ${barlow.variable}`}

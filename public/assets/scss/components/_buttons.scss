@@ -34,7 +34,7 @@
 .tg-btn-1 {
     display: inline-flex;
     font-family: var(--tg-heading-font-family);
-    color: var(--tg-common-color-black-2);
+    color: var(--tg-common-color-white);
     font-weight: var(--tg-fw-extra-bold);
     text-transform: uppercase;
     padding: 14px 49px;
@@ -83,7 +83,7 @@
         }
     }
     &:hover {
-        color: var(--tg-common-color-black-2);
+        color: var(--tg-common-color-white);
         & span {
             &::after {
                 background: var(--tg-common-color-white);
@@ -140,7 +140,7 @@
         margin-right: 10px;
     }
     &:hover {
-        color: var(--tg-common-color-black-2);
+        color: var(--tg-common-color-white);
         &::before {
             opacity: 1;
         }
@@ -183,7 +183,7 @@
     }
     &:hover {
         background-color: var(--tg-theme-primary);
-        color: var(--tg-common-color-black-2);
+        color: var(--tg-common-color-white);
     }
     &.-secondary {
         border: 2px solid var(--tg-theme-secondary);
@@ -204,7 +204,7 @@
     justify-content: center;
     text-transform: uppercase;
     font-family: var(--tg-heading-font-family);
-    color: var(--tg-common-color-black-2);
+    color: var(--tg-common-color-white);
     font-weight: var(--tg-fw-extra-bold);
     background: transparent;
     border: none;
@@ -225,7 +225,7 @@
         font-size: 15px;
     }
     &:hover {
-        color: var(--tg-common-color-black-2);
+        color: var(--tg-common-color-white);
     }
     & .svg-icon {
         position: absolute;
