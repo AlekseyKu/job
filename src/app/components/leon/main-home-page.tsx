@@ -44,26 +44,9 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                     <h2 className="title wow fadeInUp" data-wow-delay=".5s">{title}</h2>
                     <p className="wow fadeInUp" data-wow-delay=".8s">{subtitle}</p>
                     <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
-                      <Link href={targetLink} target="_blank" className="custom-button-header-5" style={{ marginRight: '10px' }}>
+                      <Link href={targetLink} target="_blank" className="custom-button-main-page">
                         <span>{buttonText}</span>
-                      </Link>
-                      {/* <Link href={targetLink} target="_blank" className="custom-button-header-2" style={{ marginRight: '10px' }}>
-                        <span>{buttonText}</span>
-                      </Link> */}
-                      {/* <Link href={targetLink} target="_blank" className="custom-button-header-3" style={{ marginRight: '10px' }}>
-                        <span>{buttonText}</span>
-                      </Link>
-                    </div>
-                    <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
-                      <Link href={targetLink} target="_blank" className="custom-button-header-4" style={{ marginRight: '10px' }}>
-                        <span>{buttonText}</span>
-                      </Link>
-                      <Link href={targetLink} target="_blank" className="custom-button-header-5" style={{ marginRight: '10px' }}>
-                        <span>{buttonText}</span>
-                      </Link>
-                      <Link href={targetLink} target="_blank" className="custom-button-header-6" style={{ marginRight: '10px' }}>
-                        <span>{buttonText}</span>
-                      </Link> */}
+                      </Link>                  
                     </div>
                   </div>
                 </div>

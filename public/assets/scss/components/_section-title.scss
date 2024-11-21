@@ -11,7 +11,7 @@
         font-size: 14px;
         letter-spacing: 2px;
         font-weight: var(--tg-fw-semi-bold);
-        color: var(--tg-theme-primary);
+        color: var(--tg-theme-secondary);
         line-height: 1;
         margin: 0 0 7px;
         @media #{$xs} {
@@ -40,6 +40,7 @@
         width: 65px;
         height: 5px;
         margin: 20px auto 0;
+
     }
     &.title-shape-none {
         &::after {

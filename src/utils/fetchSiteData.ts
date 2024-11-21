@@ -18,8 +18,8 @@ async function fetchSiteData(host: string) {
       const response = await axios.get('https://cmsbase24.top/api/all-sites?populate=*');
       const allSites = response.data?.data;
   
-    //   console.log("Полученный массив сайтов:", allSites);
-      console.log("Текущий домен (host):", host);
+      // console.log("Полученный массив сайтов:", allSites);
+      // console.log("Текущий домен (host):", host);
   
       if (!Array.isArray(allSites)) {
         console.error("Некорректный формат данных от Strapi:", allSites);

@@ -5,7 +5,7 @@
 ===============================*/
 .services {
     &__bg-color {
-        background-color: var(--tg-common-color-black-7);
+        background-color: var(--tg-bg-primary);
         @media #{$lg} {
             & .section__title {
                 width: calc(100% + 200px);

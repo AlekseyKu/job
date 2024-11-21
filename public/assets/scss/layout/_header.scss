@@ -300,7 +300,7 @@
         display: inline-block;
     }
     & img {
-        max-width: 300px;
+        max-width: 383px;
     }
 }
 .tg-sticky-menu {
@@ -311,7 +311,7 @@
 	width: 100%;
     @include transform(translateY(-100%));
 	z-index: 99;
-	background: var(--tg-common-color-gray);
+	background: var(--tg-bg-primary);
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
 	border-radius: 0;

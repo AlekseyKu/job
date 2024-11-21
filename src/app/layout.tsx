@@ -40,10 +40,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
 
+  const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
+  const faviconUrl = siteData?.favicon.url || "/default-favicon.ico"; // Путь к favicon
+  const fullFaviconUrl = `${httpAddress}${faviconUrl}`
+
   return (
     <html lang="en">
       <head>
-        {/* Инлайн-стили для темы */}
+        <link rel="icon" href={fullFaviconUrl} />
         <style>{`
           :root {
             --tg-theme-primary: ${primaryColor};

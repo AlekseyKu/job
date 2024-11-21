@@ -26,9 +26,9 @@ const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink }) =
               </div>
             </div>
             <div className="col-lg-4">
-              <div className="section__title-link">
+              {/* <div className="section__title-link">
                 <Link href={targetLink}>EXPLORE MORE</Link>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="row">

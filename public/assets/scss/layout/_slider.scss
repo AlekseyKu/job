@@ -140,7 +140,10 @@
         }
     }
     &__img {
+        z-index: 100000;
         & img {
+            max-height: 500px;
+            max-width: 500px;
             margin: 0 auto;
             @media #{$lg} {
                 margin: 0 0 0 auto;

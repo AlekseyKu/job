@@ -364,10 +364,10 @@
 
 .copyright {
     &__wrap {
-        background: var(--tg-common-color-black-5);
+        background: var(--tg-bg-secondary);
         padding: 20px 0;
         &.-style-two {
-            background: var(--tg-common-color-black-6);
+            background: var(--tg-bg-secondary);
         }
     }
     &__text {

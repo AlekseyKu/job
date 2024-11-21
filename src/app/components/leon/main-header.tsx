@@ -18,6 +18,7 @@ interface HeaderProps {
   logo: { url: string; width: number; height: number }; // Объект для single media
   targetLink: string;
   buttonText: string; // Текст кнопки
+  
   // borderColor?: string;
 }
 
@@ -68,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText }) => {
                   <div className="tgmenu__action d-none d-md-block">
                     <ul className="list-wrap">
                       <li className="header-btn">
-                        <Link href={targetLink} target="_blank" className="custom-button-header-2">
+                        <Link href={targetLink} target="_blank" className="custom-button-header">
                           {/* <i className="flaticon-login"></i> {buttonText} */}
                           <i className="flaticon-login"></i> PLAY NOW
 

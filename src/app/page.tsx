@@ -26,15 +26,15 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: any[],
       {pageSections.map((section) => {
         switch (section.sectionName) {
           case 'MOST LUCKY PLAYERS':
-            return <TopWinnersArea key={section.id} targetLink={siteData.targetLink} />;
+            return <TopWinnersArea key={section.id} targetLink={siteData.targetLinkButton} />;
           case 'LIST OF GAMES':
-            return <TournamentListArea key={section.id} targetLink={siteData.targetLink} />;
+            return <TournamentListArea key={section.id} targetLink={siteData.targetLinkButton} />;
           case 'OUR GAMES':
-            return <TopRatedGamesArea key={section.id} targetLink={siteData.targetLink} />;
+            return <TopRatedGamesArea key={section.id} targetLink={siteData.targetLinkButton} />;
           case 'Top promotions':
-            return <TournamentArea key={section.id} targetLink={siteData.targetLink} />;
+            return <TournamentArea key={section.id} targetLink={siteData.targetLinkButton} />;
           case 'Top winners of the day':
-            return <TopWinnersArea2 key={section.id} targetLink={siteData.targetLink} />;
+            return <TopWinnersArea2 key={section.id} targetLink={siteData.targetLinkButton} />;
           default:
             return null;
         }
@@ -55,13 +55,7 @@ export default async function Home() {
 
   return (
     <Wrapper>
-      {/* <SetThemeColors host={host || ""} /> */}
-      {/* <style jsx global>{`
-        :root {
-          --tg-theme-primary: ${siteData?.themePrimaryColor || '#000000'};
-          --tg-theme-secondary: ${siteData?.themeSecondaryColor || '#ffffff'};
-        }
-      `}</style> */}
+
       <SeoMeta
         title={siteData?.siteTitle || "Default Title"}
         description={siteData?.siteDescription || "Default Description"}
@@ -69,7 +63,7 @@ export default async function Home() {
       />
       <Header
         logo={siteData?.siteLogo}
-        targetLink={siteData?.targetLink}
+        targetLink={siteData?.targetLinkButton}
         buttonText={siteData?.header?.buttonText}
       />
       {/* <main className="main--area"> */}
@@ -79,15 +73,10 @@ export default async function Home() {
         title={siteData?.home_page?.title}
         subtitle={siteData?.home_page?.subtitle}
         buttonText={siteData?.home_page?.buttonText}
-        targetLink={siteData?.targetLink}
+        targetLink={siteData?.targetLinkButton}
         pageImg={siteData?.home_page?.pageImg}
         pageBg={siteData?.home_page?.pageBg}
       />
-
-        {/* Подключение других блоков с полученными данными */}
-        {/* <TopRatedGamesArea data={streamersData} /> */}
-        {/* <LeonMain data={mainContentData} /> */}
-      {/* </main> */}
 
       <PageSectionsRenderer pageSections={pageSections} siteData={siteData} />
 
