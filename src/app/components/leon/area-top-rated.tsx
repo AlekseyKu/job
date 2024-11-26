@@ -9,6 +9,7 @@ import CustomButton from '../common/custom-button';
 
 interface TopRatedProps {
   targetLink: string;
+  buttonText: string;
 }
 
 // Динамически импортируем все изображения из папки
@@ -40,7 +41,7 @@ const sliderSetting = {
   },
 };
 
-const StreamersArea: React.FC<TopRatedProps> = ({ targetLink }) => {
+const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText }) => {
   const [randomImages, setRandomImages] = useState<any[]>([]);
 
   useEffect(() => {
@@ -86,7 +87,7 @@ const StreamersArea: React.FC<TopRatedProps> = ({ targetLink }) => {
         </Swiper>
         <div className="row justify-content-center mt-4">
             <div className="col-md-4">
-                <CustomButton href={targetLink}>Play Now</CustomButton>
+                <CustomButton href={targetLink}>{buttonText}</CustomButton>
             </div>
         </div>
       </div>

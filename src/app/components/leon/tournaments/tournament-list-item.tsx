@@ -11,8 +11,9 @@ type IProp = {
   item: ITournament;
   index: number;
   targetLink: string;
+  buttonText: string;
 };
-const TournamentListItem = ({ item, index, targetLink  }: IProp) => {
+const TournamentListItem = ({ item, index, targetLink, buttonText  }: IProp) => {
   // const expiryTimestamp = new Date(item.coming_time);
   // const { seconds, minutes, hours, days } = useTimer({ expiryTimestamp });
   return (
@@ -47,7 +48,7 @@ const TournamentListItem = ({ item, index, targetLink  }: IProp) => {
         </div> */}
         <div className="tournament__list-live">
           <Link href={targetLink} target="_blank">
-            Play now <i className="far fa-play-circle"></i>
+            {buttonText} <i className="far fa-play-circle"></i>
           </Link>
         </div>
       </div>

@@ -264,6 +264,8 @@
 }
 .section-pb-120 {
     padding-bottom: 120px;
+    background-color: var(--tg-common-color-bg-secondary);
+
 }
 .streamers {
     &-active {
@@ -285,6 +287,7 @@
             & .streamers__thumb::after {
                 height: 100%;
                 opacity: 0.8;
+                content: none;
             }
         }
     }

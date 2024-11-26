@@ -68,15 +68,41 @@
     }
     &-logo {
         margin: 0 0 30px;
+        @media #{$xs} {
+            margin-right: 0;
+            justify-content: center;
+            text-align: center;
+        }
+        @media #{$md} {
+            margin-right: 0;
+            justify-content: center;
+            text-align: center;
+        }
+        @media #{$lg} {
+            margin-right: 0;
+            justify-content: right;
+        }
     }
     &-text {
         margin-right: 30px;
         @media #{$xs} {
             margin-right: 0;
+            justify-content: center;
+            text-align: center;
+        }
+        @media #{$md} {
+            margin-right: 0;
+            justify-content: center;
+            text-align: center;
         }
         & .desc {
             margin: 0 0 25px;
             font-size: 15px;
+            @media #{$lg} {
+                margin-right: 0;
+                justify-content: center;
+                text-align: center;
+            }
         }
         & .social-title {
             margin: 0 0 25px;
@@ -100,6 +126,16 @@
         & img {
             max-width: 30px;
         }
+        @media #{$md} {
+            margin-right: 0;
+            justify-content: center;
+            text-align: center;
+        }
+        @media #{$xs} {
+            margin-right: 0;
+            justify-content: center;
+            text-align: center;
+        }
     }
     &-style-one {
         & .footer__top-wrap {
@@ -107,7 +143,7 @@
                 & [class*='col-'] {
                     &:nth-child(4n+2) {
                         & .footer-widget {
-                            padding-left: 40px;
+                            // padding-left: 40px;
                             @media #{$xs} {
                                 padding-left: 0;
                             }
@@ -115,7 +151,7 @@
                     }
                     &:nth-child(4n+3) {
                         & .footer-widget {
-                            padding-left: 50px;
+                            // padding-left: 50px;
                             @media #{$md} {
                                 padding-left: 0;
                             }
@@ -123,7 +159,7 @@
                     }
                     &:nth-child(4n+4) {
                         & .footer-widget {
-                            padding-left: 78px;
+                            // padding-left: 78px;
                             @media #{$lg} {
                                 padding-left: 0;
                             }

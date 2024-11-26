@@ -1,11 +1,11 @@
 @use '../utils' as *;
 
 /*=============================
-    14. Tournament
+    14. Tournament / play to earn games
 ===============================*/
 .tournament {
     &-area {
-        background: var(--tg-bg-secondary);
+        background: var(--tg-common-color-bg-primary);
     }
     &__wrapper {
         padding: 0 80px;
@@ -232,10 +232,13 @@
             }
         }
     }
+    // best slots .tournament__list-area
     &__list {
         &-area {
             background-position: center;
             background-size: cover;
+            background: var(--tg-common-color-bg-secondary);
+
         }
         &-item {
             position: relative;
@@ -530,7 +533,7 @@
                 font-weight: var(--tg-fw-bold);
                 font-size: 13px;
                 color: var(--tg-body-color);
-                padding: 12px 45px;
+                padding: 12px 40px;
                 letter-spacing: 1px;
                 @include border-radius(6px);
                 @media #{$lg} {

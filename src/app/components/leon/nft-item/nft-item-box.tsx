@@ -1,3 +1,4 @@
+// Top winners of the day
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,10 +6,11 @@ import { INftType } from "@/data/nft-data";
 
 interface NftItemBoxProps {
   item: INftType;
-  targetLink: string; // Добавляем targetLink как проп
+  targetLink: string;
+  buttonText: string;
 }
 
-const NftItemBox = ({ item, targetLink }: NftItemBoxProps) => {
+const NftItemBox = ({ item, targetLink, buttonText }: NftItemBoxProps) => {
   return (        
     <div className="nft-item__box">      
       <div className="nft-item__thumb">
@@ -39,7 +41,7 @@ const NftItemBox = ({ item, targetLink }: NftItemBoxProps) => {
               <span className="currency"> $</span>
             </p>
             <Link href={targetLink} className="bid-btn">
-              Play now <i className="fas fa-long-arrow-alt-right"></i>
+              {buttonText} 
             </Link>
           </div>
         </div>

@@ -6,13 +6,14 @@ import TournamentListItem from "./tournament-list-item";
 
 interface TournamentListAreaProps {
   targetLink: string;
+  buttonText: string;
 }
 
-const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink }) => {
+const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, buttonText }) => {
   return (
     <section
       className="tournament__list-area section-pb-120 section-pt-120"
-      style={{ backgroundImage: `url(${bg.src})` }}
+      // style={{ backgroundImage: `url(${bg.src})` }}
     >
       <div className="container">
         <div className="tournament__wrapper">
@@ -35,7 +36,7 @@ const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink }) =
             <div className="col-12">
               <div className="tournament__list-item-wrapper">
                 {tournament_data.map((item, i) => (
-                  <TournamentListItem key={item.id} item={item} index={i} targetLink={targetLink} />
+                  <TournamentListItem key={item.id} item={item} index={i} targetLink={targetLink} buttonText={buttonText} />
                 ))}
               </div>
             </div>

@@ -26,8 +26,8 @@ const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, pageImg, pageBg }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-img.png'; // Проверяем наличие URL
-  const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : '/default-img.png'; // Проверяем наличие URL
+  const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-pageImg.png'; // Проверяем наличие URL
+  const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : 'https://cmsbase24.top/default-pageBG.jpg'; // Проверяем наличие URL
   const imgWidth = pageImg?.width || 407;
   const imgHeight = pageImg?.height || 344;
 

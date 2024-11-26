@@ -9,12 +9,12 @@ import FetchSiteData from "@/utils/fetchSiteData";
 const berlin = localFont({
   src: [
     {
-      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff",
+      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2",
       weight: "normal",
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2",
+      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff",
       weight: "normal",
       style: "normal",
     },
@@ -39,10 +39,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const siteData = await FetchSiteData(host || '');
   const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
+  const PrimaryColorBG = siteData?.themeBGPrimaryColor;
+  const SecondaryColorBG = siteData?.themeBGSecondaryColor;
 
-  const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
-  const faviconUrl = siteData?.favicon.url || "/default-favicon.ico"; // Путь к favicon
-  const fullFaviconUrl = `${httpAddress}${faviconUrl}`
+
+  const faviconUrl = siteData?.favicon.url || "/favicon.ico"; // Путь к favicon
+  const fullFaviconUrl = `${host}${faviconUrl}`
+  console.log(fullFaviconUrl)
+
 
   return (
     <html lang="en">
@@ -52,6 +56,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           :root {
             --tg-theme-primary: ${primaryColor};
             --tg-theme-secondary: ${secondaryColor};
+            --tg-common-color-bg-primary: ${PrimaryColorBG};
+            --tg-common-color-bg-secondary: ${SecondaryColorBG};
           }
         `}</style>
       </head>

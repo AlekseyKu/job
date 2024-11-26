@@ -20,21 +20,43 @@ import FetchSiteData from "@/utils/fetchSiteData";
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 const UID = 0
 
+
 const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: any[], siteData: any }) => {
   return (
     <>
       {pageSections.map((section) => {
         switch (section.sectionName) {
           case 'MOST LUCKY PLAYERS':
-            return <TopWinnersArea key={section.id} targetLink={siteData.targetLinkButton} />;
+            return <TopWinnersArea 
+              key={section.id} 
+              targetLink={siteData.targetLinkButton}
+              buttonText={siteData?.home_page.buttonText}
+              promoImages={siteData.promoImg}
+            />;
           case 'LIST OF GAMES':
-            return <TournamentListArea key={section.id} targetLink={siteData.targetLinkButton} />;
+            return <TournamentListArea 
+              key={section.id} 
+              targetLink={siteData.targetLinkButton} 
+              buttonText={siteData?.home_page.buttonText}
+          />;
           case 'OUR GAMES':
-            return <TopRatedGamesArea key={section.id} targetLink={siteData.targetLinkButton} />;
+            return <TopRatedGamesArea 
+              key={section.id} 
+              targetLink={siteData.targetLinkButton} 
+              buttonText={siteData?.home_page.buttonText}
+          />;
           case 'Top promotions':
-            return <TournamentArea key={section.id} targetLink={siteData.targetLinkButton} />;
+            return <TournamentArea 
+              key={section.id} 
+              targetLink={siteData.targetLinkButton} 
+              buttonText={siteData?.home_page.buttonText} 
+            />;
           case 'Top winners of the day':
-            return <TopWinnersArea2 key={section.id} targetLink={siteData.targetLinkButton} />;
+            return <TopWinnersArea2 
+              key={section.id} 
+              targetLink={siteData.targetLinkButton} 
+              buttonText={siteData?.home_page.buttonText}
+          />;
           default:
             return null;
         }
@@ -51,7 +73,7 @@ export default async function Home() {
 
   // console.log('Текущий домен (host):', host);
   // console.log('siteData:', siteData);
-  
+
 
   return (
     <Wrapper>
@@ -64,7 +86,7 @@ export default async function Home() {
       <Header
         logo={siteData?.siteLogo}
         targetLink={siteData?.targetLinkButton}
-        buttonText={siteData?.header?.buttonText}
+        // buttonText={siteData?.header?.buttonText}
       />
       {/* <main className="main--area"> */}
 
@@ -78,7 +100,10 @@ export default async function Home() {
         pageBg={siteData?.home_page?.pageBg}
       />
 
-      <PageSectionsRenderer pageSections={pageSections} siteData={siteData} />
+      <PageSectionsRenderer 
+        pageSections={pageSections} 
+        siteData={siteData}
+      />
 
       {/* <TournamentArea
         targetLink={siteData?.targetLink}
@@ -114,7 +139,7 @@ export default async function Home() {
       <Footer 
         logo={siteData?.siteLogo}
         footerText={siteData?.siteDescription}
-        socialTitle={siteData?.footer?.socialTitle}
+        // socialTitle={siteData?.footer?.socialTitle}
         targetLink={siteData?.targetLink}
         siteName={siteData?.siteName}
       />

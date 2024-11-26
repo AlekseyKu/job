@@ -6,9 +6,10 @@ import CustomButton from '../../common/custom-button';
 
 interface TournamentAreaProps {
     targetLink: string;
+    buttonText: string;
   }
 
-const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink }) => {
+const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink, buttonText }) => {
   return (
     <section className="tournament-area section-pt-120 section-pb-90">
     <div className="container">
@@ -30,7 +31,7 @@ const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink }) => {
             </div>
             <div className="row justify-content-center mt-4">
                 <div className="col-md-4">
-                    <CustomButton href={targetLink}>Play Now</CustomButton>
+                    <CustomButton href={targetLink}> {buttonText} </CustomButton>
                 </div>
             </div>
         </div>

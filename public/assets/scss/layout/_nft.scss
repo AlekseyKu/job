@@ -1,11 +1,11 @@
 @use '../utils' as *;
 
 /*=============================
-    04. NFT
+    04. NFT / Top winners of the day
 ===============================*/
 .nft-item {
     &__area {
-        background: var(--tg-bg-primary);
+        background: var(--tg-common-color-bg-primary);
         padding: 100px 0 70px;
         & .row {
             --bs-gutter-x: 37px;
@@ -174,9 +174,10 @@
         padding-bottom: 70px;
     }
 }
+// Top promotions .trendingNft-area
 .trendingNft {
     &-area {
-        background-color: var(--tg-common-color-black-4);
+        background-color: var(--tg-common-color-bg-secondary);
     }
     &__title {
         &-wrap {
