@@ -22,7 +22,7 @@ interface PromoImage {
 interface TrendingNftItemsProps {
   targetLink: string;
   buttonText: string;
-  promoImages: PromoImage[];
+  promoImages: PromoImage[] | null;
 }
 
 const slider_setting = {
@@ -55,50 +55,67 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
           </div>
         </div>
         <Swiper {...slider_setting} modules={[Navigation]} className="swiper-container trendingNft-active">
-          {promo_data.filter(i => i.trending).map((item, index) => (
-            <SwiperSlide key={item.id}>
-              <div className="trendingNft__item">
-                <div className="trendingNft__item-top">
-                  <div className="trendingNft__item-avatar">
-                    <div className="image">
-                      <Link href={targetLink}>
-                        <Image src={item.creator} alt="img" />
-                      </Link>
+          {promo_data.filter(i => i.trending).map((item, index) => {
+            // Гарантируем, что promoImages — массив
+            const promoImage = Array.isArray(promoImages) ? promoImages[index] : null;
+
+            return (
+              <SwiperSlide key={item.id}>
+                <div className="trendingNft__item">
+                  <div className="trendingNft__item-top">
+                    <div className="trendingNft__item-avatar">
+                      <div className="image">
+                        <Link href={targetLink}>
+                          <Image src={item.creator} alt="img" />
+                        </Link>
+                      </div>
+                      <div className="info">
+                        <h6 className="name">{item.title}</h6>
+                        <Link href={targetLink} className="userName">@{item.creator_name}</Link>
+                      </div>
                     </div>
-                    <div className="info">
-                      <h6 className="name">{item.title}</h6>
-                      <Link href={targetLink} className="userName">@{item.creator_name}</Link>
+                    <div className="trendingNft__item-wish">
+                      <Link href="#"><i className="far fa-heart"></i></Link>
                     </div>
                   </div>
-                  <div className="trendingNft__item-wish">
-                    <Link href="#"><i className="far fa-heart"></i></Link>
+                  <div className="trendingNft__item-image" style={{ position: 'relative' }}>
+                    <Link href={targetLink}>
+                      {promoImage && promoImage.url ? (
+                        <Image
+                          src={`${httpAddress}${promoImage.url}`}
+                          alt={promoImage.alternativeText || `Promo Image ${index + 1}`}
+                          width={promoImage.width || 300}
+                          height={promoImage.height || 200}
+                          style={{ width: '100%', height: 'auto' }}
+                        />
+                      ) : (
+                        <Image
+                          src={item.img}
+                          alt={`Default Image ${index + 1}`}
+                          width={300}
+                          height={200}
+                          style={{ width: '100%', height: 'auto' }}
+                        />
+                      )}
+                      <h6 className="trendingNft__item-subtitle">{item.subtitle}</h6>
+                    </Link>
+                  </div>
+                  <div className="trendingNft__item-bottom">
+                    <div className="trendingNft__item-price">
+                      <span className="bid">Total Win</span>
+                      <h6 className="eth">
+                        {item.eth} <span> $</span>
+                      </h6>
+                    </div>
+                    <Link href={targetLink} className="bid-btn">{buttonText}</Link>
                   </div>
                 </div>
-                <div className="trendingNft__item-image" style={{ position: 'relative' }}>
-                  <Link href={targetLink}>
-                    <Image
-                      src={promoImages[index]?.url ? `${httpAddress}${promoImages[index].url}` : item.img}
-                      alt={promoImages[index]?.alternativeText || `Promo Image ${index + 1}`}
-                      width={promoImages[index]?.width || 300}
-                      height={promoImages[index]?.height || 200}
-                      style={{ width: '100%', height: 'auto' }}
-                    />
-                    <h6 className="trendingNft__item-subtitle">{item.subtitle}</h6>
-                  </Link>
-                </div>
-                <div className="trendingNft__item-bottom">
-                  <div className="trendingNft__item-price">
-                    <span className="bid">Total Win</span>
-                    <h6 className="eth">
-                      <i className="fab fa-ethereum"></i> {item.eth} <span> $</span>
-                    </h6>
-                  </div>
-                  <Link href={targetLink} className="bid-btn">{buttonText}</Link>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
+
+
       </div>
     </section>
   );

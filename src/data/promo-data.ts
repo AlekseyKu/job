@@ -36,7 +36,7 @@ const promo_data = [
       {
         id:102,
         img: promo_2,
-        title: 'Become richer, in the flow of luck!',
+        title: 'Be in the flow of luck!',
         subtitle: '$30,000 in prizes in a new mind-blowing promotion!',
         creator:avatar_2,
         creator_name:'Malabara',

@@ -7,6 +7,9 @@
     &__area {
         background: var(--tg-common-color-bg-primary);
         padding: 100px 0 70px;
+        @media #{$xs} {
+            padding: 60px 0 60px 0;
+        } 
         & .row {
             --bs-gutter-x: 37px;
             @media #{$xl} {
@@ -178,6 +181,9 @@
 .trendingNft {
     &-area {
         background-color: var(--tg-common-color-bg-secondary);
+        @media #{$xs} {
+            padding: 40px 0 60px 0;
+        }
     }
     &__title {
         &-wrap {
@@ -186,11 +192,12 @@
         & .title {
             @include flexbox();
             align-items: center;
-            gap: 18px;
+            gap: 6px;
             margin: 0 0;
             font-size: 36px;
             @media #{$xs} {
                 justify-content: center;
+                text-align: center
             }
         }
     }
@@ -332,6 +339,9 @@
                 padding: 11px 14px;
                 margin-left: auto;
                 margin-right: 35px;
+                @media #{$xs} {
+                    margin-right: 25px;
+                }
                 &:hover {
                     background: var(--tg-theme-primary);
                 }
@@ -344,6 +354,9 @@
                 background: linear-gradient(90deg, transparent 0%, #383d44 50%, transparent 100%);
                 flex: 0 0 100%;
                 margin: 14px 0 13px;
+                @media #{$xs} {
+                    margin: 0;
+                }
             }
         }
         &-price {

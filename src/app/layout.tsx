@@ -4,6 +4,7 @@ import { Poppins, Barlow } from "next/font/google";
 import { headers } from 'next/headers';
 import FetchSiteData from "@/utils/fetchSiteData";
 
+const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
 
 const berlin = localFont({
@@ -43,11 +44,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const SecondaryColorBG = siteData?.themeBGSecondaryColor;
 
 
-  const faviconUrl = siteData?.favicon.url || "/favicon.ico"; // Путь к favicon
-  const fullFaviconUrl = `${host}${faviconUrl}`
-  console.log(fullFaviconUrl)
-
-
+  const faviconUrl = siteData?.favicon.url 
+  const fullFaviconUrl = `${httpAddress}${faviconUrl}` || "/favicon.png"; // Путь к favicon
+  
   return (
     <html lang="en">
       <head>

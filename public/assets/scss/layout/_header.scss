@@ -63,6 +63,9 @@
         @media #{$lg} {
             justify-content: space-between;
         }
+        // @media #{$sm} {
+        //     display: none;
+        // }
     }
     &__navbar-wrap {
         @include flexbox();
@@ -301,6 +304,12 @@
     }
     & img {
         max-width: 383px;
+        height: auto; // Сохраняем пропорции изображения
+        @media #{$xs} { // Для мобильных устройств
+            max-width: 80%; // Логотип уменьшается в размерах
+            margin: 0 auto; // Центрируем логотип
+            display: block; // Гарантируем правильный рендеринг
+        }
     }
 }
 .tg-sticky-menu {

@@ -15,7 +15,7 @@
             padding: 175px 0 55px;
         }
         @media #{$xs} {
-            padding: 160px 0 55px;
+            padding: 100px 0 55px;
         }
     }
     &__content {
@@ -33,7 +33,7 @@
             text-align: center;
         }
         @media #{$xs} {
-            margin: 0 0 50px;
+            margin: 0 0 20px;
         }
         & .sub-title {
             margin: 0 0 19px;
