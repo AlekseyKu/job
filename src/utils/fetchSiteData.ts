@@ -1,18 +1,5 @@
 import axios from 'axios';
 
-
-// async function fetchSiteData(host: string) {
-//     const response = await axios.get('https://cmsbase24.top/api/all-sites?populate=*');
-//     // Находим сайт с соответствующим доменом
-//     const siteData = response.data?.data.find((site: any) =>
-//     site.attributes?.siteDomain === `http://${host}` || 
-//     site.attributes?.siteDomain === `https://${host}`
-//     );
-//     console.error('таак', siteData);
-//     return siteData || null; // Возвращаем только один объект данных, а не массив
-// }
-
-
 async function fetchSiteData(host: string) {
     try {
       const response = await axios.get('https://cmsbase24.top/api/all-sites?populate=*');

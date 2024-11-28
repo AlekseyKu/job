@@ -1,42 +1,37 @@
-import axios from 'axios';
+import fetchSiteData from "@/utils/fetchSiteData";
 
 export default async function handler(req, res) {
-    const { host } = req.headers;
+  const host = req.headers.host; // Получаем текущий хост
 
-    try {
-        // Получаем данные текущего сайта из Strapi
-        const response = await axios.get(`https://your-strapi-api.com/api/allSite?filters[siteDomain][$eq]=${host}&populate=*`);
-        const siteData = response.data.data[0];
+  try {
+    // Используем fetchSiteData для получения данных о текущем сайте
+    const siteData = await fetchSiteData(host);
 
-        if (!siteData) {
-            res.status(404).send('Sitemap not configured for this domain');
-            return;
-        }
-
-        // Пример получения страниц (замените на свои данные)
-        const pages = siteData.attributes.pages || []; // Предположим, это массив с данными страниц
-
-        // Генерируем содержимое sitemap.xml
-        const urls = pages.map(page => `
-            <url>
-                <loc>https://${host}${page.slug}</loc>
-                <lastmod>${new Date(page.updatedAt).toISOString()}</lastmod>
-                <changefreq>weekly</changefreq>
-                <priority>0.8</priority>
-            </url>
-        `).join('');
-
-        const sitemap = `
-            <?xml version="1.0" encoding="UTF-8"?>
-            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-                ${urls}
-            </urlset>
-        `;
-
-        res.setHeader('Content-Type', 'application/xml');
-        res.status(200).send(sitemap.trim());
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Failed to generate sitemap.xml');
+    if (!siteData) {
+      res.status(404).send("Site not found");
+      return;
     }
+
+    // Генерируем `sitemap.xml` для текущего сайта
+    const siteUrl = siteData.siteDomain || `http://${host}`;
+    const lastModified = new Date().toISOString().split("T")[0]; // Сегодняшняя дата в формате YYYY-MM-DD
+
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+      <url>
+        <loc>${siteUrl}</loc>
+        <lastmod>${lastModified}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+      </url>
+    </urlset>`;
+
+    // Устанавливаем заголовок и возвращаем `sitemap.xml`
+    res.setHeader("Content-Type", "application/xml");
+    res.status(200).send(sitemap);
+  } catch (error) {
+    console.error("Ошибка генерации sitemap:", error);
+    res.status(500).end();
+  }
 }

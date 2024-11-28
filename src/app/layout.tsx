@@ -1,11 +1,11 @@
 import "./globals.scss";
 import localFont from "next/font/local";
 import { Poppins, Barlow } from "next/font/google";
-import { headers } from 'next/headers';
+import { headers } from "next/headers";
+import { Metadata } from "next";
 import FetchSiteData from "@/utils/fetchSiteData";
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
-
 
 const berlin = localFont({
   src: [
@@ -35,22 +35,51 @@ const barlow = Barlow({
   variable: "--tg-heading-font-family",
 });
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const host = headers().get('host');
-  const siteData = await FetchSiteData(host || '');
+// Функция для генерации метаданных
+export async function generateMetadata(): Promise<Metadata> {
+  const host = headers().get("host");
+  const siteData = await FetchSiteData(host || "");
+
+  const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
+  const faviconUrl = siteData?.favicon.url;
+  const fullFaviconUrl = `${httpAddress}${faviconUrl}` || "/favicon.png";
+
+  return {
+    title: siteData?.siteTitle || "Default Title",
+    description: siteData?.siteDescription || "Default Description",
+    icons: {
+      icon: fullFaviconUrl,
+    },
+    alternates: {
+      canonical: `https://${host}`, // Канонический URL для текущего сайта
+    },
+  };
+}
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const host = headers().get("host");
+  const siteData = await FetchSiteData(host || "");
+  const localeLang = siteData?.localeLang || "en"; // Устанавливаем локаль из Strapi или "en" по умолчанию
+
+
   const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
   const PrimaryColorBG = siteData?.themeBGPrimaryColor;
   const SecondaryColorBG = siteData?.themeBGSecondaryColor;
 
-
-  const faviconUrl = siteData?.favicon.url 
-  const fullFaviconUrl = `${httpAddress}${faviconUrl}` || "/favicon.png"; // Путь к favicon
-  
   return (
-    <html lang="en">
+    <html lang={localeLang}>
       <head>
-        <link rel="icon" href={fullFaviconUrl} />
+        <meta name="theme-color" content={primaryColor} />
+      </head>
+      <body
+        suppressHydrationWarning={true}
+        className={`${berlin.variable} ${poppins.variable} ${barlow.variable}`}
+      >
         <style>{`
           :root {
             --tg-theme-primary: ${primaryColor};
@@ -59,11 +88,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             --tg-common-color-bg-secondary: ${SecondaryColorBG};
           }
         `}</style>
-      </head>
-      <body
-        suppressHydrationWarning={true}
-        className={`${berlin.variable} ${poppins.variable} ${barlow.variable}`}
-      >
         {children}
       </body>
     </html>
