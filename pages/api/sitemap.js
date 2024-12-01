@@ -14,14 +14,11 @@ export default async function handler(req, res) {
 
     // Генерируем `sitemap.xml` для текущего сайта
     const siteUrl = siteData.siteDomain || `http://${host}`;
-    const lastModified = new Date().toISOString().split("T")[0]; // Сегодняшняя дата в формате YYYY-MM-DD
-
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
       <url>
         <loc>${siteUrl}</loc>
-        <lastmod>${lastModified}</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
       </url>
