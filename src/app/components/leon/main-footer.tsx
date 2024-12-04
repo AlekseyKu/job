@@ -24,22 +24,22 @@ const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 // const httpAddress = "http://62.84.182.126/"
 
 
-async function getSeoMetaTagsData() {
-  try {
-    const res = await axios.get(`${httpAddress}/api/seo-meta-tags?populate=*`);
-    const SeoMetaTagData = res.data.data[0];
-    return {
-      brandName: SeoMetaTagData?.brandName || 'Default Title',
-      description: SeoMetaTagData?.description || 'Default description',
-    };
-  } catch (error) {
-    console.error("Ошибка при получении данных для SeoMetaTags из Strapi:", error);
-    return {
-      brandName: 'Fallback Title',
-      description: 'Fallback description',
-    };
-  }
-}
+// async function getSeoMetaTagsData() {
+//   try {
+//     const res = await axios.get(`${httpAddress}/api/all-sites?populate=*`);
+//     const SeoMetaTagData = res.data.data[0];
+//     return {
+//       brandName: SeoMetaTagData?.brandName || 'Default Title',
+//       description: SeoMetaTagData?.description || 'Default description',
+//     };
+//   } catch (error) {
+//     console.error("Ошибка при получении данных для SeoMetaTags из Strapi:", error);
+//     return {
+//       brandName: 'Fallback Title',
+//       description: 'Fallback description',
+//     };
+//   }
+// }
 
 const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName }) => {
   const [seoData, setSeoData] = useState<{ brandName: string; description: string }>({
@@ -47,13 +47,13 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName 
     description: footerText,
   });
 
-  useEffect(() => {
-    const fetchSeoData = async () => {
-      const data = await getSeoMetaTagsData();
-      setSeoData(data);
-    };
-    fetchSeoData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchSeoData = async () => {
+  //     const data = await getSeoMetaTagsData();
+  //     setSeoData(data);
+  //   };
+  //   fetchSeoData();
+  // }, []);
 
   const imgUrl = logo?.url ? `${httpAddress}${logo.url}` : '/default-logo.png';
 

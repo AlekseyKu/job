@@ -65,6 +65,8 @@ export default async function RootLayout({
   const siteData = await FetchSiteData(host || "");
   const localeLang = siteData?.localeLang || "en"; // Устанавливаем локаль из Strapi или "en" по умолчанию
 
+  const imgUrl = siteData?.home_page?.pageImg.url
+  const fullImgUrl = `${httpAddress}${imgUrl}`
 
   const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
@@ -74,6 +76,10 @@ export default async function RootLayout({
   return (
     <html lang={localeLang}>
       <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
         <meta name="theme-color" content={primaryColor} />
       </head>
       <body

@@ -334,7 +334,10 @@
                 top: 0;
                 @include transform(translateY(0));
                 flex-wrap: wrap;
-                gap: 40px 0;
+                gap: 20px 0;
+            }
+            @media #{$xs} {
+                gap: 20px 0;
             }
         }
         &-thumb {
@@ -346,14 +349,34 @@
             @media #{$md} {
                 width: 50%;
             }
+            @media #{$xs} {
+                width: 40%;
+            }
             & img {
                 max-width: 89px;
                 max-height: 120px;
                 border-radius: 8px;
                 @media #{$lg} {
                     max-width: 80px;
-                    max-height: 75px;
+                    max-height: 100px;
                 }
+                @media #{$md} {
+                    max-width: 120px;
+                    max-height: 180px;
+                }
+            }
+        }
+        &-name-prize {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            @media #{$md} {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 50%;
+            }
+            @media #{$xs} {
+                width: 60%;
             }
         }
         &-name {
@@ -388,10 +411,14 @@
             width: 405px;
             flex: 0 0 auto;
             @media #{$md} {
-                width: 50%;
-                flex: 0 0 auto;
-                padding-left: 20px;
+                width: 100%;
                 text-align: right;
+                // flex: 1;
+                // padding-left: 20px;
+                // text-align: right;
+            }
+            @media #{$xs} {
+                width: 100%;
             }
             & .team-name {
                 font-size: 24px;
@@ -431,7 +458,7 @@
         }
         &-prize {
             width: 216px;
-            flex: 0 0 auto;
+            flex: 1;
             padding-left: 55px;
             position: relative;
             @media #{$lg} {
@@ -439,11 +466,16 @@
                 padding-left: 40px;
             }
             @media #{$md} {
-                width: 50%;
-                padding: 0 20px 0 0;
-                &::before {
-                    display: none;
-                }
+                width: 100%;
+                text-align: right;
+                padding: 0;
+                margin-top: 20px;
+            }
+            @media #{$xs} {
+                width: 100%;
+                text-align: right;
+                padding: 0;
+                margin-top: 20px;
             }
             &::before {
                 content: "";

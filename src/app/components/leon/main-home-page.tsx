@@ -1,11 +1,11 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MouseParallaxContainer, MouseParallaxChild } from 'react-parallax-mouse';
 
 // Статические изображения
-import slider_bg from '@/assets/img/slider/slider_bg.jpg';
+// import slider_bg from '@/assets/img/slider/slider_bg.jpg';
 import shape_1 from '@/assets/img/slider/slider_shape01.png';
 import shape_2 from '@/assets/img/slider/slider_shape02.png';
 import shape_3 from '@/assets/img/slider/slider_shape03.png';
@@ -24,7 +24,7 @@ interface HomePageProps {
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
 const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, pageImg, pageBg }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  // const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-pageImg.png'; // Проверяем наличие URL
   const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : 'https://cmsbase24.top/default-pageBG.jpg'; // Проверяем наличие URL
@@ -58,7 +58,8 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                       alt="Main Image" 
                       width={imgWidth} // Указываем ширину, полученную из Strapi
                       height={imgHeight}  // Указываем высоту, полученную из Strapi
-                      priority 
+                      priority
+                      // quality={50}
                     />
                   </MouseParallaxChild>
                 </div>

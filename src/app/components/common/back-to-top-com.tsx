@@ -7,8 +7,13 @@ function BackToTopCom() {
     BackToTop(".scroll__top");
   }, []);
   return (
-    <button className="scroll__top scroll-to-target" data-target="html">
-      <i className="flaticon-right-arrow"></i>
+    <button 
+      className="scroll__top scroll-to-target" 
+      data-target="html"
+      aria-label="Scroll back to top"
+    >
+      <i className="flaticon-right-arrow" aria-hidden="true"></i>
+      <span className="sr-only">Scroll back to top</span>
     </button>
   );
 }

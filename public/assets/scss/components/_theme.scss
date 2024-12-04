@@ -1,13 +1,5 @@
 @use '../utils' as *;
-/*-------------------------------------------
-
-   Theme Name: MYKD - eSports and Gaming NFT Template
-   Author : ThemeGenix
-   Support: themegenix@gmail.com
-   Description: MYKD - eSports and Gaming NFT Template
-   Version: 1.0
-
-----------------------------------------------
+@import url($font-url);
 
 /************ TABLE OF CONTENTS ***************
 
@@ -39,9 +31,6 @@
 /*----------------------------------------*/
 /*  01. Theme Default CSS
 /*----------------------------------------*/
-
-@import url($font-url);
-
 
 /*=============================
 	Typography css start
