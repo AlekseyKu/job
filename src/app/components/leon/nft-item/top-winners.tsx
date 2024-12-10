@@ -7,6 +7,7 @@ import nft_data from '@/data/nft-data';
 interface NftItemAreaProps {
   targetLink: string;
   buttonText: string;
+  sectionTitle: string;
 }
 
 // Функция для выбора случайных элементов из массива
@@ -16,7 +17,7 @@ const getRandomItems = (data: any[], count: number) => {
   return shuffled.slice(0, count); // Возвращаем первые 'count' элементов
 };
 
-const NftItemArea: React.FC<NftItemAreaProps> = ({ targetLink, buttonText }) => {
+const NftItemArea: React.FC<NftItemAreaProps> = ({ targetLink, buttonText, sectionTitle }) => {
   const randomTopWinners = getRandomItems(topWinners_data, 3); // Получаем 3 случайных элемента
 
   return (
@@ -26,7 +27,7 @@ const NftItemArea: React.FC<NftItemAreaProps> = ({ targetLink, buttonText }) => 
           <div className="row">
               <div className="col-md-7">
                   <div className="trendingNft__title">
-                      <h2 className="title">Top winners of the day</h2>
+                      <h2 className="title">{sectionTitle}</h2>
                   </div>
               </div>
           </div>

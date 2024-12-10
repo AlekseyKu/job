@@ -59,7 +59,6 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                       width={imgWidth} // Указываем ширину, полученную из Strapi
                       height={imgHeight}  // Указываем высоту, полученную из Strapi
                       priority
-                      // quality={50}
                     />
                   </MouseParallaxChild>
                 </div>

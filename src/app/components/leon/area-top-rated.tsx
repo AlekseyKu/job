@@ -10,6 +10,8 @@ import CustomButton from '../common/custom-button';
 interface TopRatedProps {
   targetLink: string;
   buttonText: string;
+  pretitle: string;
+  title: string;
 }
 
 // Динамически импортируем все изображения из папки
@@ -41,7 +43,7 @@ const sliderSetting = {
   },
 };
 
-const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText }) => {
+const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText, pretitle, title }) => {
   const [randomImages, setRandomImages] = useState<any[]>([]);
 
   useEffect(() => {
@@ -67,8 +69,8 @@ const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText }) => {
         <div className="row justify-content-center">
           <div className="col-xl-6 col-lg-7 col-md-10">
             <div className="section__title text-center mb-60">
-              <TextAnimation title="Our games" />
-              <h3 className="title">top rated</h3>
+              <TextAnimation title={pretitle} />
+              <h3 className="title">{title}</h3>
             </div>
           </div>
         </div>

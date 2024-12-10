@@ -7,9 +7,11 @@ import CustomButton from '../../common/custom-button';
 interface TournamentAreaProps {
     targetLink: string;
     buttonText: string;
+    pretitle: string;
+    title: string;
   }
 
-const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink, buttonText }) => {
+const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink, buttonText, pretitle, title }) => {
   return (
     <section className="tournament-area section-pt-120 section-pb-90">
     <div className="container">
@@ -17,8 +19,8 @@ const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink, buttonText 
             <div className="row justify-content-center">
                 <div className="col-xl-6 col-lg-7 col-md-10">
                     <div className="section__title text-center mb-60">
-                        <TextAnimation title='most lucky players' />
-                        <h3 className="title">play to earn games</h3>
+                        <TextAnimation title={pretitle} />
+                        <h3 className="title">{title}</h3>
                     </div>
                 </div>
             </div>

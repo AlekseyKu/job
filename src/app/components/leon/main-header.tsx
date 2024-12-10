@@ -17,12 +17,12 @@ const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 interface HeaderProps {
   logo: { url: string; width: number; height: number }; // Объект для single media
   targetLink: string;
-  // buttonText: string; // Текст кнопки
+  buttonText: string; // Текст кнопки
   
   // borderColor?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ logo, targetLink }) => {
+const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText }) => {
   const { sticky, isStickyVisible } = useSticky();
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink }) => {
                       <li className="header-btn">
                         <Link href={targetLink} target="_blank" className="custom-button-header">
                           {/* <i className="flaticon-login"></i> {buttonText} */}
-                          <i className="flaticon-login"></i> LOGIN
+                          <i className="flaticon-login"></i> {buttonText}
 
                         </Link>
                       </li>

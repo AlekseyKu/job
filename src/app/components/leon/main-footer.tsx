@@ -14,7 +14,7 @@ import payment from '@/assets/img/others/payment_card.png';
 interface FooterProps {
   logo: { url: string; width: number; height: number };
   footerText: string;
-  // socialTitle: string;
+  socialTitle: string;
   targetLink: string;
   siteName: string;
 
@@ -41,7 +41,7 @@ const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 //   }
 // }
 
-const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName }) => {
+const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName, socialTitle }) => {
   const [seoData, setSeoData] = useState<{ brandName: string; description: string }>({
     brandName: 'Default Brand',
     description: footerText,
@@ -67,7 +67,7 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName 
                 
                 <div className="footer-text">
                   <p className="social-title">
-                    our social networks
+                    {socialTitle}
                     <span> <i className="fas fa-angle-double-right"></i></span>
                   </p>
                   <div className="footer-social">

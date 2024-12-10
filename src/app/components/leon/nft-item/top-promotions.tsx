@@ -23,6 +23,7 @@ interface TrendingNftItemsProps {
   targetLink: string;
   buttonText: string;
   promoImages: PromoImage[] | null;
+  sectionTitle: string;
 }
 
 const slider_setting = {
@@ -41,7 +42,7 @@ const slider_setting = {
   },
 };
 
-const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonText, promoImages }) => {
+const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonText, promoImages, sectionTitle }) => {
   return (
     <section className="trendingNft-area section-pt-120 section-pb-90">
       <div className="container">
@@ -49,7 +50,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
           <div className="row">
             <div className="col-md-7">
               <div className="trendingNft__title">
-                <h2 className="title">Top promotions<Image src={fire_img} width={35} alt="icon" /></h2>
+                <h2 className="title">{sectionTitle}<Image src={fire_img} width={35} alt="icon" /></h2>
               </div>
             </div>
           </div>

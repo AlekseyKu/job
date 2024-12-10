@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import { Poppins, Barlow } from "next/font/google";
 import { headers } from "next/headers";
 import { Metadata } from "next";
+import { dir } from 'i18next';
+import { languages } from '@/i18n/settings';
 import FetchSiteData from "@/utils/fetchSiteData";
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
@@ -35,7 +37,10 @@ const barlow = Barlow({
   variable: "--tg-heading-font-family",
 });
 
-// Функция для генерации метаданных
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }));
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const host = headers().get("host");
   const siteData = await FetchSiteData(host || "");
@@ -51,22 +56,24 @@ export async function generateMetadata(): Promise<Metadata> {
       icon: fullFaviconUrl,
     },
     alternates: {
-      canonical: `https://${host}`, // Канонический URL для текущего сайта
+      canonical: `https://${host}`,
     },
   };
 }
 
 export default async function RootLayout({
   children,
+  params: { lng }
 }: {
   children: React.ReactNode;
+  params: { lng?: string };
 }) {
   const host = headers().get("host");
   const siteData = await FetchSiteData(host || "");
-  const localeLang = siteData?.localeLang || "en"; // Устанавливаем локаль из Strapi или "en" по умолчанию
+  const localeLang = lng || siteData?.localeLang || "en";
 
-  const imgUrl = siteData?.home_page?.pageImg.url
-  const fullImgUrl = `${httpAddress}${imgUrl}`
+  const imgUrl = siteData?.home_page?.pageImg.url;
+  const fullImgUrl = `${httpAddress}${imgUrl}`;
 
   const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
@@ -74,7 +81,7 @@ export default async function RootLayout({
   const SecondaryColorBG = siteData?.themeBGSecondaryColor;
 
   return (
-    <html lang={localeLang}>
+    <html lang={localeLang} dir={dir(localeLang)}>
       <head>
         <meta
           name="viewport"

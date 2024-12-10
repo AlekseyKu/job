@@ -7,9 +7,11 @@ import TournamentListItem from "./tournament-list-item";
 interface TournamentListAreaProps {
   targetLink: string;
   buttonText: string;
+  pretitle: string;
+  title: string;
 }
 
-const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, buttonText }) => {
+const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, buttonText, pretitle, title }) => {
   return (
     <section
       className="tournament__list-area section-pb-120 section-pt-120"
@@ -21,9 +23,9 @@ const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, but
             <div className="col-lg-8">
               <div className="section__title text-center text-lg-start title-shape-none">
                 <span className="sub-title tg__animate-text">
-                  List of games
+                  {pretitle}
                 </span>
-                <h3 className="title">best slots</h3>
+                <h3 className="title">{title}</h3>
               </div>
             </div>
             <div className="col-lg-4">
