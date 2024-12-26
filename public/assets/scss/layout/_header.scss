@@ -59,13 +59,10 @@
         @include flexbox();
         align-items: center;
         flex-wrap: wrap;
-        justify-content: flex-start;
-        @media #{$lg} {
-            justify-content: space-between;
+        justify-content: space-between;
+        @media #{$xs} {
+            justify-content: center;
         }
-        // @media #{$sm} {
-        //     display: none;
-        // }
     }
     &__navbar-wrap {
         @include flexbox();
@@ -325,10 +322,10 @@
     transition: all 0.4s ease;
 	border-radius: 0;
     opacity: 0;
-    &.sticky-menu__show {
-        @include transform(unset);
-        -webkit-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-        opacity: 1;
-    }
+    // &.sticky-menu__show {
+    //     @include transform(unset);
+    //     -webkit-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    //     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    //     opacity: 1;
+    // }
 }

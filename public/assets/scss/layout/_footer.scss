@@ -70,17 +70,14 @@
         margin: 0 0 30px;
         @media #{$xs} {
             margin-right: 0;
-            justify-content: center;
             text-align: center;
         }
         @media #{$md} {
             margin-right: 0;
-            justify-content: center;
             text-align: center;
         }
         @media #{$lg} {
             margin-right: 0;
-            justify-content: right;
         }
     }
     &-text {

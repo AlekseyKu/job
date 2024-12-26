@@ -30,7 +30,7 @@ const promo_data = [
         subtitle: 'Spin your favorite slots without worries – we`ll give you back up to $500!',
         creator:avatar_1,
         creator_name:'Jonyk',
-        eth:'up to 500',
+        eth:'500',
         trending:true,
       },
       {
