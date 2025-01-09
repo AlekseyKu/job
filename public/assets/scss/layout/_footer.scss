@@ -68,6 +68,7 @@
     }
     &-logo {
         margin: 0 0 30px;
+        text-align: center;
         @media #{$xs} {
             margin-right: 0;
             text-align: center;

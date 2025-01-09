@@ -91,7 +91,11 @@
             font-family: var(--tg-berlin-font-family);
             line-height: 0.8;
             text-shadow: -1px 5px 0px var(--tg-theme-primary);
-            @media #{$xl} {
+            // white-space: nowrap; // Убираем перенос текста
+            // font-size: clamp(1rem, 5vw, 118px);
+
+            
+            @media #{$xl} {      
                 font-size: 118px;
             }
             @media #{$lg} {

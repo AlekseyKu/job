@@ -2,3 +2,4 @@ node_modules/
 .next/
 src/app/components/unUsed/
 docs
+.codegpt

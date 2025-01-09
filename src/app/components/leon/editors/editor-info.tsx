@@ -6,9 +6,10 @@ import parse from 'html-react-parser';
 
 interface EditorInfoProps {
   editorInfo: string; // Поле для данных из CKEditor
+  titleMain: string;
 }
 
-const EditorInfo: React.FC<EditorInfoProps> = ({ editorInfo }) => {
+const EditorInfo: React.FC<EditorInfoProps> = ({ editorInfo, titleMain }) => {
   const [content, setContent] = useState<string>('');
 
   // Получение данных CKEditor из Strapi при загрузке компонента
@@ -23,6 +24,9 @@ const EditorInfo: React.FC<EditorInfoProps> = ({ editorInfo }) => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-8 col-lg-10 col-md-12">
+            <div className="editor-info__H1">
+              { titleMain }
+            </div>
             <div className="section__content">
               {/* Парсинг и отображение HTML содержимого */}
               {content ? parse(content) : <p>Загрузка данных...</p>}

@@ -12,6 +12,15 @@
             }
         } 
     }
+    &__H1 {
+        text-align: center;
+        color: var(--tg-heading-color);
+        font-size: 2rem;
+        margin-bottom: 40px;
+        font-weight: var(--tg-fw-bold);
+        text-transform: uppercase;
+        font-family: var(--tg-heading-font-family);
+    }
 }
 
 table {

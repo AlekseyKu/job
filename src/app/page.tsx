@@ -19,19 +19,28 @@ const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 const UID = 0
 
 
-const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: any[], siteData: any }) => {
+interface PageSection {
+  id: string | number; // Уникальный идентификатор секции
+  sectionName: string; // Название секции
+  // [key: string]: any;  // Другие свойства, которые могут присутствовать
+}
+
+
+const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSection[], siteData: any }) => {
   return (
     <>
       {pageSections.map((section) => {
+        if (section.sectionName === 'MOST LUCKY PLAYERS') return null; // Исключаем рендер этого блока здесь
+
         switch (section.sectionName) {
-          case 'MOST LUCKY PLAYERS':
-            return <TopPromotions 
-              key={section.id} 
-              targetLink={siteData.targetLinkButton}
-              buttonText={siteData?.home_page.buttonText}
-              promoImages={siteData.promoImg}
-              sectionTitle={siteData.attributes?.topPromotionsTitle}
-            />;
+          // case 'MOST LUCKY PLAYERS':
+          //   return <TournamentArea 
+          //   key={section.id} 
+          //   targetLink={siteData.targetLinkButton} 
+          //   buttonText={siteData?.home_page.buttonText}
+          //   pretitle={siteData.attributes?.mostLuckyPlayers.pretitle}
+          //   title={siteData.attributes?.mostLuckyPlayers.title}
+          //   />;
           case 'LIST OF GAMES':
             return <TournamentListArea 
               key={section.id} 
@@ -49,12 +58,12 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: any[],
               title={siteData.attributes?.topGames.title}
           />;
           case 'Top promotions':
-            return <TournamentArea 
+            return <TopPromotions 
               key={section.id} 
-              targetLink={siteData.targetLinkButton} 
+              targetLink={siteData.targetLinkButton}
               buttonText={siteData?.home_page.buttonText}
-              pretitle={siteData.attributes?.mostLuckyPlayers.pretitle}
-              title={siteData.attributes?.mostLuckyPlayers.title}
+              promoImages={siteData.promoImg}
+              sectionTitle={siteData.attributes?.topPromotionsTitle}
             />;
           case 'Top winners of the day':
             return <TopWinners 
@@ -74,8 +83,11 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: any[],
 export default async function Home() {
   const host = headers().get('host');
   const siteData = await FetchSiteData(host || '');
-  const pageSections = siteData?.page_sections || [];
+  const pageSections: PageSection[] = siteData?.page_sections || [];
 
+  const mostLuckyPlayersSection = pageSections.find(
+    (section) => section.sectionName === 'MOST LUCKY PLAYERS'
+  );
 
   // console.log('Текущий домен (host):', host);
   // console.log('siteData:', siteData);
@@ -113,7 +125,19 @@ export default async function Home() {
 
       <EditorInfo 
         editorInfo={siteData?.editor_info?.editorInfo} 
+        titleMain={siteData?.H1}
       />
+
+      {/* Рендер блока 'MOST LUCKY PLAYERS' после EditorInfo */}
+      {mostLuckyPlayersSection && (
+        <TournamentArea
+          key={mostLuckyPlayersSection.id}
+          targetLink={siteData.targetLinkButton}
+          buttonText={siteData?.home_page.buttonText}
+          pretitle={siteData.attributes?.mostLuckyPlayers.pretitle}
+          title={siteData.attributes?.mostLuckyPlayers.title}
+        />
+      )}
 
 
       <FaqArea 
