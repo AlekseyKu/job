@@ -149,7 +149,7 @@
             @include flexbox();
             align-items: center;
             column-gap: 10px;
-            background: var(--tg-theme-secondary);
+            background: var(--tg-theme-primary);
             color: var(--tg-common-color-white);
             text-transform: capitalize;
             font-family: var(--tg-heading-font-family);
@@ -160,7 +160,7 @@
             padding: 11px 14px;
             margin-left: auto;
             &:hover {
-                background: var(--tg-theme-primary);
+                background: var(--tg-theme-secondary);
             }
         }
     }
@@ -328,7 +328,7 @@
                 @include flexbox();
                 align-items: center;
                 column-gap: 10px;
-                background: var(--tg-theme-secondary);
+                background: var(--tg-theme-primary);
                 color: var(--tg-common-color-white);
                 text-transform: capitalize;
                 font-family: var(--tg-heading-font-family);
@@ -343,7 +343,7 @@
                     margin-right: 25px;
                 }
                 &:hover {
-                    background: var(--tg-theme-primary);
+                    background: var(--tg-theme-secondary);
                 }
             }
             &::before {

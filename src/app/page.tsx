@@ -140,11 +140,14 @@ export default async function Home() {
       )}
 
 
-      <FaqArea 
-        pretitle={siteData?.faq?.pretitle} 
-        title={siteData?.faq?.title} 
-        faqRow={siteData?.faq?.faqRow || []} 
-      />
+      {/* Условный рендеринг блока FaqArea */}
+      {siteData?.faq && (
+        <FaqArea 
+          pretitle={siteData?.faq?.pretitle} 
+          title={siteData?.faq?.title} 
+          faqRow={siteData?.faq?.faqRow || []} 
+        />
+      )}
 
       <Footer 
         logo={siteData?.siteLogo}

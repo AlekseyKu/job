@@ -34,7 +34,7 @@ export function getSpinText(key: string, localeLang: string): string {
     // Выбираем случайное значение
     const selectedText = options[Math.floor(Math.random() * options.length)];
 
-    // Сохраняем в кэш
+    // Сохраняем в кэш 
     cache[cacheKey] = selectedText;
 
     return selectedText;
