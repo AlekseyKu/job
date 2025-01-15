@@ -103,6 +103,7 @@ export default async function Home() {
       />
       <Header
         logo={siteData?.siteLogo}
+        sizeLogo={siteData?.sizeLogo}
         targetLink={siteData?.targetLinkButton}
         buttonText={siteData.attributes?.headerButtonText} // Используем текст из кэша
         />
@@ -116,6 +117,7 @@ export default async function Home() {
         targetLink={siteData?.targetLinkButton}
         pageImg={siteData?.home_page?.pageImg}
         pageBg={siteData?.home_page?.pageBg}
+        colorTitleMain={siteData?.colorTitleMain}
       />
 
       <PageSectionsRenderer 

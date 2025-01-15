@@ -300,10 +300,10 @@
         display: inline-block;
     }
     & img {
-        max-width: 200px;
+        max-width: 300px;
         height: auto; // Сохраняем пропорции изображения
         padding-top: 10px;
-        padding-left: 10px;
+        // padding-left: 10px;
         @media #{$xs} { // Для мобильных устройств
             max-width: 80%; // Логотип уменьшается в размерах
             margin: 0 auto; // Центрируем логотип

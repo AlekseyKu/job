@@ -17,13 +17,14 @@ interface HomePageProps {
   subtitle: string;
   buttonText: string;
   targetLink: string;
+  colorTitleMain: string;
   pageImg:  { url: string; width: number; height: number };
   pageBg:  { url: string; width: number; height: number };
 }
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
-const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, pageImg, pageBg }) => {
+const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, colorTitleMain, pageImg, pageBg }) => {
   // const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-pageImg.png'; // Проверяем наличие URL
@@ -41,7 +42,7 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                 <div className="col-lg-6">
                   <div className="slider__content">
                     <h6 className="sub-title wow fadeInUp" data-wow-delay=".2s">{pretitle}</h6>
-                    <h2 className="title wow fadeInUp" data-wow-delay=".5s">{title}</h2>
+                    <h2 className="title wow fadeInUp" data-wow-delay=".5s" style={{ color: colorTitleMain }}>{title}</h2>
                     <p className="wow fadeInUp" data-wow-delay=".8s">{subtitle}</p>
                     <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
                       <Link href={targetLink} target="_blank" className="custom-button-main-page">

@@ -15,14 +15,16 @@ import { usePathname } from 'next/navigation'
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
 interface HeaderProps {
-  logo: { url: string; width: number; height: number }; // Объект для single media
+
+  logo: { url: string; height: number }; // Объект для single media
+  sizeLogo: "small - 200px" | "medium - 250px" | "big - 300px";
   targetLink: string;
   buttonText: string; // Текст кнопки
   
   // borderColor?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText }) => {
+const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText, sizeLogo }) => {
   const { sticky, isStickyVisible } = useSticky();
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -30,20 +32,22 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText }) => {
   const [openMobileOffCanvas, setOpenMobileOffCanvas] = useState<boolean>(false);
   const imgUrl = logo?.url ? `${httpAddress}${logo.url}` : '/default-logo.png'; // Проверяем наличие URL
 
-  // Применение цвета к кнопке с классом tg-border-btn
-  // useEffect(() => {
-  //   const buttonElement = document.querySelector('.tg-border-btn') as HTMLElement;
-  //   if (buttonElement) {
-  //     buttonElement.style.setProperty('--border-color', borderColor);
-  //   }
-  // }, [borderColor]);
 
-// const Header = ({style_2=false}:{style_2?:boolean}) => {
-//   const {sticky,isStickyVisible} = useSticky();
-//   const pathname = usePathname();
-//   const [isSearchOpen,setIsSearchOpen] = useState<boolean>(false);
-//   const [isOffCanvasOpen,setIsOffCanvasOpen] = useState<boolean>(false);
-//   const [openMobileOffCanvas,setOpenMobileOffCanvas] = useState<boolean>(false);
+   // размер логотипа на основе пропса sizeLogo
+   const getSize = (size: string) => {
+    switch (size) {
+      case "small - 200px":
+        return { width: 200 };
+      case "medium - 250px":
+        return { width: 250 };
+      case "big - 300px":
+        return { width: 300 };
+      default:
+        return { width: 200 };
+    }
+  };
+
+  const { width } = getSize(sizeLogo);
 
   return (
     <header>
@@ -58,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText }) => {
                       <Image 
                         src={imgUrl} 
                         alt="logo" 
-                        width={logo?.width || 300} 
+                        width={width}
                         height={logo?.height || 80}
                         priority 
                       />

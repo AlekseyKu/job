@@ -19,14 +19,14 @@
         }
     }
     &__content {
-        margin: 135px 0 0 40px;
+        margin: 20px 0 0 40px;
         position: relative;
         z-index: 2;
         @media #{$xxl} {
-            margin: 135px 0 0 0;
+            margin: 20px 0 0 0;
         }
         @media #{$xl} {
-            margin: 90px 0 0 0;
+            margin: 20px 0 0 0;
         }
         @media #{$md} {
             margin: 0 0 70px;
@@ -87,16 +87,19 @@
         }
         & .title {
             margin: 0 0 21px;
-            font-size: 800%;
+            // font-size: 800%;
+            font-size: 8rem;
             font-family: var(--tg-berlin-font-family);
             line-height: 0.8;
             text-shadow: -1px 5px 0px var(--tg-theme-primary);
+            color: #060606;
             // white-space: nowrap; // Убираем перенос текста
             // font-size: clamp(1rem, 5vw, 118px);
 
             
             @media #{$xl} {      
-                font-size: 118px;
+                // font-size: 118px;
+                font-size: 8rem;
             }
             @media #{$lg} {
                 font-size: 94px;
