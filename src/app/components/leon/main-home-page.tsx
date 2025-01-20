@@ -45,7 +45,7 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                     <h2 className="title wow fadeInUp" data-wow-delay=".5s" style={{ color: colorTitleMain }}>{title}</h2>
                     <p className="wow fadeInUp" data-wow-delay=".8s">{subtitle}</p>
                     <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
-                      <Link href={targetLink} target="_blank" className="custom-button-main-page">
+                      <Link href={targetLink} className="custom-button-main-page">
                         <span>{buttonText}</span>
                       </Link>                  
                     </div>

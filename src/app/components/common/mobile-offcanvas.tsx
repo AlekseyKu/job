@@ -45,7 +45,7 @@ const MobileOffCanvas = ({openMobileOffCanvas,setOpenMobileOffCanvas}:IProps) =>
             <ul className="list-wrap">
               {social_data.map((s, i) => (
                 <li key={i}>
-                  <Link href={s.link} target="_blank">
+                  <Link href={s.link}>
                     <i className={s.icon}></i>
                   </Link>
                 </li>

@@ -67,7 +67,7 @@ const TournamentListItem = ({ item, index, targetLink, buttonText }: IProp) => {
 
         {/* Кнопка */}
         <div className="tournament__list-live">
-          <Link href={targetLink} target="_blank">
+          <Link href={targetLink}>
             {buttonText} <i className="far fa-play-circle"></i>
           </Link>
         </div>
