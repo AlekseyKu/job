@@ -6,6 +6,8 @@ import { Metadata } from "next";
 import { dir } from 'i18next';
 import { languages } from '@/i18n/settings';
 import FetchSiteData from "@/utils/fetchSiteData";
+import Script from 'next/script';
+
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
@@ -80,6 +82,8 @@ export default async function RootLayout({
   const PrimaryColorBG = siteData?.themeBGPrimaryColor;
   const SecondaryColorBG = siteData?.themeBGSecondaryColor;
 
+  const idYandexMetrika = siteData?.idYandexMetrika || null;
+
   return (
     <html lang={localeLang} dir={dir(localeLang)}>
       <head>
@@ -88,6 +92,29 @@ export default async function RootLayout({
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <meta name="theme-color" content={primaryColor} />
+
+        {/* Yandex.Metrika counter */}
+        <Script
+          id="yandex-metrika"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+              m[i].l=1*new Date();
+              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+              (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+              ym(${idYandexMetrika}, "init", {
+                  clickmap:true,
+                  trackLinks:true,
+                  accurateTrackBounce:true,
+                  webvisor:true
+              });
+            `
+          }}
+        />
+
       </head>
       <body
         suppressHydrationWarning={true}
@@ -101,6 +128,18 @@ export default async function RootLayout({
             --tg-common-color-bg-secondary: ${SecondaryColorBG};
           }
         `}</style>
+        {/* <noscript> Yandex.Metrika counter */}
+        {idYandexMetrika && (
+          <noscript>
+            <div>
+              <img
+                src={`https://mc.yandex.ru/watch/${idYandexMetrika}`}
+                style={{ position: "absolute", left: "-9999px" }}
+                alt=""
+              />
+            </div>
+          </noscript>
+        )}
         {children}
       </body>
     </html>
