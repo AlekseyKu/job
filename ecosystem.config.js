@@ -297,5 +297,16 @@ module.exports = {
           ...require("dotenv").config({ path: ".env.3027.huaweistore.gr" }).parsed,
         },
       },
+      {
+        name: "3028.ies.org.ro",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3028,
+          ...require("dotenv").config({ path: ".env.3028" }).parsed,
+        },
+      },
     ],
 };
