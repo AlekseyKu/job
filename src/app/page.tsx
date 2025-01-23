@@ -45,7 +45,7 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
             return <TournamentListArea 
               key={section.id} 
               targetLink={siteData.targetLinkButton} 
-              buttonText={siteData?.home_page.buttonText}
+              buttonText={siteData.attributes?.ButtonText}
               pretitle={siteData.attributes?.listOfGames.pretitle}
               title={siteData.attributes?.listOfGames.title}
           />;
@@ -53,7 +53,7 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
             return <TopRatedGamesArea 
               key={section.id} 
               targetLink={siteData.targetLinkButton} 
-              buttonText={siteData?.home_page.buttonText}
+              buttonText={siteData.attributes?.ButtonText}
               pretitle={siteData.attributes?.topGames.pretitle}
               title={siteData.attributes?.topGames.title}
           />;
@@ -61,7 +61,7 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
             return <TopPromotions 
               key={section.id} 
               targetLink={siteData.targetLinkButton}
-              buttonText={siteData?.home_page.buttonText}
+              buttonText={siteData.attributes?.ButtonText}
               promoImages={siteData.promoImg}
               sectionTitle={siteData.attributes?.topPromotionsTitle}
             />;
@@ -69,7 +69,7 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
             return <TopWinners 
               key={section.id} 
               targetLink={siteData.targetLinkButton} 
-              buttonText={siteData?.home_page.buttonText}
+              buttonText={siteData.attributes?.ButtonText}
               sectionTitle={siteData.attributes?.topWinnersTitle}
           />;
           default:
@@ -105,7 +105,7 @@ export default async function Home() {
         logo={siteData?.siteLogo}
         sizeLogo={siteData?.sizeLogo}
         targetLink={siteData?.targetLinkButton}
-        buttonText={siteData.attributes?.headerButtonText} // Используем текст из кэша
+        buttonText={siteData.attributes?.ButtonText} // Используем текст из кэша
         />
       {/* <main className="main--area"> */}
 
@@ -113,7 +113,7 @@ export default async function Home() {
         pretitle={siteData?.home_page?.pretitle}
         title={siteData?.home_page?.title}
         subtitle={siteData?.home_page?.subtitle}
-        buttonText={siteData?.home_page?.buttonText}
+        buttonText={siteData.attributes?.ButtonText}
         targetLink={siteData?.targetLinkButton}
         pageImg={siteData?.home_page?.pageImg}
         pageBg={siteData?.home_page?.pageBg}
@@ -135,7 +135,7 @@ export default async function Home() {
         <TournamentArea
           key={mostLuckyPlayersSection.id}
           targetLink={siteData.targetLinkButton}
-          buttonText={siteData?.home_page.buttonText}
+          buttonText={siteData.attributes?.ButtonText}
           pretitle={siteData.attributes?.mostLuckyPlayers.pretitle}
           title={siteData.attributes?.mostLuckyPlayers.title}
         />

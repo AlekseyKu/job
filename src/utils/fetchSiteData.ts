@@ -30,7 +30,7 @@ async function fetchSiteData(host: string) {
 
       // Извлекаем локаль и получаем текст кнопки
       const localeLang = siteData.localeLang || "en-US";
-      const headerButtonText = getSpinText("header_button_text", localeLang);
+      const ButtonText = getSpinText("button_text", localeLang);
       const footerSocialText = getSpinText("footer_our_social_networks", localeLang);
       const topPromotionsTitle = getSpinText("top_promotions", localeLang);
       const topWinnersTitle = getSpinText("top_winners_of_the_day", localeLang);
@@ -44,13 +44,13 @@ async function fetchSiteData(host: string) {
 
       
 
-      // console.log(headerButtonText)
+      // console.log(ButtonText)
 
       return {
         ...siteData,
         attributes: {
           ...siteData.attributes,
-          headerButtonText, // Передаём уже выбранный текст
+          ButtonText, // Передаём уже выбранный текст
           footerSocialText,
           topPromotionsTitle,
           topWinnersTitle,
