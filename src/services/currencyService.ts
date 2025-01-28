@@ -1,17 +1,22 @@
-// import { currencyData } from "@/data/currency-data";
+import { currencyData } from "@/data/currency-data";
+import { Locale } from "@/types/locales";
 
-// type Locale = "en" | "pl" | "es" | "fr" | "de" | "nl" | "el" | "it";
+/**
+ * Возвращает символ валюты для локали.
+ * @param locale - Локаль.
+ * @returns Символ валюты.
+ */
+export function getCurrencySymbol(locale: Locale): string {
+  return currencyData[locale]?.currencySymbol || currencyData.en.currencySymbol;
+}
 
-
-// /**
-//  * Функция для конвертации суммы в зависимости от локали
-//  * @param amount - Сумма в базовой валюте (USD)
-//  * @param locale - Локаль
-//  * @returns Строка с конвертированной суммой и символом валюты
-//  */
-// export function convertCurrency(amount: number, locale: Locale): string {
-//     const currency = currencyData[locale];
-//     const convertedAmount = (amount * currency.exchangeRate).toFixed(2); // Округляем до 2 знаков после запятой
-//     return `${currency.currencySymbol}${convertedAmount}`;
-//   }
-  
+/**
+ * Конвертирует сумму в зависимости от локали.
+ * @param amount - Сумма в базовой валюте (USD).
+ * @param locale - Локаль.
+ * @returns Конвертированная сумма.
+ */
+export function convertCurrency(amount: number, locale: Locale): number {
+  const currency = currencyData[locale] || currencyData.en;
+  return parseFloat((amount * currency.exchangeRate).toFixed(2));
+}

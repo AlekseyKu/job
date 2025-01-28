@@ -12,6 +12,9 @@ import EditorInfo from "./components/leon/editors/editor-info";
 import SeoMeta from "@/utils/seoMeta";
 import { headers } from 'next/headers';
 import FetchSiteData from "@/utils/fetchSiteData";
+import getLocaleFromApi from "@/utils/getLocaleFromAPI";
+import { getCurrencySymbol } from "@/services/currencyService";
+import { currencyData } from "@/data/currency-data";
 
 
 
@@ -26,7 +29,17 @@ interface PageSection {
 }
 
 
-const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSection[], siteData: any }) => {
+const PageSectionsRenderer = ({ 
+  pageSections, 
+  siteData,
+  currencySymbol,
+  exchangeRate,
+}: { 
+  pageSections: PageSection[], 
+  siteData: any,
+  currencySymbol: string,
+  exchangeRate: number,
+}) => {
   return (
     <>
       {pageSections.map((section) => {
@@ -48,6 +61,8 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
               buttonText={siteData.attributes?.ButtonText}
               pretitle={siteData.attributes?.listOfGames.pretitle}
               title={siteData.attributes?.listOfGames.title}
+              currencySymbol={currencySymbol}
+              exchangeRate={exchangeRate}
           />;
           case 'OUR GAMES':
             return <TopRatedGamesArea 
@@ -64,6 +79,8 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
               buttonText={siteData.attributes?.ButtonText}
               promoImages={siteData.promoImg}
               sectionTitle={siteData.attributes?.topPromotionsTitle}
+              currencySymbol={currencySymbol}
+              exchangeRate={exchangeRate}
             />;
           case 'Top winners of the day':
             return <TopWinners 
@@ -71,6 +88,8 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
               targetLink={siteData.targetLinkButton} 
               buttonText={siteData.attributes?.ButtonText}
               sectionTitle={siteData.attributes?.topWinnersTitle}
+              currencySymbol={currencySymbol}
+              exchangeRate={exchangeRate}
           />;
           default:
             return null;
@@ -83,11 +102,23 @@ const PageSectionsRenderer = ({ pageSections, siteData }: { pageSections: PageSe
 export default async function Home() {
   const host = headers().get('host');
   const siteData = await FetchSiteData(host || '');
+
+  const localeData = await getLocaleFromApi(host || "");
+  const locale = localeData?.locale || "en";
+
+  // Сопоставляем локаль с currencyData
+  const currencyInfo = currencyData[locale as keyof typeof currencyData] || currencyData["en"];
+  const currencySymbol = currencyInfo.currencySymbol; // Символ валюты
+  const exchangeRate = currencyInfo.exchangeRate; // Курс валюты
+
+
   const pageSections: PageSection[] = siteData?.page_sections || [];
 
   const mostLuckyPlayersSection = pageSections.find(
     (section) => section.sectionName === 'MOST LUCKY PLAYERS'
   );
+
+
 
   // console.log('Текущий домен (host):', host);
   // console.log('siteData:', siteData);
@@ -123,6 +154,8 @@ export default async function Home() {
       <PageSectionsRenderer 
         pageSections={pageSections} 
         siteData={siteData}
+        currencySymbol={currencySymbol}
+        exchangeRate={exchangeRate}
       />
 
       <EditorInfo 
@@ -138,6 +171,8 @@ export default async function Home() {
           buttonText={siteData.attributes?.ButtonText}
           pretitle={siteData.attributes?.mostLuckyPlayers.pretitle}
           title={siteData.attributes?.mostLuckyPlayers.title}
+          currencySymbol={currencySymbol}
+          exchangeRate={exchangeRate}
         />
       )}
 

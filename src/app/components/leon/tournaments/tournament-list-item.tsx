@@ -11,9 +11,11 @@ type IProp = {
   index: number;
   targetLink: string;
   buttonText: string;
+  currencySymbol: string; // Символ валюты
+  exchangeRate: number; // Курс валюты
 };
 
-const TournamentListItem = ({ item, index, targetLink, buttonText }: IProp) => {
+const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbol, exchangeRate }: IProp) => {
   const [isMobile, setIsMobile] = useState(false);
 
   // Определяем, мобильная версия или нет
@@ -29,6 +31,9 @@ const TournamentListItem = ({ item, index, targetLink, buttonText }: IProp) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  // Конвертируем приз в локальную валюту
+  const convertedPrize = (item.prize * exchangeRate).toFixed(0);
 
   return (
     <div
@@ -60,7 +65,7 @@ const TournamentListItem = ({ item, index, targetLink, buttonText }: IProp) => {
           <div className="tournament__list-prize">
             <h6 className="title">Prize</h6>
             <i className="fas fa-trophy"></i>
-            <span>${item.prize}</span>
+            <span>{currencySymbol} {convertedPrize}</span>
           </div>
 
         </div>

@@ -1,4 +1,5 @@
-type Locale = "en" | "pl" | "es" | "fr" | "de" | "nl" | "el" | "it" | "ro";
+import { Locale } from "../types/locales"
+// type Locale = "en" | "pl" | "es" | "fr" | "de" | "nl" | "el" | "it" | "ro";
 
 type SpinDataItem = {
   pretitle?: Record<Locale, string[]>;

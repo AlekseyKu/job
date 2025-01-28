@@ -24,6 +24,8 @@ interface TrendingNftItemsProps {
   buttonText: string;
   promoImages: PromoImage[] | null;
   sectionTitle: string;
+  currencySymbol: string; // Символ валюты
+  exchangeRate: number; // Курс валюты
 }
 
 const slider_setting = {
@@ -42,7 +44,7 @@ const slider_setting = {
   },
 };
 
-const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonText, promoImages, sectionTitle }) => {
+const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonText, promoImages, sectionTitle, currencySymbol, exchangeRate }) => {
   return (
     <section className="trendingNft-area section-pt-120 section-pb-90">
       <div className="container">
@@ -105,7 +107,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                     <div className="trendingNft__item-price">
                       <span className="bid">Total Win</span>
                       <h6 className="eth">
-                        {item.eth} <span> $</span>
+                        {(item.eth * exchangeRate).toFixed(0)} <span>{currencySymbol}</span>
                       </h6>
                     </div>
                     <Link href={targetLink} className="bid-btn">{buttonText}</Link>

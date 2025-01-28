@@ -9,9 +9,11 @@ interface TournamentListAreaProps {
   buttonText: string;
   pretitle: string;
   title: string;
+  currencySymbol: string; // Символ валюты
+  exchangeRate: number; // Курс валюты
 }
 
-const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, buttonText, pretitle, title }) => {
+const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, buttonText, pretitle, title, currencySymbol, exchangeRate }) => {
   return (
     <section
       className="tournament__list-area section-pb-120 section-pt-120"
@@ -38,7 +40,15 @@ const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, but
             <div className="col-12">
               <div className="tournament__list-item-wrapper">
                 {tournament_data.map((item, i) => (
-                  <TournamentListItem key={item.id} item={item} index={i} targetLink={targetLink} buttonText={buttonText} />
+                  <TournamentListItem 
+                    key={item.id} 
+                    item={item} 
+                    index={i} 
+                    targetLink={targetLink} 
+                    buttonText={buttonText} 
+                    currencySymbol={currencySymbol}
+                    exchangeRate={exchangeRate}
+                  />
                 ))}
               </div>
             </div>

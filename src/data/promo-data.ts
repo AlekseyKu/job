@@ -17,7 +17,7 @@ export interface PromoTypes {
     subtitle: string;
     creator: StaticImageData;
     creator_name: string;
-    eth: string;
+    eth: number;
     trending?: boolean;
   }
 
@@ -30,7 +30,7 @@ const promo_data = [
         subtitle: 'Spin your favorite slots without worries – we`ll give you back up to $500!',
         creator:avatar_1,
         creator_name:'Jonyk',
-        eth:'500',
+        eth:500,
         trending:true,
       },
       {
@@ -40,7 +40,7 @@ const promo_data = [
         subtitle: '$30,000 in prizes in a new mind-blowing promotion!',
         creator:avatar_2,
         creator_name:'Malabara',
-        eth:'30 000',
+        eth:30000,
         trending:true,
       },
       {
@@ -50,7 +50,7 @@ const promo_data = [
         subtitle: 'Your chance to become the king of roulette and get your share of the $100,000 prize pool!',
         creator:avatar_3,
         creator_name:'Hala Hoop',
-        eth:'100 000',
+        eth:100000,
         trending:true,
       },
 ];

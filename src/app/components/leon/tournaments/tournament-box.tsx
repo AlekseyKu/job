@@ -4,6 +4,7 @@ import { ITournament } from "@/types/tournament-type";
 // import CountdownTimer from "../../timer/countdown-timer"
 import TournamentBoxBgPatch from "../../svg/t-box-bg";
 
+
 // const getNextUpdateDate = (interval: 'daily' | 'weekly' | 'monthly'): Date => {
 //   const now = new Date();
 //   if (interval === 'daily') now.setDate(now.getDate() + 1);
@@ -12,13 +13,21 @@ import TournamentBoxBgPatch from "../../svg/t-box-bg";
 //   return now;
 // };
 
-const TournamentBox = ({ item }: { item: ITournament }) => {
+const TournamentBox = ({ 
+  item, 
+  currencySymbol, 
+  exchangeRate 
+}: { 
+  item: ITournament, 
+  currencySymbol: string, 
+  exchangeRate: number 
+}) => {
   return (
     <div className={`tournament__box-wrap ${item.active ? "active" : ""}`}>
       <TournamentBoxBgPatch />
       <div className="tournament__box-price">
         <i className="fas fa-trophy"></i>
-        <span>{item.box_price}</span>
+        <span>{(item.box_price * exchangeRate).toFixed(0)}</span>
       </div>
       <div className="tournament__box-countdown">
         {/* <div className="coming-time" data-countdown="2023/5/16">
@@ -42,7 +51,7 @@ const TournamentBox = ({ item }: { item: ITournament }) => {
               </div>
               <h6 className="tournament__player-name">{l.name}</h6>
               <span className="tournament__player-price">
-                $ {l.price} <i className="fas fa-bolt"></i>
+                {currencySymbol} {(l.price * exchangeRate).toFixed(0)} <i className="fas fa-bolt"></i>
               </span>
             </div>
           </li>

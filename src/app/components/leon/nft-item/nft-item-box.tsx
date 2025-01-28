@@ -8,9 +8,11 @@ interface NftItemBoxProps {
   item: INftType;
   targetLink: string;
   buttonText: string;
+  currencySymbol: string; // Символ валюты
+  exchangeRate: number; // Курс валюты
 }
 
-const NftItemBox = ({ item, targetLink, buttonText }: NftItemBoxProps) => {
+const NftItemBox = ({ item, targetLink, buttonText, currencySymbol, exchangeRate }: NftItemBoxProps) => {
   return (        
     <div className="nft-item__box">      
       <div className="nft-item__thumb">
@@ -37,8 +39,7 @@ const NftItemBox = ({ item, targetLink, buttonText }: NftItemBoxProps) => {
         <div className="nft-item__bid">
           <div className="nft-item__price">
             <p>
-              {item.eth}
-              <span className="currency"> $</span>
+              {(item.eth * exchangeRate).toFixed(0)} <span className="currency">{currencySymbol}</span>
             </p>
             <Link href={targetLink} className="bid-btn">
               {buttonText} 

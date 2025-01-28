@@ -132,7 +132,7 @@
         background-image: -ms-linear-gradient(90deg, rgb(12, 14, 18) 0%, rgb(16, 24, 31) 100%);
         @include border-radius(8px);
         border: 1px solid rgb(76, 76, 76, .5);
-        padding: 14px 15px 14px 20px;
+        padding: 14px;
         & p {
             margin: 0 0;
             font-family: var(--tg-heading-font-family);

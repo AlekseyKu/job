@@ -308,5 +308,27 @@ module.exports = {
           ...require("dotenv").config({ path: ".env.3028" }).parsed,
         },
       },
+      {
+        name: "3029.unesco-hellas.gr",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3029,
+          ...require("dotenv").config({ path: ".env.3029" }).parsed,
+        },
+      },
+      {
+        name: "3030.plinko-soldi-veri.co.it",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3030,
+          ...require("dotenv").config({ path: ".env.3030" }).parsed,
+        },
+      },
     ],
 };
