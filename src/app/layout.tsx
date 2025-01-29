@@ -11,21 +11,21 @@ import Script from 'next/script';
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
-const berlin = localFont({
-  src: [
-    {
-      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2",
-      weight: "normal",
-      style: "normal",
-    },
-    {
-      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff",
-      weight: "normal",
-      style: "normal",
-    },
-  ],
-  variable: "--tg-berlin-font-family",
-});
+// const berlin = localFont({
+//   src: [
+//     {
+//       path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2",
+//       weight: "normal",
+//       style: "normal",
+//     },
+//     {
+//       path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff",
+//       weight: "normal",
+//       style: "normal",
+//     },
+//   ],
+//   variable: "--tg-berlin-font-family",
+// });
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -118,7 +118,7 @@ export default async function RootLayout({
       </head>
       <body
         suppressHydrationWarning={true}
-        className={`${berlin.variable} ${poppins.variable} ${barlow.variable}`}
+        // className={`${berlin.variable} ${poppins.variable} ${barlow.variable}`}
       >
         <style>{`
           :root {

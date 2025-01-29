@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { getSpinText } from "../services/spinTextService";
+import { extractLocale } from "@/utils/localeUtils";
+
 
 
 async function fetchSiteData(host: string) {
@@ -17,7 +19,6 @@ async function fetchSiteData(host: string) {
   
       // Удаление префиксов и порта для корректного сравнения
       const cleanHost = host.replace(/^https?:\/\//, '').split(':')[0]; // Убираем порт, если он есть
-  
       const siteData = allSites.find((site: any) => {
         const siteDomain = site.siteDomain.replace(/^https?:\/\//, '').split(':')[0];
         return siteDomain === cleanHost;
@@ -28,8 +29,9 @@ async function fetchSiteData(host: string) {
         return null;
       }
 
-      // Извлекаем локаль и получаем текст кнопки
+      // Извлекаем данные
       const localeLang = siteData.localeLang || "en-US";
+      const locale = extractLocale(localeLang);
       const ButtonText = getSpinText("button_text", localeLang);
       const footerSocialText = getSpinText("footer_our_social_networks", localeLang);
       const topPromotionsTitle = getSpinText("top_promotions", localeLang);
@@ -48,6 +50,7 @@ async function fetchSiteData(host: string) {
 
       return {
         ...siteData,
+        locale,
         attributes: {
           ...siteData.attributes,
           ButtonText, // Передаём уже выбранный текст

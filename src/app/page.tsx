@@ -12,7 +12,7 @@ import EditorInfo from "./components/leon/editors/editor-info";
 import SeoMeta from "@/utils/seoMeta";
 import { headers } from 'next/headers';
 import FetchSiteData from "@/utils/fetchSiteData";
-import getLocaleFromApi from "@/utils/getLocaleFromAPI";
+// import getLocaleFromApi from "@/utils/getLocaleFromAPI";
 import { getCurrencySymbol } from "@/services/currencyService";
 import { currencyData } from "@/data/currency-data";
 
@@ -103,8 +103,8 @@ export default async function Home() {
   const host = headers().get('host');
   const siteData = await FetchSiteData(host || '');
 
-  const localeData = await getLocaleFromApi(host || "");
-  const locale = localeData?.locale || "en";
+  // const localeData = await getLocaleFromApi(host || "");
+  const locale = siteData?.locale || "en";
 
   // Сопоставляем локаль с currencyData
   const currencyInfo = currencyData[locale as keyof typeof currencyData] || currencyData["en"];
