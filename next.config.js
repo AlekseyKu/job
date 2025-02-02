@@ -4,10 +4,16 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https', // или 'https' в зависимости от сервера
+        protocol: 'https', // или 'http' в зависимости от сервера
         hostname: 'cmsbase24.top', // IP-адрес Strapi-сервера
         port: '', // порт, если используется
         pathname: '/**', // Этот паттерн разрешает любые изображения с этого хоста
+      },
+      {
+        protocol: 'https',
+        hostname: 'mc.yandex.ru',
+        port: '',
+        pathname: '/**', // Разрешает любые изображения с этого домена
       },
     ],
   },

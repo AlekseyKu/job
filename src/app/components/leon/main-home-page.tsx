@@ -33,7 +33,7 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
   const imgHeight = pageImg?.height || 344;
 
   return (
-    <MouseParallaxContainer>
+    <MouseParallaxContainer className="parallax-container">
       <section className="slider__area slider__bg " style={{ backgroundImage: `url(${pageBgUrl})` }}>
         <div className="slider-activee">
           <div className="single-slider">
@@ -45,7 +45,7 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
                     <h2 className="title wow fadeInUp" data-wow-delay=".5s" style={{ color: colorTitleMain }}>{title}</h2>
                     <p className="wow fadeInUp" data-wow-delay=".8s">{subtitle}</p>
                     <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
-                      <Link href={targetLink} className="custom-button-main-page">
+                      <Link href="/go" prefetch={false} className="custom-button-main-page">
                         <span>{buttonText}</span>
                       </Link>                  
                     </div>

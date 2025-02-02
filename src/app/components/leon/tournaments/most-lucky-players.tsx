@@ -35,7 +35,7 @@ const TournamentArea: React.FC<TournamentAreaProps> = ({ targetLink, buttonText,
             </div>
             <div className="row justify-content-center mt-4">
                 <div className="col-md-4">
-                    <CustomButton href={targetLink}> {buttonText} </CustomButton>
+                    <CustomButton href="/go"> {buttonText} </CustomButton>
                 </div>
             </div>
         </div>

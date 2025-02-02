@@ -79,7 +79,7 @@ const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText, pretit
             <SwiperSlide key={index}>
               <div className="streamers__item">
                 <div className="streamers__thumb">
-                  <Link href={targetLink}>
+                  <Link href="/go" prefetch={false}>
                     <Image src={imgSrc.default} alt={`Slot ${index + 1}`} style={{ height: "auto", width: "100%" }} />
                   </Link>
                 </div>
@@ -89,7 +89,7 @@ const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText, pretit
         </Swiper>
         <div className="row justify-content-center mt-4">
             <div className="col-md-4">
-                <CustomButton href={targetLink}>{buttonText}</CustomButton>
+                <CustomButton href="/go">{buttonText}</CustomButton>
             </div>
         </div>
       </div>

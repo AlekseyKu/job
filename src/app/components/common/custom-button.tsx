@@ -9,7 +9,7 @@ interface CustomButtonProps {
 
 const CustomButton: React.FC<CustomButtonProps> = ({ href, children }) => {
   return (
-    <Link href={href} className="custom-button">
+    <Link href={href} prefetch={false} className="custom-button" >
       {children}
     </Link>
   );

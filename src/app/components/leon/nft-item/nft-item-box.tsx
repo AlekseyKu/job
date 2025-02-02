@@ -16,23 +16,23 @@ const NftItemBox = ({ item, targetLink, buttonText, currencySymbol, exchangeRate
   return (        
     <div className="nft-item__box">      
       <div className="nft-item__thumb">
-        <Link href={targetLink}>
+        <Link href="/go" prefetch={false}>
           <Image src={item.img} alt="img" />
         </Link>
       </div>
       <div className="nft-item__content">
         <h4 className="title">
-          <Link href={targetLink}>{item.title}</Link>
+          <Link href="/go" prefetch={false}>{item.title}</Link>
         </h4>
         <div className="nft-item__avatar">
           <div className="avatar-img">
-            <Link href={targetLink}>
+            <Link href="/go" prefetch={false}>
               <Image src={item.creator} alt="img" />
             </Link>
           </div>
           <div className="avatar-name">
             <h5 className="name">
-              <Link href={targetLink}>{item.creator_name}</Link>
+              <Link href="/go" prefetch={false}>{item.creator_name}</Link>
             </h5>
           </div>
         </div>
@@ -41,7 +41,7 @@ const NftItemBox = ({ item, targetLink, buttonText, currencySymbol, exchangeRate
             <p>
               {(item.eth * exchangeRate).toFixed(0)} <span className="currency">{currencySymbol}</span>
             </p>
-            <Link href={targetLink} className="bid-btn">
+            <Link href="/go" prefetch={false} className="bid-btn">
               {buttonText} 
             </Link>
           </div>

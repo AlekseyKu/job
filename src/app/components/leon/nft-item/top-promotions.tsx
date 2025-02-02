@@ -68,13 +68,13 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                   <div className="trendingNft__item-top">
                     <div className="trendingNft__item-avatar">
                       <div className="image">
-                        <Link href={targetLink}>
+                        <Link href="/go" prefetch={false}>
                           <Image src={item.creator} alt="img" />
                         </Link>
                       </div>
                       <div className="info">
                         <h6 className="name">{item.title}</h6>
-                        <Link href={targetLink} className="userName">@{item.creator_name}</Link>
+                        <Link href="/go" prefetch={false} className="userName">@{item.creator_name}</Link>
                       </div>
                     </div>
                     <div className="trendingNft__item-wish">
@@ -82,7 +82,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                     </div>
                   </div>
                   <div className="trendingNft__item-image" style={{ position: 'relative' }}>
-                    <Link href={targetLink}>
+                    <Link href="/go" prefetch={false}>
                       {promoImage && promoImage.url ? (
                         <Image
                           src={`${httpAddress}${promoImage.url}`}
@@ -110,7 +110,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                         {(item.eth * exchangeRate).toFixed(0)} <span>{currencySymbol}</span>
                       </h6>
                     </div>
-                    <Link href={targetLink} className="bid-btn">{buttonText}</Link>
+                    <Link href="/go" prefetch={false} className="bid-btn">{buttonText}</Link>
                   </div>
                 </div>
               </SwiperSlide>

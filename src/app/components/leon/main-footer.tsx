@@ -71,10 +71,10 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
                     <span> <i className="fas fa-angle-double-right"></i></span>
                   </p>
                   <div className="footer-social">
-                    <Link href={targetLink}><Image src={icon_1} alt="icon" width={30} height={30} /></Link>
-                    <Link href={targetLink}><Image src={icon_2} alt="icon" width={30} height={30} /></Link>
-                    <Link href={targetLink}><Image src={icon_3} alt="icon" width={30} height={30} /></Link>
-                    <Link href={targetLink}><Image src={icon_4} alt="icon" width={30} height={30} /></Link>
+                    <Link href="/go" prefetch={false}><Image src={icon_1} alt="icon" width={30} height={30} /></Link>
+                    <Link href="/go" prefetch={false}><Image src={icon_2} alt="icon" width={30} height={30} /></Link>
+                    <Link href="/go" prefetch={false}><Image src={icon_3} alt="icon" width={30} height={30} /></Link>
+                    <Link href="/go" prefetch={false}><Image src={icon_4} alt="icon" width={30} height={30} /></Link>
                   </div>
                 </div>
               </div>
@@ -123,7 +123,7 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
             </div>
             <div className="col-md-5">
               <div className="copyright__card text-center text-md-end">
-                <Link href={targetLink}><Image src={payment} alt="payment"/></Link>
+                <Link href="/go" prefetch={false}><Image src={payment} alt="payment"/></Link>
                 {/* <Image src={payment} alt="img" /> */}
               </div>
             </div>

@@ -95,7 +95,7 @@ export default async function RootLayout({
         <meta name="theme-color" content={primaryColor} />
 
         {/* Yandex.Metrika counter */}
-        {/* <Script
+        <Script
           id="yandex-metrika"
           // strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -114,7 +114,7 @@ export default async function RootLayout({
               });
             `
           }}
-        /> */}
+        />
 
       </head>
       <body
@@ -130,7 +130,7 @@ export default async function RootLayout({
           }
         `}</style>
         {/* <noscript> Yandex.Metrika counter */}
-        {/* {idYandexMetrika && (
+        {idYandexMetrika && (
           <noscript>
             <div>
               <Image
@@ -142,7 +142,7 @@ export default async function RootLayout({
               />
             </div>
           </noscript>
-        )} */}
+        )}
         {children}
       </body>
     </html>
