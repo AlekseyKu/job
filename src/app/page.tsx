@@ -12,85 +12,76 @@ import EditorInfo from "./components/leon/editors/editor-info";
 import SeoMeta from "@/utils/seoMeta";
 import { headers } from 'next/headers';
 import FetchSiteData from "@/utils/fetchSiteData";
-// import getLocaleFromApi from "@/utils/getLocaleFromAPI";
 import { getCurrencySymbol } from "@/services/currencyService";
 import { currencyData } from "@/data/currency-data";
-
-
-
-const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
-const UID = 0
-
 
 interface PageSection {
   id: string | number; // Уникальный идентификатор секции
   sectionName: string; // Название секции
-  // [key: string]: any;  // Другие свойства, которые могут присутствовать
 }
 
-
-const PageSectionsRenderer = ({ 
-  pageSections, 
+const PageSectionsRenderer = ({
+  pageSections,
   siteData,
   currencySymbol,
   exchangeRate,
-}: { 
-  pageSections: PageSection[], 
-  siteData: any,
+}: {
+  pageSections: PageSection[],
+  siteData: any, // Можно заменить any на конкретный тип, если потребуется
   currencySymbol: string,
   exchangeRate: number,
 }) => {
   return (
     <>
       {pageSections.map((section) => {
-        if (section.sectionName === 'MOST LUCKY PLAYERS') return null; // Исключаем рендер этого блока здесь
+        if (section.sectionName === 'MOST LUCKY PLAYERS') return null; // Исключаем этот блок
 
         switch (section.sectionName) {
-          // case 'MOST LUCKY PLAYERS':
-          //   return <TournamentArea 
-          //   key={section.id} 
-          //   targetLink={siteData.targetLinkButton} 
-          //   buttonText={siteData?.home_page.buttonText}
-          //   pretitle={siteData.attributes?.mostLuckyPlayers.pretitle}
-          //   title={siteData.attributes?.mostLuckyPlayers.title}
-          //   />;
           case 'LIST OF GAMES':
-            return <TournamentListArea 
-              key={section.id} 
-              targetLink={siteData.targetLinkButton} 
-              buttonText={siteData.attributes?.ButtonText}
-              pretitle={siteData.attributes?.listOfGames.pretitle}
-              title={siteData.attributes?.listOfGames.title}
-              currencySymbol={currencySymbol}
-              exchangeRate={exchangeRate}
-          />;
+            return (
+              <TournamentListArea 
+                key={section.id} 
+                targetLink={siteData.targetLinkButton} 
+                buttonText={siteData.attributes.buttonText}
+                pretitle={siteData.attributes.listOfGames.pretitle}
+                title={siteData.attributes.listOfGames.title}
+                currencySymbol={currencySymbol}
+                exchangeRate={exchangeRate}
+              />
+            );
           case 'OUR GAMES':
-            return <TopRatedGamesArea 
-              key={section.id} 
-              targetLink={siteData.targetLinkButton} 
-              buttonText={siteData.attributes?.ButtonText}
-              pretitle={siteData.attributes?.topGames.pretitle}
-              title={siteData.attributes?.topGames.title}
-          />;
+            return (
+              <TopRatedGamesArea 
+                key={section.id} 
+                targetLink={siteData.targetLinkButton} 
+                buttonText={siteData.attributes.buttonText}
+                pretitle={siteData.attributes.topGames.pretitle}
+                title={siteData.attributes.topGames.title}
+              />
+            );
           case 'Top promotions':
-            return <TopPromotions 
-              key={section.id} 
-              targetLink={siteData.targetLinkButton}
-              buttonText={siteData.attributes?.ButtonText}
-              promoImages={siteData.promoImg}
-              sectionTitle={siteData.attributes?.topPromotionsTitle}
-              currencySymbol={currencySymbol}
-              exchangeRate={exchangeRate}
-            />;
+            return (
+              <TopPromotions 
+                key={section.id} 
+                targetLink={siteData.targetLinkButton}
+                buttonText={siteData.attributes.buttonText}
+                promoImages={siteData.promoImg}
+                sectionTitle={siteData.attributes.topPromotionsTitle}
+                currencySymbol={currencySymbol}
+                exchangeRate={exchangeRate}
+              />
+            );
           case 'Top winners of the day':
-            return <TopWinners 
-              key={section.id} 
-              targetLink={siteData.targetLinkButton} 
-              buttonText={siteData.attributes?.ButtonText}
-              sectionTitle={siteData.attributes?.topWinnersTitle}
-              currencySymbol={currencySymbol}
-              exchangeRate={exchangeRate}
-          />;
+            return (
+              <TopWinners 
+                key={section.id} 
+                targetLink={siteData.targetLinkButton} 
+                buttonText={siteData.attributes.buttonText}
+                sectionTitle={siteData.attributes.topWinnersTitle}
+                currencySymbol={currencySymbol}
+                exchangeRate={exchangeRate}
+              />
+            );
           default:
             return null;
         }
@@ -103,52 +94,44 @@ export default async function Home() {
   const host = headers().get('host');
   const siteData = await FetchSiteData(host || '');
 
-  // const localeData = await getLocaleFromApi(host || "");
-  const locale = siteData?.locale || "en";
+  // Если siteData отсутствует, возвращаем fallback UI (например, сообщение об ошибке)
+  if (!siteData) {
+    return <div>Error: Site data not available</div>;
+  }
 
-  // Сопоставляем локаль с currencyData
+  // После этой проверки TS знает, что siteData имеет тип FetchedSiteData
+  const locale = siteData.locale;
   const currencyInfo = currencyData[locale as keyof typeof currencyData] || currencyData["en"];
-  const currencySymbol = currencyInfo.currencySymbol; // Символ валюты
-  const exchangeRate = currencyInfo.exchangeRate; // Курс валюты
+  const currencySymbol = currencyInfo.currencySymbol;
+  const exchangeRate = currencyInfo.exchangeRate;
 
-
-  const pageSections: PageSection[] = siteData?.page_sections || [];
-
+  const pageSections: PageSection[] = siteData.page_sections || [];
   const mostLuckyPlayersSection = pageSections.find(
     (section) => section.sectionName === 'MOST LUCKY PLAYERS'
   );
 
-
-
-  // console.log('Текущий домен (host):', host);
-  // console.log('siteData:', siteData);
-
-
   return (
     <Wrapper>
-
       <SeoMeta
-        title={siteData?.siteTitle || "Default Title"}
-        description={siteData?.siteDescription || "Default Description"}
-        favicon={siteData?.favicon || "/favicon.ico"}
+        title={siteData.siteTitle || "Default Title"}
+        description={siteData.siteDescription || "Default Description"}
+        favicon={siteData.favicon || "/favicon.ico"}
       />
       <Header
-        logo={siteData?.siteLogo}
-        sizeLogo={siteData?.sizeLogo}
-        targetLink={siteData?.targetLinkButton}
-        buttonText={siteData.attributes?.ButtonText} // Используем текст из кэша
-        />
-      {/* <main className="main--area"> */}
-
+        logo={siteData.siteLogo}
+        sizeLogo={siteData.sizeLogo}
+        targetLink={siteData.targetLinkButton}
+        buttonText={siteData.attributes.buttonText ?? "PLAY NOW"}
+      />
       <HomePage
-        pretitle={siteData?.home_page?.pretitle}
-        title={siteData?.home_page?.title}
-        subtitle={siteData?.home_page?.subtitle}
-        buttonText={siteData.attributes?.ButtonText}
-        targetLink={siteData?.targetLinkButton}
-        pageImg={siteData?.home_page?.pageImg}
-        pageBg={siteData?.home_page?.pageBg}
-        colorTitleMain={siteData?.colorTitleMain}
+        pretitle={siteData.home_page?.pretitle}
+        title={siteData.home_page?.title}
+        subtitle={siteData.home_page?.subtitle}
+        buttonText={siteData.attributes.buttonText ?? "PLAY NOW"}
+        targetLink={siteData.targetLinkButton}
+        pageImg={siteData.home_page?.pageImg}
+        pageBg={siteData.home_page?.pageBg}
+        colorTitleMain={siteData.colorTitleMain}
       />
 
       <PageSectionsRenderer 
@@ -158,42 +141,41 @@ export default async function Home() {
         exchangeRate={exchangeRate}
       />
 
-      <EditorInfo 
-        editorInfo={siteData?.editor_info?.editorInfo} 
-        titleMain={siteData?.H1}
-      />
+      {siteData.editor_info && (
+        <EditorInfo 
+          editorInfo={siteData.editor_info.editorInfo} 
+          titleMain={siteData.H1}
+        />
+      )}
 
-      {/* Рендер блока 'MOST LUCKY PLAYERS' после EditorInfo */}
+      {/* Блок для MOST LUCKY PLAYERS */}
       {mostLuckyPlayersSection && (
         <TournamentArea
           key={mostLuckyPlayersSection.id}
           targetLink={siteData.targetLinkButton}
-          buttonText={siteData.attributes?.ButtonText}
-          pretitle={siteData.attributes?.mostLuckyPlayers.pretitle}
-          title={siteData.attributes?.mostLuckyPlayers.title}
+          buttonText={siteData.attributes.buttonText ?? "PLAY NOW"}
+          pretitle={siteData.attributes.mostLuckyPlayers.pretitle}
+          title={siteData.attributes.mostLuckyPlayers.title}
           currencySymbol={currencySymbol}
           exchangeRate={exchangeRate}
         />
       )}
 
-
-      {/* Условный рендеринг блока FaqArea */}
-      {siteData?.faq && (
+      {siteData.faq && (
         <FaqArea 
-          pretitle={siteData?.faq?.pretitle} 
-          title={siteData?.faq?.title} 
-          faqRow={siteData?.faq?.faqRow || []} 
+          pretitle={siteData.faq.pretitle} 
+          title={siteData.faq.title} 
+          faqRow={siteData.faq.faqRow || []} 
         />
       )}
 
       <Footer 
-        logo={siteData?.siteLogo}
-        footerText={siteData?.siteDescription}
-        socialTitle={siteData.attributes?.footerSocialText}
-        targetLink={siteData?.targetLink}
-        siteName={siteData?.siteName}
+        logo={siteData.siteLogo}
+        footerText={siteData.siteDescription}
+        socialTitle={siteData.attributes.footerSocialText ?? ""}
+        targetLink={siteData.targetLinkButton}
+        siteName={siteData.siteName}
       />
     </Wrapper>
   );
 }
-

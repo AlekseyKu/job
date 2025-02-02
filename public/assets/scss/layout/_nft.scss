@@ -335,6 +335,7 @@
                 font-weight: var(--tg-fw-semi-bold);
                 @include border-radius(6px);
                 font-size: 18px;
+                // min-width: 200px;
                 line-height: 1;
                 padding: 11px 14px;
                 margin-left: auto;

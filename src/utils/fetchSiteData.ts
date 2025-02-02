@@ -1,84 +1,99 @@
-import axios from 'axios';
-import { getSpinText } from "../services/spinTextService";
-import { extractLocale } from "@/utils/localeUtils";
+  // src/utils/fetchSiteData.ts
+  import axios from 'axios';
+  import { getSpinText } from "../services/spinTextService";
+  import { extractLocale } from "@/utils/localeUtils";
 
+  // Определяем интерфейсы для типизации
+  interface SiteData {
+    siteDomain: string;
+    localeLang?: string;
+    attributes: any;
+    [key: string]: any;
+  }
 
+  interface FetchedSiteData extends SiteData {
+    locale: string;
+    attributes: {
+      buttonText: string;
+      footerSocialText: string;
+      topPromotionsTitle: string;
+      topWinnersTitle: string;
+      listOfGames: {
+        pretitle: string;
+        title: string;
+      };
+      mostLuckyPlayers: {
+        pretitle: string;
+        title: string;
+      };
+      topGames: {
+        pretitle: string;
+        title: string;
+      };
+      // Дополнительные поля можно добавить здесь
+      [key: string]: any;
+    };
+  }
 
-async function fetchSiteData(host: string) {
+  // Функция для нормализации домена
+  function normalizeDomain(domain: string): string {
+    return domain.replace(/^https?:\/\//, '').split(':')[0];
+  }
+
+  async function fetchSiteData(host: string): Promise<FetchedSiteData | null> {
     try {
       const response = await axios.get('https://cmsbase24.top/api/all-sites?populate=*');
-      const allSites = response.data?.data;
-  
-      // console.log("Полученный массив сайтов:", allSites);
-      // console.log("Текущий домен (host):", host);
-  
+      const allSites: SiteData[] = response.data?.data;
+
       if (!Array.isArray(allSites)) {
         console.error("Некорректный формат данных от Strapi:", allSites);
         return null;
       }
-  
-      // Удаление префиксов и порта для корректного сравнения
-      const cleanHost = host.replace(/^https?:\/\//, '').split(':')[0]; // Убираем порт, если он есть
-      const siteData = allSites.find((site: any) => {
-        const siteDomain = site.siteDomain.replace(/^https?:\/\//, '').split(':')[0];
-        return siteDomain === cleanHost;
-      });
-  
+
+      const cleanHost = normalizeDomain(host);
+      const siteData = allSites.find((site) => normalizeDomain(site.siteDomain) === cleanHost);
+
       if (!siteData) {
         console.warn("Не найден сайт для текущего домена:", cleanHost);
         return null;
       }
 
-      // Извлекаем данные
       const localeLang = siteData.localeLang || "en-US";
       const locale = extractLocale(localeLang);
-      const ButtonText = getSpinText("button_text", localeLang);
-      const footerSocialText = getSpinText("footer_our_social_networks", localeLang);
-      const topPromotionsTitle = getSpinText("top_promotions", localeLang);
-      const topWinnersTitle = getSpinText("top_winners_of_the_day", localeLang);
-      const listOfGamesPretitle = getSpinText("list_of_games.pretitle", localeLang);
-      const listOfGamesTitle = getSpinText("list_of_games.title", localeLang);
-      const mostLuckyPlayersPretitle = getSpinText("most_lucky_players.pretitle", localeLang);
-      const mostLuckyPlayersTitle = getSpinText("most_lucky_players.title", localeLang);
-      const topGamesPretitle = getSpinText("top_games.pretitle", localeLang);
-      const topGamesTitle = getSpinText("top_games.title", localeLang);
 
-
-      
-
-      // console.log(ButtonText)
+      // Группировка локализованных текстов в один объект
+      const localizedTexts = {
+        buttonText: getSpinText("button_text", localeLang),
+        footerSocialText: getSpinText("footer_our_social_networks", localeLang),
+        topPromotionsTitle: getSpinText("top_promotions", localeLang),
+        topWinnersTitle: getSpinText("top_winners_of_the_day", localeLang),
+        listOfGames: {
+          pretitle: getSpinText("list_of_games.pretitle", localeLang),
+          title: getSpinText("list_of_games.title", localeLang),
+        },
+        mostLuckyPlayers: {
+          pretitle: getSpinText("most_lucky_players.pretitle", localeLang),
+          title: getSpinText("most_lucky_players.title", localeLang),
+        },
+        topGames: {
+          pretitle: getSpinText("top_games.pretitle", localeLang),
+          title: getSpinText("top_games.title", localeLang),
+        },
+      };
 
       return {
         ...siteData,
         locale,
         attributes: {
           ...siteData.attributes,
-          ButtonText, // Передаём уже выбранный текст
-          footerSocialText,
-          topPromotionsTitle,
-          topWinnersTitle,
-          listOfGames: {
-            pretitle: listOfGamesPretitle,
-            title: listOfGamesTitle,
-          },
-          mostLuckyPlayers: {
-            pretitle: mostLuckyPlayersPretitle,
-            title: mostLuckyPlayersTitle,
-          },
-          topGames: {
-            pretitle: topGamesPretitle,
-            title: topGamesTitle,
-          },
+          ...localizedTexts,
         },
       };
-  
-      // console.log("Найденный сайт:", siteData);
-      // return siteData;
+
     } catch (error) {
       console.error("Ошибка при запросе данных:", error);
       return null;
     }
   }
-  
-  
-export default fetchSiteData;
+
+  export default fetchSiteData;

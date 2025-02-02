@@ -7,6 +7,7 @@ import { dir } from 'i18next';
 import { languages } from '@/i18n/settings';
 import FetchSiteData from "@/utils/fetchSiteData";
 import Script from 'next/script';
+import Image from "next/image";
 
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
@@ -94,7 +95,7 @@ export default async function RootLayout({
         <meta name="theme-color" content={primaryColor} />
 
         {/* Yandex.Metrika counter */}
-        <Script
+        {/* <Script
           id="yandex-metrika"
           // strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -113,7 +114,7 @@ export default async function RootLayout({
               });
             `
           }}
-        />
+        /> */}
 
       </head>
       <body
@@ -129,17 +130,19 @@ export default async function RootLayout({
           }
         `}</style>
         {/* <noscript> Yandex.Metrika counter */}
-        {idYandexMetrika && (
+        {/* {idYandexMetrika && (
           <noscript>
             <div>
-              <img
+              <Image
                 src={`https://mc.yandex.ru/watch/${idYandexMetrika}`}
+                alt="Yandex Metrika"
+                width={1} // Минимальный размер
+                height={1}
                 style={{ position: "absolute", left: "-9999px" }}
-                alt=""
               />
             </div>
           </noscript>
-        )}
+        )} */}
         {children}
       </body>
     </html>
