@@ -8,25 +8,25 @@ import { languages } from '@/i18n/settings';
 import FetchSiteData from "@/utils/fetchSiteData";
 import Script from 'next/script';
 import Image from "next/image";
-
+import Head from "next/head";
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
-// const berlin = localFont({
-//   src: [
-//     {
-//       path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2",
-//       weight: "normal",
-//       style: "normal",
-//     },
-//     {
-//       path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff",
-//       weight: "normal",
-//       style: "normal",
-//     },
-//   ],
-//   variable: "--tg-berlin-font-family",
-// });
+const berlin = localFont({
+  src: [
+    {
+      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2",
+      weight: "normal",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff",
+      weight: "normal",
+      style: "normal",
+    },
+  ],
+  variable: "--tg-berlin-font-family",
+});
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -76,7 +76,7 @@ export default async function RootLayout({
   const localeLang = lng || siteData?.localeLang || "en";
 
   const imgUrl = siteData?.home_page?.pageImg.url;
-  const fullImgUrl = `${httpAddress}${imgUrl}`;
+  const fullImgUrl = imgUrl ? `${httpAddress}${imgUrl}` : "/default-pageImg.png";
 
   const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
@@ -85,41 +85,55 @@ export default async function RootLayout({
 
   const idYandexMetrika = siteData?.idYandexMetrika || null;
 
+  // console.log(fullImgUrl)
+
   return (
     <html lang={localeLang} dir={dir(localeLang)}>
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+      <Head>
+        {/* 📌 Основные метатеги */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="theme-color" content={primaryColor} />
+        <link rel="icon" href={`${httpAddress}${siteData?.favicon?.url || "/favicon.png"}`} />
+        
+        {/* Предварительная загрузка критического изображения (например, главного изображения страницы) */}
+        {/* <link rel="preload" as="image" href={fullImgUrl} /> */}
 
-        {/* Yandex.Metrika counter */}
-        <Script
-          id="yandex-metrika"
-          // strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();
-              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-              (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-              ym(${idYandexMetrika}, "init", {
-                  clickmap:true,
-                  trackLinks:true,
-                  accurateTrackBounce:true,
-                  webvisor:true
-              });
-            `
-          }}
+        {/* 📌 Предварительная загрузка шрифта */}
+        <link
+          rel="preload"
+          href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
 
-      </head>
+        {/* 📌 Yandex.Metrika counter */}
+        {idYandexMetrika && (
+          <Script
+            id="yandex-metrika"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                m[i].l=1*new Date();
+                for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+                (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    
+                ym(${idYandexMetrika}, "init", {
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+              `
+            }}
+          />
+        )}
+      </Head>
       <body
         suppressHydrationWarning={true}
-        // className={`${berlin.variable} ${poppins.variable} ${barlow.variable}`}
+        className={`${berlin.variable} ${poppins.variable} ${barlow.variable}`}
       >
         <style>{`
           :root {
@@ -129,14 +143,23 @@ export default async function RootLayout({
             --tg-common-color-bg-secondary: ${SecondaryColorBG};
           }
         `}</style>
-        {/* <noscript> Yandex.Metrika counter */}
+
+        {/* 📌 Оптимизированное изображение вместо <img> */}
+        {/* <Image
+          src={fullImgUrl}
+          alt="Main Image"
+          width={500}
+          height={500}
+          priority
+        /> */}
+
         {idYandexMetrika && (
           <noscript>
             <div>
               <Image
                 src={`https://mc.yandex.ru/watch/${idYandexMetrika}`}
                 alt="Yandex Metrika"
-                width={1} // Минимальный размер
+                width={1}
                 height={1}
                 style={{ position: "absolute", left: "-9999px" }}
               />
