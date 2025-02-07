@@ -80,7 +80,12 @@ const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText, pretit
               <div className="streamers__item">
                 <div className="streamers__thumb">
                   <Link href="/go" prefetch={false}>
-                    <Image src={imgSrc.default} alt={`Slot ${index + 1}`} style={{ height: "auto", width: "100%" }} />
+                    <Image 
+                      src={imgSrc.default} 
+                      alt={`Slot ${index + 1}`} 
+                      style={{ height: "auto", width: "100%" }} 
+                      loading="lazy"
+                    />
                   </Link>
                 </div>
               </div>

@@ -90,7 +90,7 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
                       alt="logo"
                       width={logo?.width || 300}
                       height={logo?.height || 80}
-                      priority
+                      loading="lazy"
                     />
                   </Link>
                 </div>

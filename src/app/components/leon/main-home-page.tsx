@@ -28,13 +28,23 @@ const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, butt
   // const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-pageImg.png'; // Проверяем наличие URL
-  const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : 'https://cmsbase24.top/default-pageBG.jpg'; // Проверяем наличие URL
+  const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : '/default-pageBG.jpg'; // Проверяем наличие URL
   const imgWidth = pageImg?.width || 407;
   const imgHeight = pageImg?.height || 344;
 
   return (
     <MouseParallaxContainer className="parallax-container">
-      <section className="slider__area slider__bg " style={{ backgroundImage: `url(${pageBgUrl})` }}>
+      <section className="slider__area slider__bg ">
+        {/* Оптимизированное фоновое изображение */}
+        <div className="slider__background">
+          <Image 
+            src={pageBgUrl} 
+            alt="Background Image" 
+            fill // Используем fill для фонового изображения
+            style={{ objectFit: "cover", zIndex: -1 }} // Масштабируем и помещаем изображение на задний план
+            priority
+          />
+        </div>
         <div className="slider-activee">
           <div className="single-slider">
             <div className="container custom-container">

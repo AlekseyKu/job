@@ -52,7 +52,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
           <div className="row">
             <div className="col-md-7">
               <div className="trendingNft__title">
-                <h2 className="title">{sectionTitle}<Image src={fire_img} width={35} alt="icon" /></h2>
+                <h2 className="title">{sectionTitle}<Image src={fire_img} width={35} alt="icon" loading="lazy"/></h2>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                     <div className="trendingNft__item-avatar">
                       <div className="image">
                         <Link href="/go" prefetch={false}>
-                          <Image src={item.creator} alt="img" />
+                          <Image src={item.creator} alt="img" loading="lazy"/>
                         </Link>
                       </div>
                       <div className="info">
@@ -90,6 +90,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                           width={promoImage.width || 300}
                           height={promoImage.height || 200}
                           style={{ width: '100%', height: 'auto' }}
+                          loading="lazy"
                         />
                       ) : (
                         <Image
@@ -98,6 +99,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                           width={300}
                           height={200}
                           style={{ width: '100%', height: 'auto' }}
+                          loading="lazy"
                         />
                       )}
                       <h6 className="trendingNft__item-subtitle">{item.subtitle}</h6>

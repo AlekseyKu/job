@@ -9,7 +9,7 @@ import TopWinners from "./components/leon/nft-item/top-winners";
 import FaqArea from "./components/leon/main-faq";
 import Footer from "./components/leon/main-footer";
 import EditorInfo from "./components/leon/editors/editor-info";
-import SeoMeta from "@/utils/seoMeta";
+// import SeoMeta from "@/utils/seoMeta";
 import { headers } from 'next/headers';
 import FetchSiteData from "@/utils/fetchSiteData";
 import { getCurrencySymbol } from "@/services/currencyService";
@@ -112,11 +112,11 @@ export default async function Home() {
 
   return (
     <Wrapper>
-      <SeoMeta
+      {/* <SeoMeta
         title={siteData.siteTitle || "Default Title"}
         description={siteData.siteDescription || "Default Description"}
         favicon={siteData.favicon || "/favicon.ico"}
-      />
+      /> */}
       <Header
         logo={siteData.siteLogo}
         sizeLogo={siteData.sizeLogo}

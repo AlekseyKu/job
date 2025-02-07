@@ -47,7 +47,11 @@ const TournamentBox = ({
           <li key={l.id}>
             <div className="tournament__box-list-item">
               <div className="tournament__player-thumb">
-                <Image src={l.img} alt="img" />
+                <Image 
+                  src={l.img} 
+                  alt="img" 
+                  loading="lazy"
+                />
               </div>
               <h6 className="tournament__player-name">{l.name}</h6>
               <span className="tournament__player-price">

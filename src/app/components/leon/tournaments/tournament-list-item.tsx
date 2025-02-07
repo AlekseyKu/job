@@ -49,6 +49,7 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
               src={item.thumb}
               alt="thumb"
               style={{ width: "auto", height: "auto" }}
+              loading="lazy"
             />
           </Link>
         </div>

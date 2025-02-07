@@ -17,7 +17,11 @@ const NftItemBox = ({ item, targetLink, buttonText, currencySymbol, exchangeRate
     <div className="nft-item__box">      
       <div className="nft-item__thumb">
         <Link href="/go" prefetch={false}>
-          <Image src={item.img} alt="img" />
+          <Image 
+            src={item.img} 
+            alt="img" 
+            loading="lazy"
+          />
         </Link>
       </div>
       <div className="nft-item__content">
@@ -27,7 +31,11 @@ const NftItemBox = ({ item, targetLink, buttonText, currencySymbol, exchangeRate
         <div className="nft-item__avatar">
           <div className="avatar-img">
             <Link href="/go" prefetch={false}>
-              <Image src={item.creator} alt="img" />
+              <Image 
+                src={item.creator} 
+                alt="img" 
+                loading="lazy"
+              />
             </Link>
           </div>
           <div className="avatar-name">
