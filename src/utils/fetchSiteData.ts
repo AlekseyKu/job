@@ -61,6 +61,8 @@
         return null;
       }
 
+      // console.log(siteData)
+
 
       const localeLang = siteData.localeLang || "en-US";
       const locale = extractLocale(localeLang);

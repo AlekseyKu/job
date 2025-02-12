@@ -1,9 +1,9 @@
 // src/app/[site]/page.tsx
-export const revalidate = 60;
+export const revalidate = 60; // ISR обновление страницы раз в 60 секунд
 
 import React from "react";
 import { notFound } from "next/navigation";
-import FetchSiteData from "@/utils/fetchSiteData";
+import fetchSiteData from "@/utils/fetchSiteData";
 import Wrapper from "@/layout/wrapper";
 import Header from "../components/leon/main-header";
 import HomePage from "../components/leon/main-home-page";
@@ -16,78 +16,44 @@ import FaqArea from "../components/leon/main-faq";
 import Footer from "../components/leon/main-footer";
 import EditorInfo from "../components/leon/editors/editor-info";
 import { currencyData } from "@/data/currency-data";
-import fetchMinimalSiteData, { MinimalSiteData } from "@/utils/fetchMinimalSiteData";
 
-
-// Определяем интерфейс для секций (оставляем ваш код без изменений)
-interface PageSection {
-  id: string | number;
-  sectionName: string;
+// Интерфейс параметров
+interface Params {
+  site: string;
 }
 
-// Функция для нормализации домена (также можно использовать реализацию из fetchSiteData)
-function normalizeDomain(domain: string | undefined): string {
-  if (!domain) return "";
-  return domain.replace(/^https?:\/\//, '').split(':')[0];
-}
-
-// Функция generateStaticParams должна вернуть все параметры для генерации статических страниц
-export async function generateStaticParams() {
+// **Используем `generateStaticParams()` для генерации статических маршрутов**
+export async function generateStaticParams(): Promise<Params[]> {
   try {
-    const response = await fetch("https://cmsbase24.top/api/all-sites?populate=*");
+    const response = await fetch("https://cmsbase24.top/api/all-sites?populate=*", { cache: "no-cache" });
     const data = await response.json();
-    const allSites = data?.data;
-    
-    if (!Array.isArray(allSites)) {
-      console.error("Некорректный формат данных от Strapi:", allSites);
-      return [];
-    }
-    
-    // Извлекаем и нормализуем домены
-    const sites = allSites
-      .map((siteItem: any) => {
-        return siteItem.siteDomain ? normalizeDomain(siteItem.siteDomain) : null;
-      })
-      .filter((domain: string | null) => domain !== null);
-    
-    // Убираем дубликаты
-    const uniqueSites = Array.from(new Set(sites)) as string[];
-    
-    // Возвращаем массив объектов параметров, соответствующих динамическому сегменту [site]
-    return uniqueSites.map((site) => ({ site }));
+    const allSites = data?.data || [];
+
+    return allSites.map((site: { siteDomain: string }) => ({ site: site.siteDomain.replace(/^https?:\/\//, '').split(':')[0] }));
   } catch (error) {
     console.error("Ошибка при получении списка сайтов:", error);
     return [];
   }
 }
 
-export default async function Home({ params }: { params: { site: string } }) {
-  const { site } = params;
-  
-  // Получаем данные сайта по идентификатору (домена)
-  const siteData = await FetchSiteData(site);
+// **Асинхронный серверный компонент**
+export default async function Home({ params }: { params: Params }) {
+  const siteData = await fetchSiteData(params.site);
+
   if (!siteData) {
-    // Если данных нет, можно вернуть notFound(), чтобы отобразить страницу 404
     notFound();
   }
-  
+
   const locale = siteData.locale;
   const currencyInfo = currencyData[locale as keyof typeof currencyData] || currencyData["en"];
   const currencySymbol = currencyInfo.currencySymbol;
   const exchangeRate = currencyInfo.exchangeRate;
 
-  const pageSections: PageSection[] = siteData.page_sections || [];
-  const mostLuckyPlayersSection = pageSections.find(
-    (section) => section.sectionName === 'MOST LUCKY PLAYERS'
-  );
+  const pageSections = siteData.page_sections || [];
+  const mostLuckyPlayersSection = pageSections.find((section: any) => section.sectionName === 'MOST LUCKY PLAYERS');
 
   return (
     <Wrapper>
-      {/* <SeoMeta
-        title={siteData.siteTitle || "Default Title"}
-        description={siteData.siteDescription || "Default Description"}
-        favicon={siteData.favicon || "/favicon.ico"}
-      /> */}
       <Header
         logo={siteData.siteLogo}
         sizeLogo={siteData.sizeLogo}
@@ -105,7 +71,7 @@ export default async function Home({ params }: { params: { site: string } }) {
         colorTitleMain={siteData.colorTitleMain}
       />
 
-      {pageSections.map((section) => {
+      {pageSections.map((section: any) => {
         if (section.sectionName === 'MOST LUCKY PLAYERS') return null;
         switch (section.sectionName) {
           case 'LIST OF GAMES':
