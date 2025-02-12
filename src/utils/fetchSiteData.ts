@@ -1,5 +1,6 @@
   // src/utils/fetchSiteData.ts
   import axios from 'axios';
+  import redis from "@/lib/redis";
   import { getSpinText } from "../services/spinTextService";
   import { extractLocale } from "@/utils/localeUtils";
 
@@ -42,31 +43,37 @@
 
   async function fetchSiteData(host: string): Promise<FetchedSiteData | null> {
     try {
-      // const start = Date.now();
-      const response = await axios.get('https://cmsbase24.top/api/all-sites?populate=*');
-      // const end = Date.now();
-      // console.log(`API запрос занял ${end - start} мс`);
+      const cleanHost = normalizeDomain(host);
+      const cacheKey = `siteData:${cleanHost}`;
+  
+      // 🔥 1. Проверяем кэш в Redis
+      const cachedData = await redis.get(cacheKey);
+      if (cachedData) {
+        console.log(`⚡ Данные для ${cleanHost} загружены из Redis`);
+        return JSON.parse(cachedData);
+      }
+  
+      console.log(`🔍 Запрос к Strapi для ${cleanHost}`);
+  
+      // 2. Запрашиваем данные у Strapi
+      const response = await axios.get("https://cmsbase24.top/api/all-sites?populate=*");
       const allSites: SiteData[] = response.data?.data;
-
+  
       if (!Array.isArray(allSites)) {
         console.error("Некорректный формат данных от Strapi:", allSites);
         return null;
       }
-
-      const cleanHost = normalizeDomain(host);
+  
       const siteData = allSites.find((site) => normalizeDomain(site.siteDomain) === cleanHost);
-
+  
       if (!siteData) {
-        console.warn("Не найден сайт для текущего домена:", cleanHost);
+        console.warn("❌ Не найден сайт для текущего домена:", cleanHost);
         return null;
       }
-
-      // console.log(siteData)
-
-
+  
       const localeLang = siteData.localeLang || "en-US";
       const locale = extractLocale(localeLang);
-
+  
       // Группировка локализованных текстов в один объект
       const localizedTexts = {
         buttonText: getSpinText("button_text", localeLang),
@@ -86,8 +93,8 @@
           title: getSpinText("top_games.title", localeLang),
         },
       };
-
-      return {
+  
+      const finalData = {
         ...siteData,
         locale,
         attributes: {
@@ -95,11 +102,16 @@
           ...localizedTexts,
         },
       };
-
+  
+      // 🔥 3. Сохраняем данные в Redis на 10 минут (600 секунд)
+      await redis.set(cacheKey, JSON.stringify(finalData), "EX", 600);
+      console.log(`✅ Данные для ${cleanHost} кэшированы в Redis`);
+  
+      return finalData;
     } catch (error) {
       console.error("Ошибка при запросе данных:", error);
       return null;
     }
   }
-
+  
   export default fetchSiteData;
