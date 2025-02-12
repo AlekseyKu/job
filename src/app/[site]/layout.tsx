@@ -1,4 +1,4 @@
-// src/app/layout.tsx
+// src/app/[site]/layout.tsx
 import "@/app/globals.scss";
 import { Metadata } from "next";
 import Head from "next/head";
@@ -6,12 +6,11 @@ import Script from "next/script";
 import Image from "next/image";
 import { headers } from "next/headers";
 import { dir } from "i18next";
-import FetchSiteData from "@/utils/fetchSiteData";
+import fetchSiteData from "@/utils/fetchSiteData";
 
-// Генерация метаданных с использованием данных сайта из API
 export async function generateMetadata(): Promise<Metadata> {
   const host = headers().get("host");
-  const siteData = await FetchSiteData(host || "");
+  const siteData = await fetchSiteData(host || "");
   const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
   const faviconUrl = siteData?.favicon?.url;
   const fullFaviconUrl = faviconUrl ? `${httpAddress}${faviconUrl}` : "/favicon.png";
@@ -19,12 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: siteData?.siteTitle || "Default Title",
     description: siteData?.siteDescription || "Default Description",
-    icons: {
-      icon: fullFaviconUrl,
-    },
-    alternates: {
-      canonical: `https://${host}`,
-    },
+    icons: { icon: fullFaviconUrl },
+    alternates: { canonical: `https://${host}` },
   };
 }
 
@@ -36,24 +31,19 @@ export default async function RootLayout({
   params: { lng?: string };
 }) {
   const host = headers().get("host");
-  const siteData = await FetchSiteData(host || "");
+  const siteData = await fetchSiteData(host || "");
   const localeLang = lng || siteData?.localeLang || "en";
   const primaryColor = siteData?.themePrimaryColor || "#defaultPrimary";
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
   const PrimaryColorBG = siteData?.themeBGPrimaryColor;
   const SecondaryColorBG = siteData?.themeBGSecondaryColor;
-
-  // Получаем идентификатор Яндекс.Метрики из данных сайта
   const idYandexMetrika = siteData?.idYandexMetrika || null;
 
   return (
     <html lang={localeLang} dir={dir(localeLang)}>
       <Head>
-        {/* Основные метатеги */}
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="theme-color" content={primaryColor} />
-
-        {/* Предварительная загрузка шрифта */}
         <link
           rel="preload"
           href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2"
@@ -61,8 +51,6 @@ export default async function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-
-        {/* Яндекс.Метрика */}
         {idYandexMetrika && (
           <Script
             id="yandex-metrika"
@@ -82,7 +70,6 @@ export default async function RootLayout({
                   k.src=r;
                   a.parentNode.insertBefore(k,a)
                 })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
                 ym(${idYandexMetrika}, "init", {
                   clickmap:true,
                   trackLinks:true,
@@ -103,8 +90,7 @@ export default async function RootLayout({
             --tg-common-color-bg-secondary: ${SecondaryColorBG};
           }
         `}</style>
-
-        {/* Для пользователей без JavaScript: отображаем пиксель Яндекс.Метрики */}
+        {children}
         {idYandexMetrika && (
           <noscript>
             <div>
@@ -118,7 +104,6 @@ export default async function RootLayout({
             </div>
           </noscript>
         )}
-        {children}
       </body>
     </html>
   );

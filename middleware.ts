@@ -1,12 +1,12 @@
 // middleware.ts
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const host = request.headers.get('host');
-  const url = request.nextUrl; // Теперь тип NextRequest знает это свойство
+  const host = request.headers.get("host");
+  const url = request.nextUrl;
 
   // Если запрошен корневой путь, переписываем его на /[host]
-  if (url.pathname === '/' || url.pathname === '') {
+  if (url.pathname === "/" || url.pathname === "") {
     url.pathname = `/${host}`;
     return NextResponse.rewrite(url);
   }
@@ -15,5 +15,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/',
+  matcher: "/",
 };
