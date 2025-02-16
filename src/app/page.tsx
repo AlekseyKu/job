@@ -100,7 +100,7 @@ export default async function Home() {
   }
 
   // После этой проверки TS знает, что siteData имеет тип FetchedSiteData
-  const locale = siteData.locale;
+  const locale = siteData.localeLang;
   const currencyInfo = currencyData[locale as keyof typeof currencyData] || currencyData["en"];
   const currencySymbol = currencyInfo.currencySymbol;
   const exchangeRate = currencyInfo.exchangeRate;
