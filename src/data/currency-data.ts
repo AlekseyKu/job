@@ -42,4 +42,8 @@ export const currencyData: Record<Locale, CurrencyData> = {
     currencySymbol: "L",
     exchangeRate: 5,
   },
+  pt: {
+    currencySymbol: "€",
+    exchangeRate: 1,
+  },
 };

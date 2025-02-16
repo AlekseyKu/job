@@ -18,6 +18,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
     el: ["Σύνδεση", "Είσοδος", "Πρόσβαση στον Λογαριασμό"],
     it: ["Accedi", "Entra", "Accedi al Conto"],
     ro: ["Conectare", "Autentificare", "Accesează Contul"],
+    pt: ["Entrar", "Fazer Login", "Acessar Conta"],
   },
 
   list_of_games: {
@@ -31,6 +32,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
       el: ["Λίστα Παιχνιδιών", "Εξερευνήστε Παιχνίδια", "Τα Παιχνίδια μας"],
       it: ["Elenco Giochi", "Esplora Giochi", "I Nostri Giochi"],
       ro: ["Lista Jocurilor", "Explorează Jocuri", "Jocurile Noastre"],
+      pt: ["Lista de Jogos", "Explorar Jogos", "Nossos Jogos"],
     },
 
     title: {
@@ -43,6 +45,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
       el: ["Καλύτερα Φρουτάκια", "Κορυφαία Φρουτάκια", "Αγαπημένα Φρουτάκια"],
       it: ["Migliori Slot", "Slot Top", "Slot Preferite"],
       ro: ["Cele Mai Bune Sloturi", "Sloturi de Top", "Sloturi Favorite"],
+      pt: ["Melhores Slots", "Top Slots", "Slots Favoritos"],
     },
   },
 
@@ -57,6 +60,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
       el: ["Τα Παιχνίδια μας", "Εξερευνήστε Παιχνίδια", "Προτεινόμενα Παιχνίδια"],
       it: ["I Nostri Giochi", "Esplora Giochi", "Giochi in Evidenza"],
       ro: ["Jocurile Noastre", "Explorează Jocuri", "Jocuri Recomandate"],
+      pt: ["Nossos Jogos", "Explorar Jogos", "Jogos em Destaque"],
     },
     title: {
       en: ["Top Rated", "Editor's Picks", "Highly Rated"],
@@ -68,6 +72,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
       el: ["Υψηλή Βαθμολογία", "Επιλογές Συντάκτη", "Πολύ Καλά Βαθμολογημένα"],
       it: ["Migliori Valutazioni", "Scelti dal Redattore", "Altamente Valutati"],
       ro: ["Cele Mai Bune Evaluări", "Alegerea Editorului", "Foarte Bine Evaluat"],
+      pt: ["Mais Bem Avaliados", "Escolha do Editor", "Altamente Avaliados"],
     },
   },
 
@@ -82,6 +87,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
       el: ["Πιο Τυχεροί Παίκτες", "Τυχεροί Νικητές", "Μεγαλύτεροι Νικητές"],
       it: ["Giocatori più Fortunati", "Vincitori Fortunati", "Grandi Vincitori"],
       ro: ["Cei Mai Norocoși Jucători", "Jucători Norocoși", "Marii Câștigători"],
+      pt: ["Jogadores Mais Sortudos", "Sortudos", "Maiores Vencedores"],
     },
     title: {
       en: ["Play to Earn Games", "Win & Earn", "Earn While Playing"],
@@ -93,6 +99,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
       el: ["Παίξτε για να Κερδίσετε", "Κερδίστε και Αποκτήστε", "Κερδίστε Παίζοντας"],
       it: ["Giochi per Guadagnare", "Vinci e Guadagna", "Guadagna Giocando"],
       ro: ["Jocuri pentru a Câștiga", "Joacă și Câștigă", "Câștigă În Timp ce Te Joci"],
+      pt: ["Jogos para Ganhar", "Ganhe e Lucre", "Lucre Jogando"],
     },
   },
   
@@ -106,6 +113,8 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
     el: ["Κορυφαίες Προσφορές", "Καυτές Προσφορές", "Καλύτερες Προσφορές"],
     it: ["Top Promozioni", "Offerte Calde", "Migliori Offerte"],
     ro: ["Cele Mai Bune Promoții", "Oferte Fierbinți", "Cele Mai Bune Oferte"],
+    pt: ["Melhores Promoções", "Ofertas Quentes", "Melhores Ofertas"],
+
   },
 
   top_winners_of_the_day: {
@@ -118,6 +127,7 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
     el: ["Κορυφαίοι Νικητές της Ημέρας", "Πρωταθλητές Σήμερα", "Κύκλος Νικητών"],
     it: ["Migliori Vincitori del Giorno", "Campioni di Oggi", "Cerchia dei Vincitori"],
     ro: ["Cei Mai Buni Câștigători ai Zilei", "Campionii Zilei", "Cercul Câștigătorilor"],
+    pt: ["Maiores Vencedores do Dia", "Campeões do Dia", "Círculo dos Vencedores"],
   },
   
   footer_our_social_networks: {
@@ -130,5 +140,6 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
     el: ["Τα Κοινωνικά μας Δίκτυα", "Ακολουθήστε μας Online", "Μείνετε Συνδεδεμένοι"],
     it: ["I Nostri Social Network", "Seguici Online", "Resta Connesso"],
     ro: ["Rețelele Noastre Sociale", "Urmărește-ne Online", "Rămâi Conectat"],
+    pt: ["Nossas Redes Sociais", "Siga-nos Online", "Fique Conectado"],
   },
 };
