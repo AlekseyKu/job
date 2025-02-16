@@ -330,5 +330,49 @@ module.exports = {
           ...require("dotenv").config({ path: ".env.3030" }).parsed,
         },
       },
+      {
+        name: "3031.dogana-project.eu",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3031,
+          ...require("dotenv").config({ path: ".env.3031" }).parsed,
+        },
+      },
+      {
+        name: "3032.geo-in.eu",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3032,
+          ...require("dotenv").config({ path: ".env.3032" }).parsed,
+        },
+      },
+      {
+        name: "3033.200m.pt",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3033,
+          ...require("dotenv").config({ path: ".env.3033" }).parsed,
+        },
+      },
+      {
+        name: "3034.agrocluster.pt",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3034,
+          ...require("dotenv").config({ path: ".env.3034" }).parsed,
+        },
+      },
     ],
 };
