@@ -1,5 +1,5 @@
+// src/data/spinData.ts
 import { Locale } from "../types/locales"
-// type Locale = "en" | "pl" | "es" | "fr" | "de" | "nl" | "el" | "it" | "ro";
 
 type SpinDataItem = {
   pretitle?: Record<Locale, string[]>;
@@ -142,4 +142,110 @@ export const spinData: Record<string, SpinDataItem | Record<Locale, string[]>> =
     ro: ["Rețelele Noastre Sociale", "Urmărește-ne Online", "Rămâi Conectat"],
     pt: ["Nossas Redes Sociais", "Siga-nos Online", "Fique Conectado"],
   },
+
+  promo: {
+    title: {
+      en: ["Cashback every day", "Be in the flow of luck!", "Crazy roulette"],
+      pl: ["Cashback każdego dnia", "Bądź w nurcie szczęścia!", "Szalona ruletka"],
+      es: ["Cashback todos los días", "¡Sumérgete en la suerte!", "Ruleta loca"],
+      fr: ["Cashback chaque jour", "Soyez dans le flux de la chance!", "Roulette folle"],
+      de: ["Täglich Cashback", "Bleib im Fluss des Glücks!", "Verrücktes Roulette"],
+      nl: ["Dagelijks Cashback", "Blijf in de flow van geluk!", "Gekke roulette"],
+      el: ["Επιστροφή χρημάτων κάθε μέρα", "Μπες στη ροή της τύχης!", "Τρελή ρουλέτα"],
+      it: ["Cashback ogni giorno", "Sii nel flusso della fortuna!", "Roulette pazza"],
+      ro: ["Cashback în fiecare zi", "Fii în ritmul norocului!", "Ruletă nebună"],
+      pt: ["Cashback todos os dias", "Esteja no fluxo da sorte!", "Roleta louca"],
+    },
+    subtitle: {
+      en: [
+        "Spin your favorite slots without worries – we`ll give you cashback!", 
+        "Huge prizes await you in an exciting new promotion!",
+        "Your chance to rule the roulette table and claim your share of incredible prizes!"
+      ],
+      pl: [
+        "Graj na swoich ulubionych automatach bez obaw – zwrócimy Ci cashback!",
+        "Ogromne nagrody czekają na Ciebie w ekscytującej nowej promocji!",
+        "Twoja szansa na rządzenie stołem ruletki i zdobycie niesamowitych nagród!"
+      ],
+      es: [
+        "Gira tus tragamonedas favoritas sin preocupaciones – ¡te devolvemos cashback!",
+        "¡Grandes premios te esperan en una nueva promoción emocionante!",
+        "Tu oportunidad de dominar la mesa de ruleta y reclamar increíbles premios!"
+      ],
+      fr: [
+        "Faites tourner vos machines à sous préférées sans souci – nous vous offrons du cashback!",
+        "D'énormes prix vous attendent dans une nouvelle promotion passionnante!",
+        "Votre chance de dominer la table de roulette et de réclamer votre part des incroyables prix!"
+      ],
+      de: [
+        "Drehen Sie Ihre Lieblings-Slots ohne Sorgen – wir geben Ihnen Cashback!",
+        "Riesige Preise erwarten Sie in einer spannenden neuen Aktion!",
+        "Ihre Chance, den Roulettetisch zu beherrschen und unglaubliche Preise zu gewinnen!"
+      ],
+      nl: [
+        "Draai je favoriete slots zonder zorgen – wij geven je cashback!",
+        "Enorme prijzen wachten op je in een spannende nieuwe promotie!",
+        "Jouw kans om de roulettetafel te domineren en geweldige prijzen te winnen!"
+      ],
+      el: [
+        "Γυρίστε τα αγαπημένα σας φρουτάκια χωρίς άγχος – σας επιστρέφουμε cashback!",
+        "Τεράστια βραβεία σας περιμένουν σε μια συναρπαστική νέα προσφορά!",
+        "Η ευκαιρία σας να κυριαρχήσετε στο τραπέζι της ρουλέτας και να διεκδικήσετε φανταστικά βραβεία!"
+      ],
+      it: [
+        "Gira le tue slot preferite senza preoccupazioni – ti offriamo cashback!",
+        "Grandi premi ti aspettano in una nuova promozione emozionante!",
+        "La tua occasione per dominare la roulette e vincere incredibili premi!"
+      ],
+      ro: [
+        "Joacă sloturile tale preferate fără griji – îți oferim cashback!",
+        "Premii uriașe te așteaptă într-o nouă promoție palpitantă!",
+        "Șansa ta de a domina masa de ruletă și de a revendica premii incredibile!"
+      ],
+      pt: [
+        "Gire seus slots favoritos sem preocupações – nós te damos cashback!",
+        "Prêmios incríveis esperam por você em uma nova promoção emocionante!",
+        "Sua chance de dominar a mesa de roleta e ganhar prêmios incríveis!"
+      ],
+    },
+    price: {
+      en: ["Total win"],
+      pl: ["Całkowita wygrana"],
+      es: ["Ganancia total"],
+      fr: ["Gain total"],
+      de: ["Gesamtgewinn"],
+      nl: ["Totale winst"],
+      el: ["Συνολική νίκη"],
+      it: ["Vincita totale"],
+      ro: ["Câștig total"],
+      pt: ["Ganho total"],
+    },
+  },
+  tournament_box: {
+    sub: {
+      en: ["SLOTS", "JACKPOT", "SLOTS"],
+      pl: ["AUTOMATY", "JACKPOT", "AUTOMATY"],
+      es: ["TRAGAPERRAS", "JACKPOT", "TRAGAPERRAS"],
+      fr: ["MACHINES À SOUS", "JACKPOT", "MACHINES À SOUS"],
+      de: ["SLOTS", "JACKPOT", "SLOTS"],
+      nl: ["GOKAUTOMATEN", "JACKPOT", "GOKAUTOMATEN"],
+      el: ["ΦΡΟΥΤΑΚΙΑ", "ΤΖΑΚΠΟΤ", "ΦΡΟΥΤΑΚΙΑ"],
+      it: ["SLOT", "JACKPOT", "SLOT"],
+      ro: ["PĂCĂNELE", "JACKPOT", "PĂCĂNELE"],
+      pt: ["CASSINOS", "JACKPOT", "CASSINOS"],
+    },
+    title: {
+      en: ["of weekly", "Lucky players", "of month"],
+      pl: ["z tygodnia", "Szczęśliwi gracze", "z miesiąca"],
+      es: ["de la semana", "Jugadores afortunados", "del mes"],
+      fr: ["de la semaine", "Joueurs chanceux", "du mois"],
+      de: ["der Woche", "Glückliche Spieler", "des Monats"],
+      nl: ["van de week", "Gelukkige spelers", "van de maand"],
+      el: ["της εβδομάδας", "Τυχεροί παίκτες", "του μήνα"],
+      it: ["della settimana", "Giocatori fortunati", "del mese"],
+      ro: ["din săptămână", "Jucători norocoși", "din lună"],
+      pt: ["da semana", "Jogadores sortudos", "do mês"],
+    },
+  }
+
 };

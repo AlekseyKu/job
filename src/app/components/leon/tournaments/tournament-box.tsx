@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ITournament } from "@/types/tournament-type";
 // import CountdownTimer from "../../timer/countdown-timer"
 import TournamentBoxBgPatch from "../../svg/t-box-bg";
+import { spinData } from "@/data/spinData";
 
 
 // const getNextUpdateDate = (interval: 'daily' | 'weekly' | 'monthly'): Date => {

@@ -2,8 +2,6 @@ import { spinData } from "../data/spinData";
 import { extractLocale } from "../utils/localeUtils";
 import { Locale } from "../types/locales"
 
-// type Locale = "en" | "pl" | "es" | "fr" | "de" | "nl" | "el" | "it" | "ro";
-
 interface Cache {
     [key: string]: string; // Кэш формата: "ключ_локаль"
 }

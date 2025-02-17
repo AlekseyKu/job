@@ -1,4 +1,4 @@
-// Top promotions
+// src/app/components/leon/nft-item/top-promotions.tsx
 "use client"
 import React from 'react';
 import Link from 'next/link';
@@ -9,7 +9,6 @@ import fire_img from '@/assets/img/icons/fire.png';
 import promo_data from '@/data/promo-data';
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
-
 
 interface PromoImage {
   id: number;
@@ -24,8 +23,13 @@ interface TrendingNftItemsProps {
   buttonText: string;
   promoImages: PromoImage[] | null;
   sectionTitle: string;
+  promoTitle: string; 
+  promoSubtitle: string[];
   currencySymbol: string; // Символ валюты
   exchangeRate: number; // Курс валюты
+  localeLang: string;
+  promoPrice: string;
+  // promoData: string;
 }
 
 const slider_setting = {
@@ -44,7 +48,10 @@ const slider_setting = {
   },
 };
 
-const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonText, promoImages, sectionTitle, currencySymbol, exchangeRate }) => {
+const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ 
+  localeLang, targetLink, buttonText, promoImages, sectionTitle, 
+  promoTitle, promoSubtitle, currencySymbol, exchangeRate, promoPrice,
+}) => {
   return (
     <section className="trendingNft-area section-pt-120 section-pb-90">
       <div className="container">
@@ -59,8 +66,8 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
         </div>
         <Swiper {...slider_setting} modules={[Navigation]} className="swiper-container trendingNft-active">
           {promo_data.filter(i => i.trending).map((item, index) => {
-            // Гарантируем, что promoImages — массив
             const promoImage = Array.isArray(promoImages) ? promoImages[index] : null;
+            const locale = localeLang.split('-')[0]; // Берем первую часть "en-US" → "en"
 
             return (
               <SwiperSlide key={item.id}>
@@ -73,7 +80,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                         </Link>
                       </div>
                       <div className="info">
-                        <h6 className="name">{item.title}</h6>
+                        <h6 className="name">{item.title[locale] || item.title["en"]}</h6>
                         <Link href="/go" prefetch={false} className="userName">@{item.creator_name}</Link>
                       </div>
                     </div>
@@ -102,12 +109,12 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
                           loading="lazy"
                         />
                       )}
-                      <h6 className="trendingNft__item-subtitle">{item.subtitle}</h6>
+                      <h6 className="trendingNft__item-subtitle">{item.subtitle[locale] || item.title["en"]}</h6>
                     </Link>
                   </div>
                   <div className="trendingNft__item-bottom">
                     <div className="trendingNft__item-price">
-                      <span className="bid">Total Win</span>
+                      <span className="bid">{promoPrice}</span>
                       <h6 className="eth">
                         {(item.eth * exchangeRate).toFixed(0)} <span>{currencySymbol}</span>
                       </h6>
@@ -119,8 +126,6 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({ targetLink, buttonT
             );
           })}
         </Swiper>
-
-
       </div>
     </section>
   );

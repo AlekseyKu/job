@@ -30,6 +30,15 @@
         pretitle: string;
         title: string;
       };
+      promo: {
+        title: string;
+        subtitle: string;
+        price: string;
+      };
+      tournament_box: {
+        sub: string;
+        title: string;
+      };
       // Дополнительные поля можно добавить здесь
       [key: string]: any;
     };
@@ -79,7 +88,20 @@
           pretitle: getSpinText("top_games.pretitle", localeLang),
           title: getSpinText("top_games.title", localeLang),
         },
+        promo: {
+          title: getSpinText("promo.title", localeLang) || [],
+          subtitle: getSpinText("promo.subtitle", localeLang) || [],
+          price: getSpinText("promo.price", localeLang) || "Total Win",
+        },
+        tournament_box: {
+          sub: getSpinText("tournament_box.sub", localeLang) || ["SLOTS", "JACKPOT", "SLOTS"],
+          title: getSpinText("tournament_box.title", localeLang) || ["of weekly", "Lucky players", "of month"],
+        },
       };
+      
+      // console.log(locale)
+      // console.log(localizedTexts.promo.title)
+
 
       return {
         ...siteData,
