@@ -1,3 +1,4 @@
+// src/data/tournament-data.ts
 import { ITournament } from '@/types/tournament-type';
 import player_data from '@/data/players-data';
 import slots_data from '@/data/slots-data';

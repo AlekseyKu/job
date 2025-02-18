@@ -93,6 +93,10 @@
           subtitle: getSpinText("promo.subtitle", localeLang) || [],
           price: getSpinText("promo.price", localeLang) || "Total Win",
         },
+        // tournament_box: {
+        //   sub: getSpinText("tournament_box.sub", localeLang) || ["SLOTS", "JACKPOT", "SLOTS"],
+        //   title: getSpinText("tournament_box.title", localeLang) || ["of weekly", "Lucky players", "of month"],
+        // },
         tournament_box: {
           sub: getSpinText("tournament_box.sub", localeLang) || ["SLOTS", "JACKPOT", "SLOTS"],
           title: getSpinText("tournament_box.title", localeLang) || ["of weekly", "Lucky players", "of month"],

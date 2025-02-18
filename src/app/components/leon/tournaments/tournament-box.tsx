@@ -1,9 +1,10 @@
+// src/app/components/leon/tournaments/tournament-box.tsx
 import React from "react";
 import Image from "next/image";
 import { ITournament } from "@/types/tournament-type";
 // import CountdownTimer from "../../timer/countdown-timer"
 import TournamentBoxBgPatch from "../../svg/t-box-bg";
-import { spinData } from "@/data/spinData";
+import combinedData from "@/data/combined-data";
 
 
 // const getNextUpdateDate = (interval: 'daily' | 'weekly' | 'monthly'): Date => {
@@ -17,11 +18,13 @@ import { spinData } from "@/data/spinData";
 const TournamentBox = ({ 
   item, 
   currencySymbol, 
-  exchangeRate 
+  exchangeRate,
+  localeLang,
 }: { 
   item: ITournament, 
   currencySymbol: string, 
-  exchangeRate: number 
+  exchangeRate: number,
+  localeLang: string
 }) => {
   return (
     <div className={`tournament__box-wrap ${item.active ? "active" : ""}`}>

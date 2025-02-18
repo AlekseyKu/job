@@ -1,3 +1,4 @@
+// src/data/currency-data.ts
 import { Locale } from "../types/locales"
 
 type CurrencyData = {
