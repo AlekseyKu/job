@@ -2,6 +2,7 @@
   import axios from 'axios';
   import { getSpinText } from "../services/spinTextService";
   import { extractLocale } from "@/utils/localeUtils";
+  import combinedData from '@/data/combined-data';
 
   // Определяем интерфейсы для типизации
   interface SiteData {
@@ -36,8 +37,9 @@
         price: string;
       };
       tournament_box: {
-        sub: string;
-        title: string;
+        sub: string[];
+        title: string[];
+        pre: string[];
       };
       // Дополнительные поля можно добавить здесь
       [key: string]: any;
@@ -98,13 +100,24 @@
         //   title: getSpinText("tournament_box.title", localeLang) || ["of weekly", "Lucky players", "of month"],
         // },
         tournament_box: {
-          sub: getSpinText("tournament_box.sub", localeLang) || ["SLOTS", "JACKPOT", "SLOTS"],
-          title: getSpinText("tournament_box.title", localeLang) || ["of weekly", "Lucky players", "of month"],
+          sub: Array.isArray(combinedData.spin.tournament_box.sub[locale as keyof typeof combinedData.spin.tournament_box.sub]) 
+              ? combinedData.spin.tournament_box.sub[locale as keyof typeof combinedData.spin.tournament_box.sub] 
+              : [combinedData.spin.tournament_box.sub.en], // Оборачиваем в массив, если это строка
+        
+          title: Array.isArray(combinedData.spin.tournament_box.title[locale as keyof typeof combinedData.spin.tournament_box.title]) 
+              ? combinedData.spin.tournament_box.title[locale as keyof typeof combinedData.spin.tournament_box.title] 
+              : [combinedData.spin.tournament_box.title.en], // Оборачиваем в массив, если это строка
+
+          pre: Array.isArray(combinedData.spin.tournament_box.pre[locale as keyof typeof combinedData.spin.tournament_box.pre]) 
+          ? combinedData.spin.tournament_box.pre[locale as keyof typeof combinedData.spin.tournament_box.title] 
+          : [combinedData.spin.tournament_box.pre.en], // Оборачиваем в массив, если это строка
         },
+        
       };
       
       // console.log(locale)
       // console.log(localizedTexts.promo.title)
+      // console.log(localizedTexts.tournament_box.pre)
 
 
       return {

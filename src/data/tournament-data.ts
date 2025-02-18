@@ -3,6 +3,7 @@ import { ITournament } from '@/types/tournament-type';
 import player_data from '@/data/players-data';
 import slots_data from '@/data/slots-data';
 
+
 // Функция для выбора уникальных случайных игроков
 const getRandomPlayers = (count: number) => {
   const shuffledPlayers = [...player_data].sort(() => 0.5 - Math.random());
@@ -26,18 +27,22 @@ const getRandomPrize = () => {
 
 const [slot1, slot2, slot3] = getUniqueSlots(); // Получаем три уникальных слота
 
-const tournament_data: ITournament[] = [
+// const siteData = await fetchSiteData("host")
+// const { sub, title } = fetchSiteData.attributes.tournament_box;
+
+
+const getTournamentData = (tournamentBoxData: { sub: string[]; title: string[]; pre: string[] }): ITournament[] => [
   {
     id: 1,
     thumb: slot1.img,
-    team_name: slot1, // Слот 1 для первого турнира
+    team_name: slot1,
     box_price: 10000,
     prize: getRandomPrize(),
-    subtitle: 'SLOTS',
-    title: 'of weekly',
+    subtitle: tournamentBoxData.sub[0],
+    title: tournamentBoxData.title[0],
+    pre: tournamentBoxData.pre[0],
     places: 3,
-    // live_link: 'https://www.twitch.tv/videos/1726788358',
-    status: 'Online',
+    status: "Online",
     list_items: getRandomPlayers(3).map((player, index) => ({
       id: index + 1,
       img: player.img,
@@ -48,14 +53,14 @@ const tournament_data: ITournament[] = [
   {
     id: 2,
     thumb: slot2.img,
-    team_name: slot2, // Слот 2 для второго турнира
+    team_name: slot2,
     box_price: 50000,
     prize: getRandomPrize(),
-    subtitle: 'JACKPOT',
-    title: 'Lucky players',
+    subtitle: tournamentBoxData.sub[1],
+    title: tournamentBoxData.title[1],
+    pre: tournamentBoxData.pre[0],
     places: 3,
-    // live_link: 'https://www.twitch.tv/videos/1726788358',
-    status: 'Online',
+    status: "Online",
     list_items: getRandomPlayers(3).map((player, index) => ({
       id: index + 1,
       img: player.img,
@@ -66,14 +71,14 @@ const tournament_data: ITournament[] = [
   {
     id: 3,
     thumb: slot3.img,
-    team_name: slot3, // Слот 3 для третьего турнира
+    team_name: slot3,
     box_price: 25000,
     prize: getRandomPrize(),
-    subtitle: 'SLOTS',
-    title: 'of month',
+    subtitle: tournamentBoxData.sub[2],
+    title: tournamentBoxData.title[2],
+    pre: tournamentBoxData.pre[0],
     places: 3,
-    // live_link: 'https://www.twitch.tv/videos/1726788358',
-    status: 'Online',
+    status: "Online",
     list_items: getRandomPlayers(3).map((player, index) => ({
       id: index + 1,
       img: player.img,
@@ -83,4 +88,6 @@ const tournament_data: ITournament[] = [
   },
 ];
 
-export default tournament_data;
+export default getTournamentData;
+
+

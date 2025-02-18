@@ -1,3 +1,4 @@
+//src/app/components/leon/tournaments/tournament-list-item.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -13,6 +14,7 @@ type IProp = {
   buttonText: string;
   currencySymbol: string; // Символ валюты
   exchangeRate: number; // Курс валюты
+  tournamentBoxData: { sub: string[]; title: string[], pre: string[] };
 };
 
 const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbol, exchangeRate }: IProp) => {

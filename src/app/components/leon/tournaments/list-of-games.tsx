@@ -1,7 +1,6 @@
+// src/app/components/leon/tournaments/list-of-games.tsx
 import React from "react";
-import Link from "next/link";
-import bg from "@/assets/img/bg/tournament_bg.jpg";
-import tournament_data from "@/data/tournament-data";
+import getTournamentData from "@/data/tournament-data";
 import TournamentListItem from "./tournament-list-item";
 
 interface TournamentListAreaProps {
@@ -11,9 +10,14 @@ interface TournamentListAreaProps {
   title: string;
   currencySymbol: string; // Символ валюты
   exchangeRate: number; // Курс валюты
+  tournamentBoxData: { sub: string[]; title: string[], pre: string[] };
 }
 
-const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, buttonText, pretitle, title, currencySymbol, exchangeRate }) => {
+const TournamentListArea: React.FC<TournamentListAreaProps> = ({ 
+  targetLink, buttonText, pretitle, title, currencySymbol, exchangeRate, tournamentBoxData
+}) => {
+  const tournament_data = getTournamentData(tournamentBoxData);
+
   return (
     <section
       className="tournament__list-area section-pb-120 section-pt-120"
@@ -48,6 +52,7 @@ const TournamentListArea: React.FC<TournamentListAreaProps> = ({ targetLink, but
                     buttonText={buttonText} 
                     currencySymbol={currencySymbol}
                     exchangeRate={exchangeRate}
+                    tournamentBoxData={tournamentBoxData}
                   />
                 ))}
               </div>

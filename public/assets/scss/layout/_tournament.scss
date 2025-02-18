@@ -28,6 +28,7 @@
     &__box {
         &-wrap {
             padding: 25px 30px 50px;
+            // min-height: 480px;
             position: relative;
             overflow: hidden;
             @include border-radius(0 0 17px 17px);
@@ -151,7 +152,7 @@
             margin: 0 0 28px;
             & .sub {
                 display: block;
-                font-size: 16px;
+                font-size: 20px;
                 line-height: 1;
                 font-family: var(--tg-heading-font-family);
                 color: var(--tg-common-color-white);
@@ -160,7 +161,7 @@
                 margin: 0 0 5px;
             }
             & .title {
-                font-size: 30px;
+                font-size: 20px;
                 font-weight: var(--tg-fw-extra-bold);
                 margin: 0 0;
                 color: var(--tg-theme-primary);
@@ -210,7 +211,7 @@
         &-thumb {
             flex: 0 0 auto;
             width: 40px;
-            margin-right: 20px;
+            margin-right: 10px;
             & img {
                 @include border-radius(6px);
             }

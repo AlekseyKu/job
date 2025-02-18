@@ -4,7 +4,6 @@ import Image from "next/image";
 import { ITournament } from "@/types/tournament-type";
 // import CountdownTimer from "../../timer/countdown-timer"
 import TournamentBoxBgPatch from "../../svg/t-box-bg";
-import combinedData from "@/data/combined-data";
 
 
 // const getNextUpdateDate = (interval: 'daily' | 'weekly' | 'monthly'): Date => {
@@ -19,12 +18,10 @@ const TournamentBox = ({
   item, 
   currencySymbol, 
   exchangeRate,
-  localeLang,
 }: { 
   item: ITournament, 
   currencySymbol: string, 
   exchangeRate: number,
-  localeLang: string
 }) => {
   return (
     <div className={`tournament__box-wrap ${item.active ? "active" : ""}`}>
@@ -44,7 +41,7 @@ const TournamentBox = ({
       </div>
       <div className="tournament__box-prize">
         <i className="fas fa-trophy"></i>
-        <span>{item.places} prize Places</span>
+        <span>{item.pre}</span>
       </div>
       <ul className="tournament__box-list list-wrap">
         {item.list_items.map((l) => (
@@ -59,7 +56,7 @@ const TournamentBox = ({
               </div>
               <h6 className="tournament__player-name">{l.name}</h6>
               <span className="tournament__player-price">
-                {currencySymbol} {(l.price * exchangeRate).toFixed(0)} <i className="fas fa-bolt"></i>
+                {currencySymbol} {(l.price * exchangeRate).toFixed(0)}<i className="fas fa-bolt"></i>
               </span>
             </div>
           </li>

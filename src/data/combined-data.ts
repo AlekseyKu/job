@@ -366,6 +366,18 @@ export const combinedData = {
         ro: ["din săptămână", "Jucători norocoși", "din lună"],
         pt: ["da semana", "Jogadores sortudos", "do mês"],
       },
+      pre: {
+        en: ["3 prize Places"],
+        pl: ["3 miejsca nagród"],
+        es: ["3 lugares de premio"],
+        fr: ["3 places de prix"],
+        de: ["3 Preisplätze"],
+        nl: ["3 prijsplaatsen"],
+        el: ["3 θέσεις βραβείων"],
+        it: ["3 posti premio"],
+        ro: ["3 locuri premiate"],
+        pt: ["3 lugares de prêmio"],
+      },
     },
   },
 };

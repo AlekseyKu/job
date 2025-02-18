@@ -48,6 +48,7 @@ const PageSectionsRenderer = ({
                 title={siteData.attributes.listOfGames.title}
                 currencySymbol={currencySymbol}
                 exchangeRate={exchangeRate}
+                tournamentBoxData={siteData.attributes.tournament_box}
               />
             );
           case 'OUR GAMES':
@@ -174,6 +175,7 @@ export default async function Home() {
           title={siteData.attributes.mostLuckyPlayers.title}
           currencySymbol={currencySymbol}
           exchangeRate={exchangeRate}
+          tournamentBoxData={siteData.attributes.tournament_box}
         />
       )}
 

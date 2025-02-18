@@ -8,6 +8,7 @@ export interface ITournament {
   // coming_time: string;
   title: string;
   subtitle: string;
+  pre: string;
   places: number;
   team_name: {
     id: number;
