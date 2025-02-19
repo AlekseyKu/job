@@ -1,11 +1,18 @@
+// src/i18n/settings.ts
 import { InitOptions } from 'i18next';
+import type { Locale } from '@/types/locales';
 
-export const fallbackLng = 'en';
-export const languages = ['en', 'es', 'fr', 'de', 'pl', 'nl'];
+// Импортируем все возможные локали
+import { locales } from '@/types/locales';
+
+export const fallbackLng: Locale = 'en';
+
+// Получаем список локалей динамически
+export const languages: Locale[] = Object.keys(locales) as Locale[];
 
 export const defaultNS = 'common';
 
-export function getOptions(lng = fallbackLng): InitOptions {
+export function getOptions(lng: Locale = fallbackLng): InitOptions {
   return {
     supportedLngs: languages,
     fallbackLng,

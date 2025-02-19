@@ -2,6 +2,8 @@
 const nextConfig = {
   productionBrowserSourceMaps: false,
   images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // Кешируем изображения на месяц
     remotePatterns: [
       {
         protocol: 'https', // или 'http' в зависимости от сервера

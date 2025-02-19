@@ -1,10 +1,10 @@
-//src/app/components/leon/tournaments/tournament-list-item.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ITournament } from "@/types/tournament-type";
 import TournamentBgPath from "../../svg/t-list-bg";
+import { motion } from "framer-motion"; // 🚀 Добавляем анимацию
 
 // prop type
 type IProp = {
@@ -12,9 +12,19 @@ type IProp = {
   index: number;
   targetLink: string;
   buttonText: string;
-  currencySymbol: string; // Символ валюты
-  exchangeRate: number; // Курс валюты
+  currencySymbol: string;
+  exchangeRate: number;
   tournamentBoxData: { sub: string[]; title: string[], pre: string[] };
+};
+
+// 🔥 WOW.js fadeInUp-анимация на framer-motion
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay, ease: "easeOut" }
+  })
 };
 
 const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbol, exchangeRate }: IProp) => {
@@ -23,10 +33,10 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
   // Определяем, мобильная версия или нет
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Если ширина окна ≤ 768px, переключаемся на мобильную версию
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    handleResize(); // Инициализируем проверку
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -38,9 +48,13 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
   const convertedPrize = (item.prize * exchangeRate).toFixed(0);
 
   return (
-    <div
-      className="tournament__list-item wow fadeInUp"
-      data-wow-delay={`.${index + 2}s`}
+    <motion.div
+      className="tournament__list-item"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeInUp}
+      custom={index * 0.2} // Увеличиваем задержку по индексу элемента
     >
       <TournamentBgPath />
       <div className="tournament__list-content">
@@ -57,7 +71,6 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
         </div>
 
         <div className="tournament__list-name-prize">
-
           {/* Блок с текстом */}
           <div className="tournament__list-name">
             <h5 className="team-name">{item.team_name.name}</h5>
@@ -70,7 +83,6 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
             <i className="fas fa-trophy"></i>
             <span>{currencySymbol} {convertedPrize}</span>
           </div>
-
         </div>
 
         {/* Кнопка */}
@@ -80,7 +92,7 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

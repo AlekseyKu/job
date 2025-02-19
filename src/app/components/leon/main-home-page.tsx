@@ -1,88 +1,136 @@
-// src\app\components\leon\main-home-page.tsx
-'use client';
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { MouseParallaxContainer, MouseParallaxChild } from 'react-parallax-mouse';
+"use client";
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { MouseParallaxContainer, MouseParallaxChild } from "react-parallax-mouse";
+import { motion } from "framer-motion";
 
-// Статические изображения
-// import slider_bg from '@/assets/img/slider/slider_bg.jpg';
-import shape_1 from '@/assets/img/slider/slider_shape01.png';
-import shape_2 from '@/assets/img/slider/slider_shape02.png';
-import shape_3 from '@/assets/img/slider/slider_shape03.png';
-import shape_4 from '@/assets/img/slider/slider_shape04.png';
+// Импорт изображений
+import shape_1 from "@/assets/img/slider/slider_shape01.png";
+import shape_2 from "@/assets/img/slider/slider_shape02.png";
+import shape_3 from "@/assets/img/slider/slider_shape03.png";
+import shape_4 from "@/assets/img/slider/slider_shape04.png";
 
-interface HomePageProps { 
+interface HomePageProps {
   pretitle: string;
   title: string;
   subtitle: string;
   buttonText: string;
   targetLink: string;
   colorTitleMain: string;
-  pageImg:  { url: string; width: number; height: number };
-  pageBg:  { url: string; width: number; height: number };
+  pageImg: { url: string; width: number; height: number };
+  pageBg: { url: string; width: number; height: number };
 }
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
 
-const MainHomePage: React.FC<HomePageProps> = ({ pretitle, title, subtitle, buttonText, targetLink, colorTitleMain, pageImg, pageBg }) => {
-  // const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+// ✅ framer-motion настройки
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay, ease: "easeOut" }
+  })
+};
 
-  const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : '/default-pageImg.png'; // Проверяем наличие URL
-  const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : '/default-pageBG.jpg'; // Проверяем наличие URL
+const MainHomePage: React.FC<HomePageProps> = ({
+  pretitle,
+  title,
+  subtitle,
+  buttonText,
+  targetLink,
+  colorTitleMain,
+  pageImg,
+  pageBg
+}) => {
+  // ✅ Оптимизация загрузки изображений
+  const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : "/default-pageImg.png";
+  const pageBgUrl = pageBg?.url ? `${httpAddress}${pageBg.url}` : "/default-pageBG.jpg";
   const imgWidth = pageImg?.width || 407;
   const imgHeight = pageImg?.height || 344;
 
   return (
     <MouseParallaxContainer className="parallax-container">
-      <section className="slider__area slider__bg ">
-        {/* Оптимизированное фоновое изображение */}
+      <section className="slider__area slider__bg">
+        
         <div className="slider__background">
-          <Image 
-            src={pageBgUrl} 
-            alt="Background Image" 
-            fill // Используем fill для фонового изображения
-            style={{ objectFit: "cover", zIndex: -1 }} // Масштабируем и помещаем изображение на задний план
-            priority
+          <Image
+            src={pageBgUrl}
+            alt="Background Image"
+            fill
+            style={{ objectFit: "cover", zIndex: -1 }}
+            quality={50}
           />
         </div>
+
         <div className="slider-activee">
           <div className="single-slider">
             <div className="container custom-container">
               <div className="row justify-content-between">
                 <div className="col-lg-6">
-                  <div className="slider__content">
-                    <h6 className="sub-title wow fadeInUp" data-wow-delay=".2s">{pretitle}</h6>
-                    <h2 className="title wow fadeInUp" data-wow-delay=".5s" style={{ color: colorTitleMain }}>{title}</h2>
-                    <p className="wow fadeInUp" data-wow-delay=".8s">{subtitle}</p>
-                    <div className="slider__btn wow fadeInUp" data-wow-delay="1.2s">
+                  <motion.div
+                    className="slider__content"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
+                  >
+                    {/* ✅ WOW.js эффект: fadeInUp */}
+                    <motion.h6 className="sub-title" variants={fadeInUp} custom={0.2}>
+                      {pretitle}
+                    </motion.h6>
+                    <motion.h2
+                      className="title"
+                      variants={fadeInUp}
+                      custom={0.5}
+                      style={{ color: colorTitleMain }}
+                    >
+                      {title}
+                    </motion.h2>
+                    <motion.p variants={fadeInUp} custom={0.8}>
+                      {subtitle}
+                    </motion.p>
+
+                    {/* Кнопка с эффектом */}
+                    <motion.div className="slider__btn" variants={fadeInUp} custom={1.2}>
                       <Link href="/go" prefetch={false} className="custom-button-main-page">
                         <span>{buttonText}</span>
-                      </Link>                  
-                    </div>
-                  </div>
+                      </Link>
+                    </motion.div>
+                  </motion.div>
                 </div>
+
+                {/* Главное изображение (fadeIn + scale) */}
                 <div className="col-xxl-6 col-xl-5 col-lg-6">
                   <MouseParallaxChild factorX={0.03} factorY={0.03} className="slider__img text-center">
-                    {/* Передаем размеры изображения и проверенный URL */}
-                    <Image 
-                      src={pageImgUrl} 
-                      alt="Main Image" 
-                      width={imgWidth} // Указываем ширину, полученную из Strapi
-                      height={imgHeight}  // Указываем высоту, полученную из Strapi
-                      priority
-                    />
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, ease: "easeOut"}}
+                    >
+                      <Image
+                        src={pageImgUrl}
+                        alt="Main Image"
+                        width={imgWidth}
+                        height={imgHeight}
+                        // priority
+                      />
+                    </motion.div>
                   </MouseParallaxChild>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Декоративные элементы (✅ Теперь загружаются `lazy`) */}
         <div className="slider__shapes">
-          <Image src={shape_1} alt="shape" />
-          <Image src={shape_2} alt="shape" />
-          <Image src={shape_3} alt="shape" />
-          <Image src={shape_4} alt="shape" />
+          <Image src={shape_1} alt="shape" loading="lazy" />
+          <Image src={shape_2} alt="shape" loading="lazy" />
+          <Image src={shape_3} alt="shape" loading="lazy" />
+          <Image src={shape_4} alt="shape" loading="lazy" />
         </div>
       </section>
     </MouseParallaxContainer>

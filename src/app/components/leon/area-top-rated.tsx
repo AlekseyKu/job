@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import TextAnimation from "../common/text-animation";
-import CustomButton from '../common/custom-button';
+import CustomButton from "../common/custom-button";
 
 interface TopRatedProps {
   targetLink: string;
@@ -14,52 +14,48 @@ interface TopRatedProps {
   title: string;
 }
 
-// Динамически импортируем все изображения из папки
-const importImages = () => {
-  const context = require.context('@/assets/img/games', false, /\.(webp|jpg|jpeg|png)$/);
-  return context.keys().map(context);
+// Функция для динамического импорта изображений
+const importImages = (): string[] => {
+  const context = require.context("@/assets/img/games", false, /\.(webp|jpg|jpeg|png)$/);
+  return context.keys().map((key) => context(key).default);
 };
 
-// Получаем случайные изображения
-const getRandomImages = (images: any[], count: number) => {
-  const shuffled = images.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+// Получение случайного набора изображений
+const getRandomImages = (images: string[], count: number): string[] => {
+  return images.sort(() => 0.5 - Math.random()).slice(0, count);
 };
 
-// Настройки слайдера
-const sliderSetting = {
+// Настройки Swiper
+const sliderSettings = {
   observer: true,
   observeParents: true,
   loop: false,
   slidesPerView: 5,
   spaceBetween: 20,
   breakpoints: {
-    '1500': { slidesPerView: 5 },
-    '1200': { slidesPerView: 4 },
-    '992': { slidesPerView: 4 },
-    '768': { slidesPerView: 3 },
-    '576': { slidesPerView: 2 },
-    '0': { slidesPerView: 1.5, centeredSlides: true, centeredSlidesBounds: true },
+    1500: { slidesPerView: 5 },
+    1200: { slidesPerView: 4 },
+    992: { slidesPerView: 4 },
+    768: { slidesPerView: 3 },
+    576: { slidesPerView: 2 },
+    0: { slidesPerView: 1.5, centeredSlides: true, centeredSlidesBounds: true },
   },
 };
 
 const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText, pretitle, title }) => {
-  const [randomImages, setRandomImages] = useState<any[]>([]);
+  const [randomImages, setRandomImages] = useState<string[]>([]);
 
   useEffect(() => {
-    // Проверка кэша в localStorage
-    const cachedImages = localStorage.getItem("randomStreamersImages");
-    if (cachedImages) {
-      // Если кэш существует, используем его
-      setRandomImages(JSON.parse(cachedImages));
-    } else {
-      // Если кэша нет, выбираем новые случайные изображения
-      const images = importImages();
-      const selectedImages = getRandomImages(images, 5);
-      setRandomImages(selectedImages);
-
-      // Сохраняем выбранные изображения в кэш
-      localStorage.setItem("randomStreamersImages", JSON.stringify(selectedImages));
+    if (typeof window !== "undefined") {
+      const cachedImages = localStorage.getItem("randomStreamersImages");
+      if (cachedImages) {
+        setRandomImages(JSON.parse(cachedImages));
+      } else {
+        const images = importImages();
+        const selectedImages = getRandomImages(images, 5);
+        setRandomImages(selectedImages);
+        localStorage.setItem("randomStreamersImages", JSON.stringify(selectedImages));
+      }
     }
   }, []);
 
@@ -74,18 +70,13 @@ const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText, pretit
             </div>
           </div>
         </div>
-        <Swiper {...sliderSetting} modules={[Navigation, Pagination]} className="swiper-container streamers-active">
+        <Swiper {...sliderSettings} modules={[Navigation, Pagination]} className="swiper-container streamers-active">
           {randomImages.map((imgSrc, index) => (
             <SwiperSlide key={index}>
               <div className="streamers__item">
                 <div className="streamers__thumb">
                   <Link href="/go" prefetch={false}>
-                    <Image 
-                      src={imgSrc.default} 
-                      alt={`Slot ${index + 1}`} 
-                      style={{ height: "auto", width: "100%" }} 
-                      loading="lazy"
-                    />
+                    <Image src={imgSrc} alt={`Slot ${index + 1}`} width={200} height={200} loading="lazy" />
                   </Link>
                 </div>
               </div>
@@ -93,9 +84,9 @@ const StreamersArea: React.FC<TopRatedProps> = ({ targetLink, buttonText, pretit
           ))}
         </Swiper>
         <div className="row justify-content-center mt-4">
-            <div className="col-md-4">
-                <CustomButton href="/go">{buttonText}</CustomButton>
-            </div>
+          <div className="col-md-4">
+            <CustomButton href={targetLink}>{buttonText}</CustomButton>
+          </div>
         </div>
       </div>
     </section>

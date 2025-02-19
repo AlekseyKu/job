@@ -363,25 +363,31 @@
     }
 }
 
-// .hidden {
-//     opacity: 0;
-//     transform: translateY(10px);
-//     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-//   }
+/* =============================
+   05. Animations
+   ============================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInUp {
+    animation: fadeInUp 1s ease-out;
+}
+
+
+/* ✅ Контент загружается сразу, но плавно появляется */
+.slider__content {
+    opacity: 1;
+  }
   
-// .visible {
-//     opacity: 1;
-//     transform: translateY(0);
-// }
-  
-// /* Главная картинка */
-// .img-hidden {
-//     opacity: 0;
-//     transform: scale(0.95);
-//     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-//   }
-  
-// .img-visible {
-//     opacity: 1;
-//     transform: scale(1);
-// }
+/* ✅ WOW.js больше не нужен, анимация через framer-motion */
+.slider__area {
+    min-height: 100vh;
+}

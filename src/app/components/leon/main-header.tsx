@@ -1,3 +1,4 @@
+// src\app\components\leon\main-header.tsx
 'use client'
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -6,6 +7,8 @@ import Link from "next/link";
 // import logo from '@/assets/img/logo/logo.svg';
 import useSticky from "@/hooks/use-sticky";
 import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from "framer-motion"; // ✅ Добавляем Framer Motion
+
 // import SearchPopup from "@/app/components/common/search-popup";
 // import OffCanvas from "@/app/components/common/off-canvas";
 // import MobileOffCanvas from "@/app/components/common/mobile-offcanvas";
@@ -24,39 +27,44 @@ interface HeaderProps {
   // borderColor?: string;
 }
 
+const headerVariants = {
+  hidden: { opacity: 0 }, // ✅ Начинаем с полной прозрачности
+  visible: { 
+    opacity: 1, 
+    transition: { duration: 0.6, delay: 1.5, ease: "easeOut" } // ✅ Добавлена задержка в 2 секунды
+  } 
+};
+
 const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText, sizeLogo }) => {
   const { sticky, isStickyVisible } = useSticky();
   const pathname = usePathname();
-  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [isOffCanvasOpen, setIsOffCanvasOpen] = useState<boolean>(false);
-  const [openMobileOffCanvas, setOpenMobileOffCanvas] = useState<boolean>(false);
-  const imgUrl = logo?.url ? `${httpAddress}${logo.url}` : '/default-logo.png'; // Проверяем наличие URL
+  const imgUrl = logo?.url ? `${httpAddress}${logo.url}` : '/default-logo.png';
 
-
-   // размер логотипа на основе пропса sizeLogo
-   const getSize = (size: string) => {
+  // Определяем размер логотипа
+  const getSize = (size: string) => {
     switch (size) {
-      case "small - 200px":
-        return { width: 200 };
-      case "medium - 250px":
-        return { width: 250 };
-      case "big - 300px":
-        return { width: 300 };
-      default:
-        return { width: 200 };
+      case "small - 200px": return { width: 200 };
+      case "medium - 250px": return { width: 250 };
+      case "big - 300px": return { width: 300 };
+      default: return { width: 200 };
     }
   };
-
   const { width } = getSize(sizeLogo);
 
   return (
-    <header>
-      <div id="sticky-header" className={`tg-header__area transparent-header ${sticky?'tg-sticky-menu':''} ${isStickyVisible?'sticky-menu__show':''}`}>
+    <motion.header
+      variants={headerVariants}
+      initial="hidden"
+      animate="visible"
+      className="tg-header__area transparent-header"
+    >
+      <div id="sticky-header" className={`tg-header__area ${sticky ? 'tg-sticky-menu' : ''} ${isStickyVisible ? 'sticky-menu__show' : ''}`}>
         <div className="container custom-container">
           <div className="row">
             <div className="col-12">
               <div className="tgmenu__wrap">
                 <nav className="tgmenu__nav">
+                  {/* Логотип */}
                   <div className="logo">
                     <Link href="/">
                       <Image 
@@ -68,13 +76,15 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText, sizeLogo 
                       />
                     </Link>
                   </div>
-                  <div className="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
-                  </div>
+
+                  {/* Меню (пока скрыто) */}
+                  <div className="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex"></div>
+
+                  {/* Кнопка в хедере */}
                   <div className="tgmenu__action d-none d-md-block">
                     <ul className="list-wrap">
                       <li className="header-btn">
                         <Link href="/go" className="custom-button-header" prefetch={false}>
-                          {/* <i className="flaticon-login"></i> {buttonText} */}
                           <i className="flaticon-login"></i> {buttonText}
                         </Link>
                       </li>
@@ -86,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText, sizeLogo 
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

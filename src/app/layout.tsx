@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const faviconUrl = siteData?.favicon?.url
     ? `${httpAddress}${siteData.favicon.url}`
-    : "/favicon.png";
+    : "/favicon.ico";
 
   return {
     title: siteData?.siteTitle || "Default Title",
