@@ -57,10 +57,11 @@ const MainHomePage: React.FC<HomePageProps> = ({
         <div className="slider__background">
           <Image
             src={pageBgUrl}
-            alt="Background Image"
-            fill
+            alt="Background Image"        
             style={{ objectFit: "cover", zIndex: -1 }}
+            fill
             quality={50}
+            priority
           />
         </div>
 
@@ -76,7 +77,7 @@ const MainHomePage: React.FC<HomePageProps> = ({
                     viewport={{ once: true }}
                     variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
                   >
-                    {/* ✅ WOW.js эффект: fadeInUp */}
+                  
                     <motion.h6 className="sub-title" variants={fadeInUp} custom={0.2}>
                       {pretitle}
                     </motion.h6>
@@ -115,7 +116,7 @@ const MainHomePage: React.FC<HomePageProps> = ({
                         alt="Main Image"
                         width={imgWidth}
                         height={imgHeight}
-                        // priority
+                        priority
                       />
                     </motion.div>
                   </MouseParallaxChild>
@@ -125,12 +126,12 @@ const MainHomePage: React.FC<HomePageProps> = ({
           </div>
         </div>
 
-        {/* Декоративные элементы (✅ Теперь загружаются `lazy`) */}
+        {/* Декоративные элементы */}
         <div className="slider__shapes">
-          <Image src={shape_1} alt="shape" loading="lazy" />
-          <Image src={shape_2} alt="shape" loading="lazy" />
-          <Image src={shape_3} alt="shape" loading="lazy" />
-          <Image src={shape_4} alt="shape" loading="lazy" />
+          <Image src={shape_1} alt="shape" quality={50} priority />
+          <Image src={shape_2} alt="shape" quality={50} priority />
+          <Image src={shape_3} alt="shape" quality={50} priority />
+          <Image src={shape_4} alt="shape" quality={50} priority />
         </div>
       </section>
     </MouseParallaxContainer>
