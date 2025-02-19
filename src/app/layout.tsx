@@ -96,8 +96,8 @@ export default async function RootLayout({
     <html lang={localeLang} dir={dir(localeLang)}>
       <head>
         {/* ✅ Динамические стили темы */}
-        <link rel="preload" href="/fonts/berlin_sans_fb_demi_bold-webfont.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/berlin_sans_fb_demi_bold-webfont.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff" as="font" type="font/woff" crossOrigin="anonymous" />
 
 
         <style>{`
