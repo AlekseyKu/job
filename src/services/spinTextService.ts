@@ -18,13 +18,13 @@ export function getSpinText(key: string, localeLang: string): string {
   const locale = extractLocale(localeLang) as Locale;
   const cacheKey = `${key}_${locale}`;
 
-  // Проверяем наличие в кэше
-  if (cache[cacheKey]) {
-    return cache[cacheKey];
+  // ✅ Если в кэше есть значение, возвращаем его (гарантируем, что это `string`)
+  if (cacheKey in cache) {
+    return cache[cacheKey] ?? ""; // ✅ Если `undefined`, возвращаем ""
   }
 
   // Получаем данные из combinedData.spin, включая вложенные ключи
-  const options = resolveSpinDataKey(key)?.[locale] || resolveSpinDataKey(key)?.en;
+  const options = resolveSpinDataKey(key)?.[locale] ?? resolveSpinDataKey(key)?.en;
 
   if (!options || !Array.isArray(options)) {
     throw new Error(`Данные для ключа "${key}" или локали "${locale}" не найдены`);
@@ -33,10 +33,10 @@ export function getSpinText(key: string, localeLang: string): string {
   // Выбираем случайное значение
   const selectedText = options[Math.floor(Math.random() * options.length)];
 
-  // Сохраняем в кэш
-  cache[cacheKey] = selectedText;
+  // Сохраняем в кэш (гарантируем, что всегда `string`)
+  cache[cacheKey] = selectedText ?? "";
 
-  return selectedText;
+  return selectedText ?? "";
 }
 
 /**

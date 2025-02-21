@@ -1,4 +1,4 @@
-import fetchSiteData from "@/utils/fetchSiteData";
+import { fetchSiteData } from "@/utils/fetchSiteData";
 
 export default async function handler(req, res) {
   const host = req.headers.host; // Получаем текущий хост

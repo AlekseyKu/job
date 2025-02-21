@@ -1,3 +1,4 @@
+// src/app/components/leon/nft-item/top-promotions.tsx
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -82,7 +83,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({
             .filter((i) => i.trending)
             .map((item, index) => {
               const promoImage = Array.isArray(promoImages) ? promoImages[index] : null;
-              const locale = localeLang.split("-")[0]; // Берем первую часть "en-US" → "en"
+              const locale = localeLang.split("-")[0] ?? "en"; // Берем первую часть "en-US" → "en"
 
               return (
                 <SwiperSlide key={item.id}>
@@ -95,7 +96,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({
                           </Link>
                         </div>
                         <div className="info">
-                          <h6 className="name">{item.title[locale] || item.title["en"]}</h6>
+                          <h6 className="name">{item.title?.[locale] ?? item.title?.["en"] ?? "Untitled"}</h6>
                           <Link href="/go" prefetch={false} className="userName">
                             @{item.creator_name}
                           </Link>
@@ -129,7 +130,7 @@ const TrendingNftItems: React.FC<TrendingNftItemsProps> = ({
                           />
                         )}
                         <h6 className="trendingNft__item-subtitle">
-                          {item.subtitle[locale] || item.title["en"]}
+                        {item.subtitle?.[locale] ?? item.title?.["en"] ?? "Untitled"}
                         </h6>
                       </Link>
                     </div>
