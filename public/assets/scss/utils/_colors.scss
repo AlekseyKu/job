@@ -24,6 +24,8 @@ $colors: (
         color-black-9: #111922,
         color-bg-primary: #45f882,
         color-bg-secondary: #0b0e13,
+        color-text: #fff,
+
     ),
     body: (
         color: #adb0bc,
@@ -34,6 +36,7 @@ $colors: (
     theme: (
         primary: #45f882,
         secondary: #ffbe18,
+        // text-color: #fff,
     ),
     border: (
         1: #19222b,

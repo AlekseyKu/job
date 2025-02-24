@@ -53,7 +53,9 @@
 
   async function fetchSiteData(host: string): Promise<FetchedSiteData | null> {
     try {
-      const response = await axios.get('https://cmsbase24.top/api/all-sites?populate=*');
+      const response = await axios.get('https://cmsbase24.top/api/all-sites?populate=*', {
+        maxRedirects:5,
+      });
       const allSites: SiteData[] = response.data?.data;
 
       if (!Array.isArray(allSites)) {
@@ -71,6 +73,9 @@
 
       const localeLang = siteData.localeLang || "en-US";
       const locale = extractLocale(localeLang);
+
+      console.log(cleanHost)
+      console.log(locale)
 
       // Группировка локализованных текстов в один объект
       const localizedTexts = {

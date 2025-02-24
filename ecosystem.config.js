@@ -374,5 +374,27 @@ module.exports = {
           ...require("dotenv").config({ path: ".env.3034" }).parsed,
         },
       },
+      {
+        name: "3035.artwalk.org.uk",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3035,
+          ...require("dotenv").config({ path: ".env.3035" }).parsed,
+        },
+      },
+      {
+        name: "3036.gisap.eu",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3036,
+          ...require("dotenv").config({ path: ".env.3036" }).parsed,
+        },
+      },
     ],
 };

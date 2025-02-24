@@ -87,17 +87,18 @@ export default async function RootLayout({
   const secondaryColor = siteData?.themeSecondaryColor || "#defaultSecondary";
   const PrimaryColorBG = siteData?.themeBGPrimaryColor;
   const SecondaryColorBG = siteData?.themeBGSecondaryColor;
+  const textColor = siteData?.colorTitleMain || "#ffffff";
 
   const idYandexMetrika = siteData?.idYandexMetrika || null;
 
-  // console.log(fullImgUrl)
+  console.log(textColor)
 
   return (
     <html lang={localeLang} dir={dir(localeLang)}>
       <head>
         {/* ✅ Динамические стили темы */}
-        <link rel="preload" href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        {/* <link rel="preload" href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /> */}
+        {/* <link rel="preload" href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff" as="font" type="font/woff" crossOrigin="anonymous" /> */}
 
 
         <style>{`
@@ -106,6 +107,7 @@ export default async function RootLayout({
             --tg-theme-secondary: ${secondaryColor};
             --tg-common-color-bg-primary: ${PrimaryColorBG};
             --tg-common-color-bg-secondary: ${SecondaryColorBG};
+            --tg-common-color-text: ${textColor};
           }
         `}</style>
 

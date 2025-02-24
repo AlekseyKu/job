@@ -1,3 +1,4 @@
+// src/app/components/leon/main-home-page.tsx
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -17,7 +18,7 @@ interface HomePageProps {
   subtitle: string;
   buttonText: string;
   targetLink: string;
-  colorTitleMain: string;
+  // colorTitleMain: string;
   pageImg: { url: string; width: number; height: number };
   pageBg: { url: string; width: number; height: number };
 }
@@ -40,7 +41,7 @@ const MainHomePage: React.FC<HomePageProps> = ({
   subtitle,
   buttonText,
   targetLink,
-  colorTitleMain,
+  // colorTitleMain,
   pageImg,
   pageBg
 }) => {
@@ -85,7 +86,7 @@ const MainHomePage: React.FC<HomePageProps> = ({
                       className="title"
                       variants={fadeInUp}
                       custom={0.5}
-                      style={{ color: colorTitleMain }}
+                      // style={{ color: colorTitleMain }}
                     >
                       {title}
                     </motion.h2>

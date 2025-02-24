@@ -85,6 +85,7 @@
                     font-weight: var(--tg-fw-bold);
                     text-transform: uppercase;
                     color: var(--tg-heading-color);
+                    color: var(--tg-common-color-text);
                     font-family: var(--tg-heading-font-family);
                     padding: 38px 23px;
                     display: block;
@@ -207,7 +208,8 @@
                     margin-left: 0;
                 }
                 & a {
-                    color: var(--tg-heading-color);
+                    // color: var(--tg-heading-color);
+                    color: var(--tg-common-color-text);
                 }
                 & .tg-btn-3 {
                     width: 150px;

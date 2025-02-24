@@ -195,6 +195,7 @@
             gap: 6px;
             margin: 0 0;
             font-size: 36px;
+            color: var(--tg-common-color-text);
             @media #{$xs} {
                 justify-content: center;
                 text-align: center

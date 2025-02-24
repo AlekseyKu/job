@@ -129,7 +129,8 @@
             font-weight: 700;
             letter-spacing: 5px;
             line-height: 1.4;
-            color: var(--tg-common-color-white);
+            // color: var(--tg-common-color-white);
+            color: var(--tg-common-color-text);
             @media #{$lg} {
                 font-size: 22px;
             }

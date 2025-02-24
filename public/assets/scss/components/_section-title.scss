@@ -23,6 +23,7 @@
         font-weight: var(--tg-fw-extra-bold);
         letter-spacing: 1px;
         margin: 0 0;
+        color: var(--tg-common-color-text);
         @media #{$xs} {
             font-size: 35px;
             line-height: 1.1;

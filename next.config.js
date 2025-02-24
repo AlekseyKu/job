@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // compress: false,
+  webpack: (config) => {
+    config.optimization.splitChunks = false; // Отключаем разбиение чанков
+    config.output.chunkFilename = 'static/chunks/[name].js'; // Заставляем Next.js отдавать обычные файлы
+    return config;
+  },
   productionBrowserSourceMaps: false,
   images: {
     formats: ["image/avif", "image/webp"],

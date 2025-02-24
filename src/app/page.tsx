@@ -148,7 +148,7 @@ export default async function Home() {
         targetLink={siteData.targetLinkButton}
         pageImg={siteData.home_page?.pageImg}
         pageBg={siteData.home_page?.pageBg}
-        colorTitleMain={siteData.colorTitleMain}
+        // colorTitleMain={siteData.colorTitleMain}
       />
 
       <PageSectionsRenderer 

@@ -50,6 +50,8 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText, sizeLogo 
     }
   };
   const { width } = getSize(sizeLogo);
+  const aspectRatio = 4.5;
+
 
   return (
     <motion.header
@@ -71,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ logo, targetLink, buttonText, sizeLogo 
                         src={imgUrl} 
                         alt="logo" 
                         width={width}
-                        height={logo?.height || 80}
+                        height={width / aspectRatio}
                         priority 
                       />
                     </Link>
