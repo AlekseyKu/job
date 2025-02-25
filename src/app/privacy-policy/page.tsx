@@ -1,15 +1,16 @@
+// src/app/privacy-policy/page.tsx
 import { fetchPrivacyPolicy } from "@/utils/fetchPrivacyPolicy";
 import { fetchSiteData } from "@/utils/fetchSiteData";
-import { Locale, locales } from "@/types/locales";
 import parse from "html-react-parser";
 import { headers } from "next/headers";
-import Header from "@/app/components/leon/main-header"
 import Footer from "@/app/components/leon/main-footer";
+import { Metadata } from "next";
 
-
-export function generateStaticParams() {
-  return Object.keys(locales).map((locale) => ({ locale }));
-}
+// ✅ Добавляем мета-теги noindex, nofollow
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  robots: "noindex, nofollow",
+};
 
 // ✅ Функция для рандомного email
 const generateRandomEmail = (siteName: string) => {
@@ -27,10 +28,15 @@ const replacePolicyVariables = (text: string, siteName: string, siteDomain: stri
     .replace(/\[\[VAR_POLICY_EMAIL\]\]/g, randomEmail);
 };
 
-export default async function PrivacyPolicy({ params }: { params: { locale: Locale } }) {
-  const policy = await fetchPrivacyPolicy(params.locale);
-  const host = headers().get("host");
-  const siteData = await fetchSiteData(host || "");
+export default async function PrivacyPolicy() {
+  const host = headers().get("host") || "";
+  const siteData = await fetchSiteData(host);
+
+  // ✅ Берём язык из API сайта (не из URL)
+  const locale = siteData?.localeLang?.split("-")[0] || "en";
+
+  // ✅ Загружаем политику для локали
+  const policy = await fetchPrivacyPolicy(locale);
 
   if (!policy || !siteData) {
     return <div>Ошибка: Политика конфиденциальности не найдена</div>;
@@ -51,6 +57,7 @@ export default async function PrivacyPolicy({ params }: { params: { locale: Loca
         socialTitle={siteData.attributes.footerSocialText ?? ""}
         targetLink={siteData.targetLinkButton}
         siteName={siteData.siteName}
+        policyTitle={policy?.title || "Privacy Policy"}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+// src\app\components\leon\main-footer.tsx
 'use client';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -17,43 +18,16 @@ interface FooterProps {
   socialTitle: string;
   targetLink: string;
   siteName: string;
-
+  policyTitle: string;
 }
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
-// const httpAddress = "http://62.84.182.126/"
 
-
-// async function getSeoMetaTagsData() {
-//   try {
-//     const res = await axios.get(`${httpAddress}/api/all-sites?populate=*`);
-//     const SeoMetaTagData = res.data.data[0];
-//     return {
-//       brandName: SeoMetaTagData?.brandName || 'Default Title',
-//       description: SeoMetaTagData?.description || 'Default description',
-//     };
-//   } catch (error) {
-//     console.error("Ошибка при получении данных для SeoMetaTags из Strapi:", error);
-//     return {
-//       brandName: 'Fallback Title',
-//       description: 'Fallback description',
-//     };
-//   }
-// }
-
-const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName, socialTitle }) => {
+const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName, socialTitle, policyTitle }) => {
   const [seoData, setSeoData] = useState<{ brandName: string; description: string }>({
     brandName: 'Default Brand',
     description: footerText,
   });
-
-  // useEffect(() => {
-  //   const fetchSeoData = async () => {
-  //     const data = await getSeoMetaTagsData();
-  //     setSeoData(data);
-  //   };
-  //   fetchSeoData();
-  // }, []);
 
   const imgUrl = logo?.url ? `${httpAddress}${logo.url}` : '/default-logo.png';
 
@@ -62,13 +36,12 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
       <div className="footer__top-wrap">
         <div className="container">
           <div className="row">
+
             <div className="col-xl-4 col-lg-6 col-md-12">
               <div className="footer-widget">
-                
                 <div className="footer-text">
                   <p className="social-title">
-                    {socialTitle}
-                    <span> <i className="fas fa-angle-double-right"></i></span>
+                    {socialTitle}            
                   </p>
                   <div className="footer-social">
                     <Link href="/go" prefetch={false}><Image src={icon_1} alt="icon" width={30} height={30} /></Link>
@@ -76,10 +49,15 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
                     <Link href="/go" prefetch={false}><Image src={icon_3} alt="icon" width={30} height={30} /></Link>
                     <Link href="/go" prefetch={false}><Image src={icon_4} alt="icon" width={30} height={30} /></Link>
                   </div>
+                  <p className="social-title privacy-title">
+                    <Link href="/privacy-policy" prefetch={false}>
+                      {policyTitle}
+                    </Link>
+                    <span> <i className="fas fa-angle-double-right"></i></span>
+                  </p>
                 </div>
               </div>
             </div>
-
 
             <div className="col-xl-4 col-lg-6 col-md-12">
               <div className="footer-widget">
@@ -97,7 +75,6 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
               </div>
             </div>         
 
-
             <div className="col-xl-4 col-lg-12 col-md-12" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
               <div className="footer-widget" style={{ textAlign: 'right' }}>
                 <div className="footer-text" style={{ margin: 0 }}>
@@ -105,8 +82,6 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
                 </div>
               </div>
             </div>
-
-
 
           </div>
         </div>

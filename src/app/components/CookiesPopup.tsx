@@ -57,7 +57,7 @@ const CookiesPopup = () => {
   };
 
   const goToPrivacyPolicy = () => {
-    router.push(`/${locale}/privacy-policy`);
+    router.push(`/privacy-policy`);
   };
 
   if (!showPopup || !popupText) return null;

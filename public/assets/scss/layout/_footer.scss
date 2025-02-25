@@ -113,11 +113,16 @@
                 color: var(--tg-theme-primary);
             }
         }
+
+        & .privacy-title {
+            color: "var(--tg-theme-primary)";
+        }
     }
     &-social {
         @include flexbox();
         flex-wrap: wrap;
         gap: 10px 20px;
+        margin-bottom: 40px;
         & a {
             display: block;
         }

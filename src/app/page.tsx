@@ -13,7 +13,7 @@ import EditorInfo from "./components/leon/editors/editor-info";
 // import SeoMeta from "@/utils/seoMeta";
 import { headers } from 'next/headers';
 import FetchSiteData from "@/utils/fetchSiteData";
-// import { getCurrencySymbol } from "@/services/currencyService";
+import { fetchPrivacyPolicy } from "@/utils/fetchPrivacyPolicy";
 import { currencyData } from "@/data/currency-data";
 
 interface PageSection {
@@ -106,6 +106,8 @@ export default async function Home() {
     return <div>Error: Site data not available</div>;
   }
 
+  
+
   // const locale = siteData.localeLang ? siteData.localeLang.split("-")[0] : "en"; 
   // const currencyInfo = currencyData[locale as keyof typeof currencyData] || currencyData["en"];
   // const currencySymbol = currencyInfo.currencySymbol;
@@ -114,6 +116,9 @@ export default async function Home() {
   // Обработчик курса и символа валюты
   const locale = siteData.localeLang?.split("-")[0] || "en";
   const { currencySymbol, exchangeRate } = currencyData[locale as keyof typeof currencyData] ?? currencyData.en;
+
+  const policy = await fetchPrivacyPolicy(siteData.locale || "en");
+
 
 
   // if (typeof window === "undefined") {
@@ -193,6 +198,7 @@ export default async function Home() {
         socialTitle={siteData.attributes.footerSocialText ?? ""}
         targetLink={siteData.targetLinkButton}
         siteName={siteData.siteName}
+        policyTitle={policy?.title || "Privacy Policy"}
       />
     </Wrapper>
   );
