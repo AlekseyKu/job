@@ -396,5 +396,16 @@ module.exports = {
           ...require("dotenv").config({ path: ".env.3036" }).parsed,
         },
       },
+      {
+        name: "3037.plinko-argent-reel.fr",
+        script: "npm",
+        args: "run start",
+        cwd: "/cms/onesite_app",
+        env: {
+          NODE_ENV: "production",
+          PORT: 3037,
+          ...require("dotenv").config({ path: ".env.3037" }).parsed,
+        },
+      },
     ],
 };
