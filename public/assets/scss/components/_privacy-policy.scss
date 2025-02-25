@@ -1,0 +1,64 @@
+.privacy-policy-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    color: var(--tg-body-color) !important;
+
+    table {
+      border: 1px solid white !important;
+      width: 100%;
+  
+      th, td {
+          border: 1px solid white !important;
+          padding: 5px;
+          text-align: left;
+          color: white;
+      }
+  }
+  
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .privacy-policy-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: left;
+      
+      
+      // ✅ Принудительно делаем весь текст светлым, даже если CKEditor добавил свои стили
+      * {
+        color: var(--tg-body-color) !important;
+      }
+  
+      p, span, li, ul, ol, div {
+        color: var(--tg-body-color) !important;
+        background-color: transparent !important;
+      }
+  
+      a {
+        color: #f4b400 !important; // ✅ Цвет для ссылок (контрастный)
+        text-decoration: underline;
+        
+        &:hover {
+          color: #ffcc00 !important;
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      padding: 20px 10px;
+  
+      h1 {
+        font-size: 1.8rem;
+      }
+  
+      .privacy-policy-content {
+        font-size: 0.95rem;
+      }
+    }
+  }
+  

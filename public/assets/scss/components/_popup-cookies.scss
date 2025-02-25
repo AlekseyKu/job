@@ -1,0 +1,76 @@
+.cookies-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  width: 90%;
+  max-width: 1100px; // ✅ Ограничиваем ширину на больших экранах
+  z-index: 1000000;
+  text-align: left;
+  justify-content: space-between;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+
+  p {
+      margin: 0;
+      line-height: 1.4;
+      flex-grow: 1;
+      max-width: 70%; // ✅ Ограничиваем ширину текста
+  }
+
+  .buttons-container {
+      display: flex;
+      gap: 12px;
+      flex-shrink: 0;
+  }
+
+  button {
+      background: var(--tg-theme-primary);
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.3s;
+      white-space: nowrap; // ✅ Предотвращаем перенос кнопок
+
+      &:hover {
+          background: var(--tg-theme-secondary);
+      }
+  }
+
+  @media (max-width: 768px) {
+      flex-direction: column; // ✅ Меняем структуру на мобильных
+      align-items: center;
+      text-align: center;
+      padding: 15px;
+      gap: 12px;
+      width: 95%;
+      bottom: 10px;
+
+      p {
+          max-width: 100%;
+      }
+
+      .buttons-container {
+          flex-direction: column; // ✅ Размещаем кнопки вертикально
+          width: 100%;
+      }
+
+      button {
+          width: 100%;
+          padding: 12px;
+      }
+  }
+}

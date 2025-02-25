@@ -7,6 +7,7 @@ import Script from 'next/script';
 import Image from "next/image";
 import { Metadata } from "next";
 import { headers } from "next/headers"; // ✅ Исправлено!
+import CookiesPopup from "./components/CookiesPopup";
 
 // Константа для обращения к API Strapi
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
@@ -91,7 +92,7 @@ export default async function RootLayout({
 
   const idYandexMetrika = siteData?.idYandexMetrika || null;
 
-  console.log(textColor)
+  // console.log(textColor)
 
   return (
     <html lang={localeLang} dir={dir(localeLang)}>
@@ -153,6 +154,7 @@ export default async function RootLayout({
 
         {/* ✅ Основной контент */}
         {children}
+        <CookiesPopup />
       </body>
     </html>
   );
