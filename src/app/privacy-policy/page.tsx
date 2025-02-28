@@ -34,6 +34,7 @@ export default async function PrivacyPolicy() {
 
   // ✅ Берём язык из API сайта (не из URL)
   const locale = siteData?.localeLang?.split("-")[0] || "en";
+  // const locale = siteData?.localeLang || "en-Gb";
 
   // ✅ Загружаем политику для локали
   const policy = await fetchPrivacyPolicy(locale);

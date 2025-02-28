@@ -2,7 +2,7 @@
 import React,{useEffect} from "react";
 
 const useTextAnimation = (isShow:boolean) => {
-  console.log('isShow',isShow)
+  // console.log('isShow',isShow)
   useEffect(() => {
     if(isShow){
       const animateText = (element:any) => {

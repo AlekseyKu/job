@@ -146,13 +146,13 @@ export default async function Home() {
         buttonText={siteData.attributes.buttonText ?? "PLAY NOW"}
       />
       <HomePage
-        pretitle={siteData.home_page?.pretitle}
-        title={siteData.home_page?.title}
-        subtitle={siteData.home_page?.subtitle}
+        pretitle={siteData.homePretitle}
+        title={siteData.homeTitle}
+        subtitle={siteData.homeSubtitle}
         buttonText={siteData.attributes.buttonText ?? "PLAY NOW"}
         targetLink={siteData.targetLinkButton}
-        pageImg={siteData.home_page?.pageImg}
-        pageBg={siteData.home_page?.pageBg}
+        pageImg={siteData.imageHomeHero}
+        pageBg={siteData.imageHomeBg}
         // colorTitleMain={siteData.colorTitleMain}
       />
 
@@ -163,9 +163,9 @@ export default async function Home() {
         exchangeRate={exchangeRate}
       />
 
-      {siteData.editor_info && (
+      {siteData.wysiwyg && (
         <EditorInfo 
-          editorInfo={siteData.editor_info.editorInfo} 
+          editorInfo={siteData.wysiwyg} 
           titleMain={siteData.H1}
         />
       )}
