@@ -44,10 +44,10 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
                     {socialTitle}            
                   </p>
                   <div className="footer-social">
-                    <Link href="/go" prefetch={false}><Image src={icon_1} alt="icon" width={30} height={30} /></Link>
-                    <Link href="/go" prefetch={false}><Image src={icon_2} alt="icon" width={30} height={30} /></Link>
-                    <Link href="/go" prefetch={false}><Image src={icon_3} alt="icon" width={30} height={30} /></Link>
-                    <Link href="/go" prefetch={false}><Image src={icon_4} alt="icon" width={30} height={30} /></Link>
+                    <Link href={targetLink} prefetch={false}><Image src={icon_2} alt="icon" width={30} height={30} /></Link>
+                    <Link href={targetLink} prefetch={false}><Image src={icon_3} alt="icon" width={30} height={30} /></Link>
+                    <Link href={targetLink} prefetch={false}><Image src={icon_4} alt="icon" width={30} height={30} /></Link>
+                    <Link href={targetLink} prefetch={false}><Image src={icon_1} alt="icon" width={30} height={30} /></Link>
                   </div>
                   <p className="social-title privacy-title">
                     <Link href="/privacy-policy" prefetch={false}>
@@ -98,7 +98,7 @@ const Footer: React.FC<FooterProps> = ({ logo, footerText, targetLink, siteName,
             </div>
             <div className="col-md-5">
               <div className="copyright__card text-center text-md-end">
-                <Link href="/go" prefetch={false}><Image src={payment} alt="payment"/></Link>
+                <Link href={targetLink} prefetch={false}><Image src={payment} alt="payment"/></Link>
                 {/* <Image src={payment} alt="img" /> */}
               </div>
             </div>

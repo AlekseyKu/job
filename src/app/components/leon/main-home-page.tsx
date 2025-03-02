@@ -96,7 +96,7 @@ const MainHomePage: React.FC<HomePageProps> = ({
 
                     {/* Кнопка с эффектом */}
                     <motion.div className="slider__btn" variants={fadeInUp} custom={1.2}>
-                      <Link href="/go" prefetch={false} className="custom-button-main-page">
+                      <Link href={targetLink} prefetch={false} className="custom-button-main-page">
                         <span>{buttonText}</span>
                       </Link>
                     </motion.div>

@@ -60,7 +60,7 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
       <div className="tournament__list-content">
         {/* Блок с изображением */}
         <div className="tournament__list-thumb">
-          <Link href="/go" prefetch={false}>
+          <Link href={targetLink} prefetch={false}>
             <Image
               src={item.thumb}
               alt="thumb"
@@ -87,7 +87,7 @@ const TournamentListItem = ({ item, index, targetLink, buttonText, currencySymbo
 
         {/* Кнопка */}
         <div className="tournament__list-live">
-          <Link href="/go" prefetch={false}>
+          <Link href={targetLink} prefetch={false}>
             {buttonText} <i className="far fa-play-circle"></i>
           </Link>
         </div>
