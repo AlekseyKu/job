@@ -1,4 +1,4 @@
-// src\app\layout.tsx
+// src/app/layout.tsx
 import "./globals.scss";
 import { dir } from 'i18next';
 import { languages } from '@/i18n/settings';
@@ -6,8 +6,10 @@ import FetchSiteData from "@/utils/fetchSiteData";
 import Script from 'next/script';
 import Image from "next/image";
 import { Metadata } from "next";
-import { headers } from "next/headers"; // ✅ Исправлено!
+import { headers } from "next/headers";
 import CookiesPopup from "./components/CookiesPopup";
+import LoadingWrapper from "./components/common/loading-wrapper";
+
 
 // Константа для обращения к API Strapi
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
@@ -151,10 +153,11 @@ export default async function RootLayout({
             </div>
           </noscript>
         )}
-
-        {/* ✅ Основной контент */}
-        {children}
-        <CookiesPopup />
+        <LoadingWrapper>
+          {/* ✅ Основной контент */}
+          {children}
+          <CookiesPopup />
+        </LoadingWrapper>
       </body>
     </html>
   );
