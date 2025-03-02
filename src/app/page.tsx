@@ -146,9 +146,9 @@ export default async function Home() {
         buttonText={siteData.attributes.buttonText ?? "PLAY NOW"}
       />
       <HomePage
-        pretitle={siteData.homePretitle}
+        pretitle={siteData.homeSubtitle}
         title={siteData.homeTitle}
-        subtitle={siteData.homeSubtitle}
+        subtitle={siteData.homePretitle}
         buttonText={siteData.attributes.buttonText ?? "PLAY NOW"}
         targetLink={siteData.targetLinkButton}
         pageImg={siteData.imageHomeHero}
