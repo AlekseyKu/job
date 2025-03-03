@@ -8,8 +8,8 @@ type CurrencyData = {
 
 export const currencyData: Record<Locale, CurrencyData> = {
   en: {
-    currencySymbol: "$",
-    exchangeRate: 1, // Базовая валюта - USD
+    currencySymbol: "£",
+    exchangeRate: 1,
   },
   pl: {
     currencySymbol: "zł",
