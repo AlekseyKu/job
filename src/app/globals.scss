@@ -5,3 +5,9 @@
 @import "~slick-carousel/slick/slick.css";
 @import '/public/assets/scss/main.scss';
 @import '/public/assets/scss/leon/leon.scss';
+
+.hide-popup .cookies-popup {
+    display: none !important;
+}
+  
+  

@@ -1,0 +1,39 @@
+.not-found-container {
+    background-color: #121212; // 🔥 Теперь всегда тёмный фон
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .error-code {
+    font-size: 80px;
+    font-weight: bold;
+    color: var(--tg-theme-primary);
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .home-link {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: var(--tg-theme-secondary);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  
+  .home-link:hover {
+    background-color: var(--tg-theme-primary);
+    color: white;
+  }
+  

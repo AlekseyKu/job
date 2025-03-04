@@ -5,7 +5,7 @@ import ContextProvider from "@/context/app-context";
 
 // ✅ Динамические импорты
 const BackToTopCom = dynamic(() => import("@/app/components/common/back-to-top-com"), { ssr: false });
-const AnimateMouse = dynamic(() => import("@/app/components/common/animated-mouse"), { ssr: false });
+// const AnimateMouse = dynamic(() => import("@/app/components/common/animated-mouse"), { ssr: false });
 const ToastContainer = dynamic(() => import("react-toastify").then((mod) => mod.ToastContainer), { ssr: false });
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
