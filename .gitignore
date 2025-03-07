@@ -3,3 +3,5 @@ node_modules/
 src/app/components/unUsed/
 docs
 .codegpt
+env/
+analyze/

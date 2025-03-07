@@ -117,7 +117,12 @@ const MainHomePage: React.FC<HomePageProps> = ({
                         alt="Main Image"
                         width={imgWidth}
                         height={imgHeight}
-                        priority
+                        fetchPriority="high"
+                        decoding="async"
+                        quality={80}
+                        placeholder="blur"
+                        blurDataURL={pageImgUrl}
+                        loading="eager"
                       />
                     </motion.div>
                   </MouseParallaxChild>
@@ -129,10 +134,10 @@ const MainHomePage: React.FC<HomePageProps> = ({
 
         {/* Декоративные элементы */}
         <div className="slider__shapes">
-          <Image src={shape_1} alt="shape" quality={50} priority />
-          <Image src={shape_2} alt="shape" quality={50} priority />
-          <Image src={shape_3} alt="shape" quality={50} priority />
-          <Image src={shape_4} alt="shape" quality={50} priority />
+          <Image src={shape_1} alt="shape" loading="lazy" quality={50} />
+          <Image src={shape_2} alt="shape" loading="lazy" quality={50} />
+          <Image src={shape_3} alt="shape" loading="lazy" quality={50} />
+          <Image src={shape_4} alt="shape" loading="lazy" quality={50} />
         </div>
       </section>
     </MouseParallaxContainer>

@@ -1,2 +1,0 @@
-PORT=3011
-NEXT_PUBLIC_DOMAIN=9ninecasino.es

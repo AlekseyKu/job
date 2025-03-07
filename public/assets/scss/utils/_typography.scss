@@ -5,11 +5,12 @@
 
 @font-face {
     font-family: 'berlin_sans_fb_demibold';
-    src: local('Berlin Sans FB Demi'),
+    src: 
          url('/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff2') format('woff2'),
          url('/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
