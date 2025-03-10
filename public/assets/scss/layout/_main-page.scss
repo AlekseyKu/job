@@ -101,7 +101,6 @@
             margin: 0 0 21px;
             // font-size: 800%;
             // font-size: 8rem;
-            font-size: clamp(7rem, 7vw, 8rem);
             font-family: var(--tg-berlin-font-family);
             line-height: 1;
             color: var(--tg-common-color-text);
@@ -109,19 +108,23 @@
             white-space: normal;
             max-width: 100%;
 
+            font-size: clamp(4rem, 6vw, 6rem);
             
             @media #{$xl} {      
-                // font-size: 118px;
-                font-size: clamp(7rem, 6.5vw, 8rem);
+                font-size: clamp(4rem, 6vw, 6rem);
             }
+
             @media #{$lg} {
-                font-size: clamp(6.5rem, 6vw, 7rem);
+                font-size: clamp(3rem, 8vw, 5rem);
             }
+
             @media #{$md} {
-                font-size: clamp(5rem, 5vw, 6rem);
+                font-size: clamp(2.5rem, 8vw, 4.5rem);
+                text-shadow: -1px 3px 0px var(--tg-theme-primary);
             }
+
             @media #{$xs} {
-                font-size: clamp(4rem, 10vw, 5rem); 
+                font-size: clamp(2rem, 10vw, 4rem);
                 text-shadow: -1px 3px 0px var(--tg-theme-primary);
             }
         }
