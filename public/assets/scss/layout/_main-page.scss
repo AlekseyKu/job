@@ -100,31 +100,29 @@
         & .title {
             margin: 0 0 21px;
             // font-size: 800%;
-            font-size: 8rem;
+            // font-size: 8rem;
+            font-size: clamp(7rem, 7vw, 8rem);
             font-family: var(--tg-berlin-font-family);
-            line-height: 0.8;
+            line-height: 1;
+            color: var(--tg-common-color-text);
             text-shadow: -1px 5px 0px var(--tg-theme-primary);
-            // white-space: nowrap; // Убираем перенос текста
-            // font-size: clamp(1rem, 5vw, 118px);
+            white-space: normal;
+            max-width: 100%;
 
             
             @media #{$xl} {      
                 // font-size: 118px;
-                font-size: 8rem;
+                font-size: clamp(7rem, 6.5vw, 8rem);
             }
             @media #{$lg} {
-                font-size: 94px;
+                font-size: clamp(6.5rem, 6vw, 7rem);
             }
             @media #{$md} {
-                font-size: 120px;
+                font-size: clamp(5rem, 5vw, 6rem);
             }
             @media #{$xs} {
-                font-size: 18vw;
+                font-size: clamp(4rem, 10vw, 5rem); 
                 text-shadow: -1px 3px 0px var(--tg-theme-primary);
-            }
-            @media #{$sm} {
-                font-size: 17vw;
-                text-shadow: -1px 5px 0px var(--tg-theme-primary);
             }
         }
         & p {
@@ -134,7 +132,6 @@
             font-weight: 700;
             letter-spacing: 5px;
             line-height: 1.4;
-            // color: var(--tg-common-color-white);
             color: var(--tg-common-color-text);
             @media #{$lg} {
                 font-size: 22px;

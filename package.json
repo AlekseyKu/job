@@ -1,6 +1,6 @@
 {
   "name": "sky.limit",
-  "version": "1.6.8",
+  "version": "1.6.9",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -45,7 +45,9 @@
     "@next/bundle-analyzer": "^15.1.7",
     "@types/react-modal-video": "^1.2.0",
     "@types/react-slick": "^0.23.10",
-    "@types/webpack-env": "^1.18.5"
+    "@types/webpack-env": "^1.18.5",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   },
   "overrides": {
     "cross-spawn": "7.0.6"

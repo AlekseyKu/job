@@ -108,7 +108,7 @@ export default async function RootLayout({
           crossOrigin="anonymous" 
         />
         {/* <link rel="preload" href="/assets/fonts/berlin_sans_fb_demi_bold-webfont.woff" as="font" type="font/woff" crossOrigin="anonymous" /> */}
-
+      
 
         <style>{`
           :root {

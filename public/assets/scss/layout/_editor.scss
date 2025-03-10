@@ -27,9 +27,18 @@
     }
 }
 
-table {
-    border: 1px solid white;
-    width: 100%;
+/*=============================
+    Таблицы (Горизонтальный скролл только при необходимости)
+===============================*/
+
+.raw-html-embed {
+    table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-collapse: collapse;
+    }
 
     th, td {
         border: 1px solid white;
@@ -39,8 +48,15 @@ table {
     }
 }
 
-.raw-html-embed {
-    img {
-        padding: 20px 0 20px;
+/*=============================
+    Мобильная адаптация
+===============================*/
+
+@media (max-width: 768px) {
+    .raw-html-embed {
+        table {
+            display: block;
+            overflow-x: auto;
+        }
     }
 }
