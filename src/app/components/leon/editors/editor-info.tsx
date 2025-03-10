@@ -51,7 +51,7 @@ const EditorInfo: React.FC<EditorInfoProps> = ({ editorInfo, titleMain }) => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-8 col-lg-10 col-md-12">
-            <div className="editor-info__H1">{titleMain}</div>
+            <div className="editor-info__H1 H2">{titleMain}</div>
             <div className="section__content">
               {/* Парсинг HTML-кода и замена img на Image */}
               {content ? handleLazyLoadImages(content) : <p>Загрузка данных...</p>}
