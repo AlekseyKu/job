@@ -153,6 +153,7 @@ export default async function Home() {
         targetLink={siteData.targetLinkButton}
         pageImg={siteData.imageHomeHero}
         pageBg={siteData.imageHomeBg}
+        mainButtonText={siteData.mainButtonText}
         // colorTitleMain={siteData.colorTitleMain}
       />
 

@@ -21,6 +21,7 @@ interface HomePageProps {
   // colorTitleMain: string;
   pageImg: { url: string; width: number; height: number };
   pageBg: { url: string; width: number; height: number };
+  mainButtonText: string | null;
 }
 
 const httpAddress = process.env.NEXT_PUBLIC_URL_STRAPI;
@@ -43,7 +44,8 @@ const MainHomePage: React.FC<HomePageProps> = ({
   targetLink,
   // colorTitleMain,
   pageImg,
-  pageBg
+  pageBg,
+  mainButtonText,
 }) => {
   // ✅ Оптимизация загрузки изображений
   const pageImgUrl = pageImg?.url ? `${httpAddress}${pageImg.url}` : "/default-pageImg.png";
@@ -97,7 +99,7 @@ const MainHomePage: React.FC<HomePageProps> = ({
                     {/* Кнопка с эффектом */}
                     <motion.div className="slider__btn" variants={fadeInUp} custom={1.2}>
                       <Link href={targetLink} prefetch={false} className="custom-button-main-page">
-                        <span>{buttonText}</span>
+                        <span>{mainButtonText ?? buttonText}</span>
                       </Link>
                     </motion.div>
                   </motion.div>
